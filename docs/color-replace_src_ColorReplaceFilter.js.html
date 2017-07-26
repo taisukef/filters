@@ -537,395 +537,113 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="PIXI.filters.ShockwaveFilter.html">Class: ShockwaveFilter</h1>
+        <h1 class="page-title" data-filename="color-replace_src_ColorReplaceFilter.js.html">Source: color-replace/src/ColorReplaceFilter.js</h1>
         
 
 
+    
+    <section>
+        <article>
+            <pre id="source-code" class="prettyprint source linenums"><code>import vertex from './colorReplace.vert';
+import fragment from './colorReplace.frag';
 
-<section>
-    
-<header>
-    <h2>
-    ShockwaveFilter
-    </h2>
-    
-        <div class="class-description"><p>The ColorMatrixFilter class lets you apply a 4x4 matrix transformation on the RGBA<br>color and alpha values of every pixel on your displayObject to produce a result<br>with a new set of RGBA color and alpha values. It's pretty powerful!</p></div>
-    
-</header>  
+/**
+ * ColorReplaceFilter, originally by mishaa, updated by timetocode
+ * http://www.html5gamedevs.com/topic/10640-outline-a-sprite-change-certain-colors/?p=69966
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @param {number|Array&lt;number>} [originalColor=0xFF0000] The color that will be changed, as a 3 component RGB e.g. [1.0, 1.0, 1.0]
+ * @param {number|Array&lt;number>} [newColor=0x000000] The resulting color, as a 3 component RGB e.g. [1.0, 0.5, 1.0]
+ * @param {number} [epsilon=0.4] Tolerance/sensitivity of the floating-point comparison between colors (lower = more exact, higher = more inclusive)
+ *
+ * @example
+ *  // replaces true red with true blue
+ *  someSprite.filters = [new ColorReplaceFilter(
+ *   [1, 0, 0],
+ *   [0, 0, 1],
+ *   0.001
+ *   )];
+ *  // replaces the RGB color 220, 220, 220 with the RGB color 225, 200, 215
+ *  someOtherSprite.filters = [new ColorReplaceFilter(
+ *   [220/255.0, 220/255.0, 220/255.0],
+ *   [225/255.0, 200/255.0, 215/255.0],
+ *   0.001
+ *   )];
+ *  // replaces the RGB color 220, 220, 220 with the RGB color 225, 200, 215
+ *  someOtherSprite.filters = [new ColorReplaceFilter(0xdcdcdc, 0xe1c8d7, 0.001)];
+ *
+ */
+export default class ColorReplaceFilter extends PIXI.Filter {
 
-<article>
-    <div class="container-overview">
-    
-    
-    
-        
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="ShockwaveFilter">
-            
-            new PIXI.filters.ShockwaveFilter<span class="signature">(<span class="optional">center</span>, <span class="optional">params</span>, <span class="optional">time</span>)</span>
-        </h4>
-    
-        
-        <div class="tag-source">
-            <a href="shockwave_src_ShockwaveFilter.js.html">shockwave/src/ShockwaveFilter.js</a>, <a href="shockwave_src_ShockwaveFilter.js.html#line18">line 18</a>
-        </div>
-        
-    </div>
+    constructor(originalColor = 0xFF0000, newColor = 0x000000, epsilon = 0.4) {
+        super(vertex, fragment);
+        this.originalColor = originalColor;
+        this.newColor = newColor;
+        this.epsilon = epsilon;
+    }
 
-    
-</dt>
-<dd>
-    
-    
+    /**
+     * The color that will be changed, as a 3 component RGB e.g. [1.0, 1.0, 1.0]
+     * @member {number|Array&lt;number>}
+     * @default 0xFF0000
+     */
+    set originalColor(value) {
+        let arr = this.uniforms.originalColor;
+        if (typeof value === 'number') {
+            PIXI.utils.hex2rgb(value, arr);
+            this._originalColor = value;
+        }
+        else {
+            arr[0] = value[0];
+            arr[1] = value[1];
+            arr[2] = value[2];
+            this._originalColor = PIXI.utils.rgb2hex(arr);
+        }
+    }
+    get originalColor() {
+        return this._originalColor;
+    }
 
-    
-    
-    
-    
-    
-        
+    /**
+     * The resulting color, as a 3 component RGB e.g. [1.0, 0.5, 1.0]
+     * @member {number|Array&lt;number>}
+     * @default 0x000000
+     */
+    set newColor(value) {
+        let arr = this.uniforms.newColor;
+        if (typeof value === 'number') {
+            PIXI.utils.hex2rgb(value, arr);
+            this._newColor = value;
+        }
+        else {
+            arr[0] = value[0];
+            arr[1] = value[1];
+            arr[2] = value[2];
+            this._newColor = PIXI.utils.rgb2hex(arr);
+        }
+    }
+    get newColor() {
+        return this._newColor;
+    }
 
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		<th>Default</th>
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>center</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">PIXI.Point</span>
+    /**
+     * Tolerance/sensitivity of the floating-point comparison between colors (lower = more exact, higher = more inclusive)
+     * @member {number}
+     * @default 0.4
+     */
+    set epsilon(value) {
+        this.uniforms.epsilon = value;
+    }
+    get epsilon() {
+        return this.uniforms.epsilon;
+    }
+}
+</code></pre>
+        </article>
+    </section>
 
-
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    [0.5, 0.5]
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>See center property</p></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>params</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;number></span>
-
-
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    [10, 0.8, 0.1]
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>See params property</p></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>time</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    0
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>See time property</p></td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-    
-    </div>
-    
-    
-        <h3 class="subsection-title">Extends</h3>
-        
-        <ul>
-            <li>PIXI.Filter</li>
-        </ul>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        <h3 class="subsection-title">Members</h3>
-        
-        <dl>
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="center">center<span class="type-signature type pixi.point">PIXI.Point</span> </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Sets the center of the shockwave in normalized screen coords. That is<br>(0,0) is the top-left and (1,1) is the bottom right.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="params">params<span class="type-signature type array.<number>">Array.&lt;number></span> </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Sets the params of the shockwave. These modify the look and behavior of<br>the shockwave as it ripples out.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="time">time<span class="type-signature type number">number</span> </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Sets the elapsed time of the shockwave. This controls the speed at which<br>the shockwave ripples out.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        </dl>
-    
-    
-    
-    
-    
-    
-    
-
-    
-</article>
-
-</section>  
 
 
 
@@ -934,7 +652,7 @@
         
 
         <footer>
-            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a> on Wed Jul 26 2017 13:12:00 GMT-0400 (EDT)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a> on Wed Jul 26 2017 13:12:00 GMT-0400 (EDT)
         </footer>
     </div>
 </div>

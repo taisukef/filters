@@ -537,395 +537,86 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="PIXI.filters.ShockwaveFilter.html">Class: ShockwaveFilter</h1>
+        <h1 class="page-title" data-filename="bulge-pinch_src_BulgePinchFilter.js.html">Source: bulge-pinch/src/BulgePinchFilter.js</h1>
         
 
 
+    
+    <section>
+        <article>
+            <pre id="source-code" class="prettyprint source linenums"><code>import vertex from './bulgePinch.vert';
+import fragment from './bulgePinch.frag';
 
-<section>
-    
-<header>
-    <h2>
-    ShockwaveFilter
-    </h2>
-    
-        <div class="class-description"><p>The ColorMatrixFilter class lets you apply a 4x4 matrix transformation on the RGBA<br>color and alpha values of every pixel on your displayObject to produce a result<br>with a new set of RGBA color and alpha values. It's pretty powerful!</p></div>
-    
-</header>  
+/**
+ * @author Julien CLEREL @JuloxRox
+ * original filter https://github.com/evanw/glfx.js/blob/master/src/filters/warp/bulgepinch.js by Evan Wallace : http://madebyevan.com/
+ */
+ 
+/**
+ * Bulges or pinches the image in a circle.
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @param {PIXI.Point|Array&lt;number>} [center=[0,0]] The x and y coordinates of the center of the circle of effect.
+ * @param {number} [radius=100] The radius of the circle of effect.
+ * @param {number} [strength=1] -1 to 1 (-1 is strong pinch, 0 is no effect, 1 is strong bulge)
+ */
+export default class BulgePinchFilter extends PIXI.Filter {
 
-<article>
-    <div class="container-overview">
-    
-    
-    
-        
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="ShockwaveFilter">
-            
-            new PIXI.filters.ShockwaveFilter<span class="signature">(<span class="optional">center</span>, <span class="optional">params</span>, <span class="optional">time</span>)</span>
-        </h4>
-    
-        
-        <div class="tag-source">
-            <a href="shockwave_src_ShockwaveFilter.js.html">shockwave/src/ShockwaveFilter.js</a>, <a href="shockwave_src_ShockwaveFilter.js.html#line18">line 18</a>
-        </div>
-        
-    </div>
+    constructor(center, radius, strength) {
+        super(vertex, fragment);
+        this.center = center || [0.5, 0.5];
+        this.radius = radius || 100;
+        this.strength = strength || 1;
+    }
 
-    
-</dt>
-<dd>
-    
-    
+    apply(filterManager, input, output) {
+        this.uniforms.dimensions[0] = input.sourceFrame.width;
+        this.uniforms.dimensions[1] = input.sourceFrame.height;
+        filterManager.applyFilter(this, input, output);
+    }
 
-    
-    
-    
-    
-    
-        
+    /**
+     * The radius of the circle of effect.
+     *
+     * @member {number}
+     */
+    get radius() {
+        return this.uniforms.radius;
+    }
+    set radius(value) {
+        this.uniforms.radius = value;
+    }
 
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		<th>Default</th>
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>center</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">PIXI.Point</span>
+    /**
+     * The strength of the effect. -1 to 1 (-1 is strong pinch, 0 is no effect, 1 is strong bulge)
+     *
+     * @member {number}
+     */
+    get strength() {
+        return this.uniforms.strength;
+    }
+    set strength(value) {
+        this.uniforms.strength = value;
+    }
 
+    /**
+     * The x and y coordinates of the center of the circle of effect.
+     *
+     * @member {PIXI.Point}
+     */
+    get center() {
+        return this.uniforms.center;
+    }
+    set center(value) {
+        this.uniforms.center = value;
+    }
+}
+</code></pre>
+        </article>
+    </section>
 
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    [0.5, 0.5]
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>See center property</p></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>params</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;number></span>
-
-
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    [10, 0.8, 0.1]
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>See params property</p></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>time</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    0
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>See time property</p></td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-    
-    </div>
-    
-    
-        <h3 class="subsection-title">Extends</h3>
-        
-        <ul>
-            <li>PIXI.Filter</li>
-        </ul>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        <h3 class="subsection-title">Members</h3>
-        
-        <dl>
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="center">center<span class="type-signature type pixi.point">PIXI.Point</span> </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Sets the center of the shockwave in normalized screen coords. That is<br>(0,0) is the top-left and (1,1) is the bottom right.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="params">params<span class="type-signature type array.<number>">Array.&lt;number></span> </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Sets the params of the shockwave. These modify the look and behavior of<br>the shockwave as it ripples out.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="time">time<span class="type-signature type number">number</span> </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Sets the elapsed time of the shockwave. This controls the speed at which<br>the shockwave ripples out.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        </dl>
-    
-    
-    
-    
-    
-    
-    
-
-    
-</article>
-
-</section>  
 
 
 
@@ -934,7 +625,7 @@
         
 
         <footer>
-            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a> on Wed Jul 26 2017 13:12:00 GMT-0400 (EDT)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a> on Wed Jul 26 2017 13:12:00 GMT-0400 (EDT)
         </footer>
     </div>
 </div>

@@ -537,7 +537,7 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="PIXI.filters.ShockwaveFilter.html">Class: ShockwaveFilter</h1>
+        <h1 class="page-title" data-filename="PIXI.filters.SimpleLightmapFilter.html">Class: SimpleLightmapFilter</h1>
         
 
 
@@ -546,10 +546,10 @@
     
 <header>
     <h2>
-    ShockwaveFilter
+    SimpleLightmapFilter
     </h2>
     
-        <div class="class-description"><p>The ColorMatrixFilter class lets you apply a 4x4 matrix transformation on the RGBA<br>color and alpha values of every pixel on your displayObject to produce a result<br>with a new set of RGBA color and alpha values. It's pretty powerful!</p></div>
+        <div class="class-description"><p>SimpleLightmap, originally by Oza94<br>http://www.html5gamedevs.com/topic/20027-pixijs-simple-lightmapping/<br>http://codepen.io/Oza94/pen/EPoRxj</p></div>
     
 </header>  
 
@@ -561,14 +561,14 @@
         
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="ShockwaveFilter">
+        <h4 class="name" id="SimpleLightmapFilter">
             
-            new PIXI.filters.ShockwaveFilter<span class="signature">(<span class="optional">center</span>, <span class="optional">params</span>, <span class="optional">time</span>)</span>
+            new PIXI.filters.SimpleLightmapFilter<span class="signature">(lightmapTexture, ambientColor, <span class="optional">resolution</span>)</span>
         </h4>
     
         
         <div class="tag-source">
-            <a href="shockwave_src_ShockwaveFilter.js.html">shockwave/src/ShockwaveFilter.js</a>, <a href="shockwave_src_ShockwaveFilter.js.html#line18">line 18</a>
+            <a href="simple-lightmap_src_SimpleLightmapFilter.js.html">simple-lightmap/src/SimpleLightmapFilter.js</a>, <a href="simple-lightmap_src_SimpleLightmapFilter.js.html#line27">line 27</a>
         </div>
         
     </div>
@@ -608,13 +608,13 @@
 	
         <tr>
             
-                <td class="name"><code>center</code></td>
+                <td class="name"><code>lightmapTexture</code></td>
             
             
             <td class="type">
             
                 
-<span class="param-type">PIXI.Point</span>
+<span class="param-type">PIXI.Texture</span>
 
 
             
@@ -623,28 +623,24 @@
             
                 <td class="default">
                 
-                    [0.5, 0.5]
-                
                 </td>
             
             
             <td class="description last">
                 
                     
-                        <span class="optional">optional</span>
-                    
                     
                         
                     
                 
-                <p>See center property</p></td>
+                <p>a texture where your lightmap is rendered</p></td>
         </tr>
 	
 	
 	
         <tr>
             
-                <td class="name"><code>params</code></td>
+                <td class="name"><code>ambientColor</code></td>
             
             
             <td class="type">
@@ -659,34 +655,30 @@
             
                 <td class="default">
                 
-                    [10, 0.8, 0.1]
-                
                 </td>
             
             
             <td class="description last">
                 
                     
-                        <span class="optional">optional</span>
-                    
                     
                         
                     
                 
-                <p>See params property</p></td>
+                <p>An RGBA array of the ambient color</p></td>
         </tr>
 	
 	
 	
         <tr>
             
-                <td class="name"><code>time</code></td>
+                <td class="name"><code>resolution</code></td>
             
             
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">Array.&lt;number></span>
 
 
             
@@ -695,7 +687,7 @@
             
                 <td class="default">
                 
-                    0
+                    [1, 1]
                 
                 </td>
             
@@ -709,7 +701,7 @@
                         
                     
                 
-                <p>See time property</p></td>
+                <p>An array for X/Y resolution</p></td>
         </tr>
 	
 	
@@ -754,6 +746,20 @@
     
     
     
+        <h5>Example</h5>
+        
+
+    
+    <pre class="prettyprint"><code>var lightmapTex = new PIXI.RenderTexture(renderer, 400, 300);
+
+ // ... render lightmap on lightmapTex
+
+ stageContainer.filters = [
+   new SimpleLightmapFilter(lightmapTex, [0.3, 0.3, 0.7, 0.5], [1.0, 1.0])
+ ];</code></pre>
+    
+
+    
 </dd>
 
     
@@ -782,7 +788,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="center">center<span class="type-signature type pixi.point">PIXI.Point</span> </h4>
+        <h4 class="name" id="color">color<span class="type-signature type array.<number>">Array.&lt;number></span> </h4>
     </div>
     
     
@@ -790,7 +796,7 @@
 <dd>
     
     <div class="description">
-        <p>Sets the center of the shockwave in normalized screen coords. That is<br>(0,0) is the top-left and (1,1) is the bottom right.</p>
+        <p>An RGBA array of the ambient color</p>
     </div>
     
     
@@ -827,7 +833,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="params">params<span class="type-signature type array.<number>">Array.&lt;number></span> </h4>
+        <h4 class="name" id="resolution">resolution<span class="type-signature type array.<number>">Array.&lt;number></span> </h4>
     </div>
     
     
@@ -835,7 +841,7 @@
 <dd>
     
     <div class="description">
-        <p>Sets the params of the shockwave. These modify the look and behavior of<br>the shockwave as it ripples out.</p>
+        <p>An array for X/Y resolution</p>
     </div>
     
     
@@ -872,7 +878,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="time">time<span class="type-signature type number">number</span> </h4>
+        <h4 class="name" id="texture">texture<span class="type-signature type pixi.texture">PIXI.Texture</span> </h4>
     </div>
     
     
@@ -880,7 +886,7 @@
 <dd>
     
     <div class="description">
-        <p>Sets the elapsed time of the shockwave. This controls the speed at which<br>the shockwave ripples out.</p>
+        <p>a texture where your lightmap is rendered</p>
     </div>
     
     

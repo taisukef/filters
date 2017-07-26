@@ -537,7 +537,7 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="PIXI.filters.ShockwaveFilter.html">Class: ShockwaveFilter</h1>
+        <h1 class="page-title" data-filename="PIXI.filters.ColorReplaceFilter.html">Class: ColorReplaceFilter</h1>
         
 
 
@@ -546,10 +546,10 @@
     
 <header>
     <h2>
-    ShockwaveFilter
+    ColorReplaceFilter
     </h2>
     
-        <div class="class-description"><p>The ColorMatrixFilter class lets you apply a 4x4 matrix transformation on the RGBA<br>color and alpha values of every pixel on your displayObject to produce a result<br>with a new set of RGBA color and alpha values. It's pretty powerful!</p></div>
+        <div class="class-description"><p>ColorReplaceFilter, originally by mishaa, updated by timetocode<br>http://www.html5gamedevs.com/topic/10640-outline-a-sprite-change-certain-colors/?p=69966</p></div>
     
 </header>  
 
@@ -561,14 +561,14 @@
         
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="ShockwaveFilter">
+        <h4 class="name" id="ColorReplaceFilter">
             
-            new PIXI.filters.ShockwaveFilter<span class="signature">(<span class="optional">center</span>, <span class="optional">params</span>, <span class="optional">time</span>)</span>
+            new PIXI.filters.ColorReplaceFilter<span class="signature">(<span class="optional">originalColor</span>, <span class="optional">newColor</span>, <span class="optional">epsilon</span>)</span>
         </h4>
     
         
         <div class="tag-source">
-            <a href="shockwave_src_ShockwaveFilter.js.html">shockwave/src/ShockwaveFilter.js</a>, <a href="shockwave_src_ShockwaveFilter.js.html#line18">line 18</a>
+            <a href="color-replace_src_ColorReplaceFilter.js.html">color-replace/src/ColorReplaceFilter.js</a>, <a href="color-replace_src_ColorReplaceFilter.js.html#line34">line 34</a>
         </div>
         
     </div>
@@ -608,48 +608,15 @@
 	
         <tr>
             
-                <td class="name"><code>center</code></td>
+                <td class="name"><code>originalColor</code></td>
             
             
             <td class="type">
             
                 
-<span class="param-type">PIXI.Point</span>
+<span class="param-type">number</span>
+|
 
-
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    [0.5, 0.5]
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>See center property</p></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>params</code></td>
-            
-            
-            <td class="type">
-            
-                
 <span class="param-type">Array.&lt;number></span>
 
 
@@ -659,7 +626,7 @@
             
                 <td class="default">
                 
-                    [10, 0.8, 0.1]
+                    0xFF0000
                 
                 </td>
             
@@ -673,14 +640,53 @@
                         
                     
                 
-                <p>See params property</p></td>
+                <p>The color that will be changed, as a 3 component RGB e.g. [1.0, 1.0, 1.0]</p></td>
         </tr>
 	
 	
 	
         <tr>
             
-                <td class="name"><code>time</code></td>
+                <td class="name"><code>newColor</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+|
+
+<span class="param-type">Array.&lt;number></span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    0x000000
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>The resulting color, as a 3 component RGB e.g. [1.0, 0.5, 1.0]</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>epsilon</code></td>
             
             
             <td class="type">
@@ -695,7 +701,7 @@
             
                 <td class="default">
                 
-                    0
+                    0.4
                 
                 </td>
             
@@ -709,7 +715,7 @@
                         
                     
                 
-                <p>See time property</p></td>
+                <p>Tolerance/sensitivity of the floating-point comparison between colors (lower = more exact, higher = more inclusive)</p></td>
         </tr>
 	
 	
@@ -754,6 +760,27 @@
     
     
     
+        <h5>Example</h5>
+        
+
+    
+    <pre class="prettyprint"><code>// replaces true red with true blue
+ someSprite.filters = [new ColorReplaceFilter(
+  [1, 0, 0],
+  [0, 0, 1],
+  0.001
+  )];
+ // replaces the RGB color 220, 220, 220 with the RGB color 225, 200, 215
+ someOtherSprite.filters = [new ColorReplaceFilter(
+  [220/255.0, 220/255.0, 220/255.0],
+  [225/255.0, 200/255.0, 215/255.0],
+  0.001
+  )];
+ // replaces the RGB color 220, 220, 220 with the RGB color 225, 200, 215
+ someOtherSprite.filters = [new ColorReplaceFilter(0xdcdcdc, 0xe1c8d7, 0.001)];</code></pre>
+    
+
+    
 </dd>
 
     
@@ -782,7 +809,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="center">center<span class="type-signature type pixi.point">PIXI.Point</span> </h4>
+        <h4 class="name" id="epsilon">epsilon<span class="type-signature type number">number</span> </h4>
     </div>
     
     
@@ -790,7 +817,7 @@
 <dd>
     
     <div class="description">
-        <p>Sets the center of the shockwave in normalized screen coords. That is<br>(0,0) is the top-left and (1,1) is the bottom right.</p>
+        <p>Tolerance/sensitivity of the floating-point comparison between colors (lower = more exact, higher = more inclusive)</p>
     </div>
     
     
@@ -810,6 +837,9 @@
     
     
     
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0.4</li></ul></dd>
     
     
     
@@ -827,7 +857,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="params">params<span class="type-signature type array.<number>">Array.&lt;number></span> </h4>
+        <h4 class="name" id="newColor">newColor<span class="type-signature type number">number</span> <span class="type-signature type array.<number>">Array.&lt;number></span> </h4>
     </div>
     
     
@@ -835,7 +865,7 @@
 <dd>
     
     <div class="description">
-        <p>Sets the params of the shockwave. These modify the look and behavior of<br>the shockwave as it ripples out.</p>
+        <p>The resulting color, as a 3 component RGB e.g. [1.0, 0.5, 1.0]</p>
     </div>
     
     
@@ -855,6 +885,9 @@
     
     
     
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0x000000</li></ul></dd>
     
     
     
@@ -872,7 +905,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="time">time<span class="type-signature type number">number</span> </h4>
+        <h4 class="name" id="originalColor">originalColor<span class="type-signature type number">number</span> <span class="type-signature type array.<number>">Array.&lt;number></span> </h4>
     </div>
     
     
@@ -880,7 +913,7 @@
 <dd>
     
     <div class="description">
-        <p>Sets the elapsed time of the shockwave. This controls the speed at which<br>the shockwave ripples out.</p>
+        <p>The color that will be changed, as a 3 component RGB e.g. [1.0, 1.0, 1.0]</p>
     </div>
     
     
@@ -900,6 +933,9 @@
     
     
     
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0xFF0000</li></ul></dd>
     
     
     

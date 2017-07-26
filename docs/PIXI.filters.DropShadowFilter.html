@@ -537,7 +537,7 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="PIXI.filters.ShockwaveFilter.html">Class: ShockwaveFilter</h1>
+        <h1 class="page-title" data-filename="PIXI.filters.DropShadowFilter.html">Class: DropShadowFilter</h1>
         
 
 
@@ -546,10 +546,10 @@
     
 <header>
     <h2>
-    ShockwaveFilter
+    DropShadowFilter
     </h2>
     
-        <div class="class-description"><p>The ColorMatrixFilter class lets you apply a 4x4 matrix transformation on the RGBA<br>color and alpha values of every pixel on your displayObject to produce a result<br>with a new set of RGBA color and alpha values. It's pretty powerful!</p></div>
+        <div class="class-description"><p>Drop shadow filter.</p></div>
     
 </header>  
 
@@ -561,14 +561,14 @@
         
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="ShockwaveFilter">
+        <h4 class="name" id="DropShadowFilter">
             
-            new PIXI.filters.ShockwaveFilter<span class="signature">(<span class="optional">center</span>, <span class="optional">params</span>, <span class="optional">time</span>)</span>
+            new PIXI.filters.DropShadowFilter<span class="signature">(<span class="optional">rotation</span>, <span class="optional">distance</span>, <span class="optional">blur</span>, <span class="optional">color</span>, <span class="optional">alpha</span>)</span>
         </h4>
     
         
         <div class="tag-source">
-            <a href="shockwave_src_ShockwaveFilter.js.html">shockwave/src/ShockwaveFilter.js</a>, <a href="shockwave_src_ShockwaveFilter.js.html#line18">line 18</a>
+            <a href="drop-shadow_src_DropShadowFilter.js.html">drop-shadow/src/DropShadowFilter.js</a>, <a href="drop-shadow_src_DropShadowFilter.js.html#line17">line 17</a>
         </div>
         
     </div>
@@ -608,79 +608,7 @@
 	
         <tr>
             
-                <td class="name"><code>center</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">PIXI.Point</span>
-
-
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    [0.5, 0.5]
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>See center property</p></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>params</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;number></span>
-
-
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    [10, 0.8, 0.1]
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>See params property</p></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>time</code></td>
+                <td class="name"><code>rotation</code></td>
             
             
             <td class="type">
@@ -695,7 +623,7 @@
             
                 <td class="default">
                 
-                    0
+                    45
                 
                 </td>
             
@@ -709,7 +637,151 @@
                         
                     
                 
-                <p>See time property</p></td>
+                <p>The angle of the shadow in degrees.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>distance</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    5
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>Distance of shadow</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>blur</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    2
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>Blur of the shadow</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>color</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    0x000000
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>Color of the shadow</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>alpha</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    0.5
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>Alpha of the shadow</p></td>
         </tr>
 	
 	
@@ -782,7 +854,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="center">center<span class="type-signature type pixi.point">PIXI.Point</span> </h4>
+        <h4 class="name" id="alpha">alpha<span class="type-signature type number">number</span> </h4>
     </div>
     
     
@@ -790,7 +862,7 @@
 <dd>
     
     <div class="description">
-        <p>Sets the center of the shockwave in normalized screen coords. That is<br>(0,0) is the top-left and (1,1) is the bottom right.</p>
+        <p>The alpha of the shadow</p>
     </div>
     
     
@@ -810,6 +882,9 @@
     
     
     
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>1</li></ul></dd>
     
     
     
@@ -827,7 +902,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="params">params<span class="type-signature type array.<number>">Array.&lt;number></span> </h4>
+        <h4 class="name" id="blur">blur<span class="type-signature type number">number</span> </h4>
     </div>
     
     
@@ -835,7 +910,7 @@
 <dd>
     
     <div class="description">
-        <p>Sets the params of the shockwave. These modify the look and behavior of<br>the shockwave as it ripples out.</p>
+        <p>The blur of the shadow</p>
     </div>
     
     
@@ -855,6 +930,9 @@
     
     
     
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>2</li></ul></dd>
     
     
     
@@ -872,7 +950,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="time">time<span class="type-signature type number">number</span> </h4>
+        <h4 class="name" id="color">color<span class="type-signature type number">number</span> </h4>
     </div>
     
     
@@ -880,7 +958,7 @@
 <dd>
     
     <div class="description">
-        <p>Sets the elapsed time of the shockwave. This controls the speed at which<br>the shockwave ripples out.</p>
+        <p>The color of the shadow.</p>
     </div>
     
     
@@ -900,6 +978,105 @@
     
     
     
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0x000000</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="distance">distance<span class="type-signature type number">number</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Distance offset of the shadow</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>5</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="rotation">rotation<span class="type-signature type number">number</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The angle of the shadow in degrees</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>2</li></ul></dd>
     
     
     

@@ -537,395 +537,98 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="PIXI.filters.ShockwaveFilter.html">Class: ShockwaveFilter</h1>
+        <h1 class="page-title" data-filename="tilt-shift_src_TiltShiftFilter.js.html">Source: tilt-shift/src/TiltShiftFilter.js</h1>
         
 
 
+    
+    <section>
+        <article>
+            <pre id="source-code" class="prettyprint source linenums"><code>import TiltShiftXFilter from './TiltShiftXFilter';
+import TiltShiftYFilter from './TiltShiftYFilter';
 
-<section>
-    
-<header>
-    <h2>
-    ShockwaveFilter
-    </h2>
-    
-        <div class="class-description"><p>The ColorMatrixFilter class lets you apply a 4x4 matrix transformation on the RGBA<br>color and alpha values of every pixel on your displayObject to produce a result<br>with a new set of RGBA color and alpha values. It's pretty powerful!</p></div>
-    
-</header>  
+/**
+ * @author Vico @vicocotea
+ * original filter https://github.com/evanw/glfx.js/blob/master/src/filters/blur/tiltshift.js by Evan Wallace : http://madebyevan.com/
+ */
 
-<article>
-    <div class="container-overview">
+/**
+ * A TiltShift Filter. Manages the pass of both a TiltShiftXFilter and TiltShiftYFilter.
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @param {number} [blur=100] The strength of the blur.
+ * @param {number} [gradientBlur=600] The strength of the gradient blur.
+ * @param {PIXI.Point} [start=null] The Y value to start the effect at.
+ * @param {PIXI.Point} [end=null] The Y value to end the effect at.
+ */
+export default class TiltShiftFilter extends PIXI.Filter {
     
-    
-    
-        
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="ShockwaveFilter">
-            
-            new PIXI.filters.ShockwaveFilter<span class="signature">(<span class="optional">center</span>, <span class="optional">params</span>, <span class="optional">time</span>)</span>
-        </h4>
-    
-        
-        <div class="tag-source">
-            <a href="shockwave_src_ShockwaveFilter.js.html">shockwave/src/ShockwaveFilter.js</a>, <a href="shockwave_src_ShockwaveFilter.js.html#line18">line 18</a>
-        </div>
-        
-    </div>
+    constructor(blur = 100, gradientBlur = 600, start = null, end = null) {
+        super();
+        this.tiltShiftXFilter = new TiltShiftXFilter(blur, gradientBlur, start, end);
+        this.tiltShiftYFilter = new TiltShiftYFilter(blur, gradientBlur, start, end);
+    }
 
-    
-</dt>
-<dd>
-    
-    
+    apply(filterManager, input, output) {
+        let renderTarget = filterManager.getRenderTarget(true);
+        this.tiltShiftXFilter.apply(filterManager, input, renderTarget);
+        this.tiltShiftYFilter.apply(filterManager, renderTarget, output);
+        filterManager.returnRenderTarget(renderTarget);
+    }
 
-    
-    
-    
-    
-    
-        
+    /**
+     * The strength of the blur.
+     *
+     * @member {number}
+     */
+    get blur() {
+        return this.tiltShiftXFilter.blur;
+    }
+    set blur(value) {
+        this.tiltShiftXFilter.blur = this.tiltShiftYFilter.blur = value;
+    }
 
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		<th>Default</th>
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>center</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">PIXI.Point</span>
+    /**
+     * The strength of the gradient blur.
+     *
+     * @member {number}
+     */
+    get gradientBlur() {
+        return this.tiltShiftXFilter.gradientBlur;
+    }
+    set gradientBlur(value) {
+        this.tiltShiftXFilter.gradientBlur = this.tiltShiftYFilter.gradientBlur = value;
+    }
 
+    /**
+     * The Y value to start the effect at.
+     *
+     * @member {PIXI.Point}
+     */
+    get start() {
+        return this.tiltShiftXFilter.start;
+    }
+    set start(value) {
+        this.tiltShiftXFilter.start = this.tiltShiftYFilter.start = value;
+    }
 
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    [0.5, 0.5]
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>See center property</p></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>params</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;number></span>
+    /**
+     * The Y value to end the effect at.
+     *
+     * @member {PIXI.Point}
+     */
+    get end() {
+        return this.tiltShiftXFilter.end;
+    }
+    set end(value) {
+        this.tiltShiftXFilter.end = this.tiltShiftYFilter.end = value;
+    }
+}</code></pre>
+        </article>
+    </section>
 
-
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    [10, 0.8, 0.1]
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>See params property</p></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>time</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    0
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>See time property</p></td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-    
-    </div>
-    
-    
-        <h3 class="subsection-title">Extends</h3>
-        
-        <ul>
-            <li>PIXI.Filter</li>
-        </ul>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        <h3 class="subsection-title">Members</h3>
-        
-        <dl>
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="center">center<span class="type-signature type pixi.point">PIXI.Point</span> </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Sets the center of the shockwave in normalized screen coords. That is<br>(0,0) is the top-left and (1,1) is the bottom right.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="params">params<span class="type-signature type array.<number>">Array.&lt;number></span> </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Sets the params of the shockwave. These modify the look and behavior of<br>the shockwave as it ripples out.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="time">time<span class="type-signature type number">number</span> </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Sets the elapsed time of the shockwave. This controls the speed at which<br>the shockwave ripples out.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        </dl>
-    
-    
-    
-    
-    
-    
-    
-
-    
-</article>
-
-</section>  
 
 
 
@@ -934,7 +637,7 @@
         
 
         <footer>
-            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a> on Wed Jul 26 2017 13:12:00 GMT-0400 (EDT)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a> on Wed Jul 26 2017 13:12:00 GMT-0400 (EDT)
         </footer>
     </div>
 </div>

@@ -537,7 +537,7 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="PIXI.filters.ShockwaveFilter.html">Class: ShockwaveFilter</h1>
+        <h1 class="page-title" data-filename="PIXI.filters.OutlineFilter.html">Class: OutlineFilter</h1>
         
 
 
@@ -546,10 +546,10 @@
     
 <header>
     <h2>
-    ShockwaveFilter
+    OutlineFilter
     </h2>
     
-        <div class="class-description"><p>The ColorMatrixFilter class lets you apply a 4x4 matrix transformation on the RGBA<br>color and alpha values of every pixel on your displayObject to produce a result<br>with a new set of RGBA color and alpha values. It's pretty powerful!</p></div>
+        <div class="class-description"><p>OutlineFilter, originally by mishaa<br>http://www.html5gamedevs.com/topic/10640-outline-a-sprite-change-certain-colors/?p=69966<br>http://codepen.io/mishaa/pen/emGNRB</p></div>
     
 </header>  
 
@@ -561,14 +561,14 @@
         
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="ShockwaveFilter">
+        <h4 class="name" id="OutlineFilter">
             
-            new PIXI.filters.ShockwaveFilter<span class="signature">(<span class="optional">center</span>, <span class="optional">params</span>, <span class="optional">time</span>)</span>
+            new PIXI.filters.OutlineFilter<span class="signature">(<span class="optional">thickness</span>, <span class="optional">color</span>)</span>
         </h4>
     
         
         <div class="tag-source">
-            <a href="shockwave_src_ShockwaveFilter.js.html">shockwave/src/ShockwaveFilter.js</a>, <a href="shockwave_src_ShockwaveFilter.js.html#line18">line 18</a>
+            <a href="outline_src_OutlineFilter.js.html">outline/src/OutlineFilter.js</a>, <a href="outline_src_OutlineFilter.js.html#line20">line 20</a>
         </div>
         
     </div>
@@ -608,79 +608,7 @@
 	
         <tr>
             
-                <td class="name"><code>center</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">PIXI.Point</span>
-
-
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    [0.5, 0.5]
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>See center property</p></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>params</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;number></span>
-
-
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    [10, 0.8, 0.1]
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>See params property</p></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>time</code></td>
+                <td class="name"><code>thickness</code></td>
             
             
             <td class="type">
@@ -695,7 +623,7 @@
             
                 <td class="default">
                 
-                    0
+                    1
                 
                 </td>
             
@@ -709,7 +637,43 @@
                         
                     
                 
-                <p>See time property</p></td>
+                <p>The tickness of the outline. Make it 2 times more for resolution 2</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>color</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    0x000000
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>The color of the glow.</p></td>
         </tr>
 	
 	
@@ -754,6 +718,14 @@
     
     
     
+        <h5>Example</h5>
+        
+
+    
+    <pre class="prettyprint"><code>someSprite.shader = new OutlineFilter(9, 0xFF0000);</code></pre>
+    
+
+    
 </dd>
 
     
@@ -782,7 +754,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="center">center<span class="type-signature type pixi.point">PIXI.Point</span> </h4>
+        <h4 class="name" id="color">color<span class="type-signature type number">number</span> </h4>
     </div>
     
     
@@ -790,7 +762,7 @@
 <dd>
     
     <div class="description">
-        <p>Sets the center of the shockwave in normalized screen coords. That is<br>(0,0) is the top-left and (1,1) is the bottom right.</p>
+        <p>The color of the glow.</p>
     </div>
     
     
@@ -810,6 +782,9 @@
     
     
     
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0x000000</li></ul></dd>
     
     
     
@@ -827,7 +802,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="params">params<span class="type-signature type array.<number>">Array.&lt;number></span> </h4>
+        <h4 class="name" id="thickness">thickness<span class="type-signature type number">number</span> </h4>
     </div>
     
     
@@ -835,7 +810,7 @@
 <dd>
     
     <div class="description">
-        <p>Sets the params of the shockwave. These modify the look and behavior of<br>the shockwave as it ripples out.</p>
+        <p>The tickness of the outline. Make it 2 times more for resolution 2</p>
     </div>
     
     
@@ -856,50 +831,8 @@
     
     
     
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="time">time<span class="type-signature type number">number</span> </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Sets the elapsed time of the shockwave. This controls the speed at which<br>the shockwave ripples out.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>1</li></ul></dd>
     
     
     
