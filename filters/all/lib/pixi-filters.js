@@ -1,6 +1,6 @@
 /*!
  * pixi-filters - v2.0.0
- * Compiled Wed, 26 Jul 2017 18:51:04 UTC
+ * Compiled Wed, 02 Aug 2017 13:37:27 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -16,7 +16,7 @@ if (typeof PIXI.Filter === 'undefined') { throw 'PixiJS is required'; }
 
 /*!
  * @pixi/filter-ascii - v2.0.0
- * Compiled Wed, 26 Jul 2017 18:50:46 UTC
+ * Compiled Wed, 02 Aug 2017 13:37:06 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -27,7 +27,7 @@ var AsciiFilter=function(e){function n(n){void 0===n&&(n=8),e.call(this,vertex,f
 
 /*!
  * @pixi/filter-bloom - v2.0.0
- * Compiled Wed, 26 Jul 2017 18:50:46 UTC
+ * Compiled Wed, 02 Aug 2017 13:37:07 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -40,7 +40,7 @@ var BloomFilter=function(r){function t(t){void 0===t&&(t=2),r.call(this),this.bl
 
 /*!
  * @pixi/filter-bulge-pinch - v2.0.0
- * Compiled Wed, 26 Jul 2017 18:50:46 UTC
+ * Compiled Wed, 02 Aug 2017 13:37:06 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -51,7 +51,7 @@ var BulgePinchFilter=function(e){function r(r,n,t){e.call(this,vertex$1,fragment
 
 /*!
  * @pixi/filter-color-replace - v2.0.0
- * Compiled Wed, 26 Jul 2017 18:50:46 UTC
+ * Compiled Wed, 02 Aug 2017 13:37:07 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -62,7 +62,7 @@ var ColorReplaceFilter=function(o){function r(r,e,n){void 0===r&&(r=16711680),vo
 
 /*!
  * @pixi/filter-convolution - v2.0.0
- * Compiled Wed, 26 Jul 2017 18:50:50 UTC
+ * Compiled Wed, 02 Aug 2017 13:37:11 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -73,7 +73,7 @@ var ConvolutionFilter=function(e){function t(t,r,o){e.call(this,vertex$3,fragmen
 
 /*!
  * @pixi/filter-cross-hatch - v2.0.0
- * Compiled Wed, 26 Jul 2017 18:50:50 UTC
+ * Compiled Wed, 02 Aug 2017 13:37:11 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -84,7 +84,7 @@ var CrossHatchFilter=function(n){function o(){n.call(this,vertex$4,fragment$4);}
 
 /*!
  * @pixi/filter-dot - v2.0.0
- * Compiled Wed, 26 Jul 2017 18:50:50 UTC
+ * Compiled Wed, 02 Aug 2017 13:37:11 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -95,7 +95,7 @@ var DotFilter=function(e){function n(n,t){void 0===n&&(n=1),void 0===t&&(t=5),e.
 
 /*!
  * @pixi/filter-drop-shadow - v2.0.0
- * Compiled Wed, 26 Jul 2017 18:50:50 UTC
+ * Compiled Wed, 02 Aug 2017 13:37:12 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -106,7 +106,7 @@ var DropShadowFilter=function(t){function r(r,e,i,n,o){void 0===r&&(r=45),void 0
 
 /*!
  * @pixi/filter-emboss - v2.0.0
- * Compiled Wed, 26 Jul 2017 18:50:54 UTC
+ * Compiled Wed, 02 Aug 2017 13:37:16 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -117,7 +117,7 @@ var EmbossFilter=function(e){function t(t){void 0===t&&(t=5),e.call(this,vertex$
 
 /*!
  * @pixi/filter-glow - v2.0.0
- * Compiled Wed, 26 Jul 2017 18:50:54 UTC
+ * Compiled Wed, 02 Aug 2017 13:37:17 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -128,7 +128,7 @@ var GlowFilter=function(o){function t(t,n,r,e,l){void 0===t&&(t=10),void 0===n&&
 
 /*!
  * @pixi/filter-outline - v2.0.0
- * Compiled Wed, 26 Jul 2017 18:50:54 UTC
+ * Compiled Wed, 02 Aug 2017 13:37:16 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -139,7 +139,7 @@ var OutlineFilter=function(e){function o(o,r){void 0===o&&(o=1),void 0===r&&(r=0
 
 /*!
  * @pixi/filter-pixelate - v2.0.0
- * Compiled Wed, 26 Jul 2017 18:50:55 UTC
+ * Compiled Wed, 02 Aug 2017 13:37:18 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -150,7 +150,7 @@ var PixelateFilter=function(e){function o(o){void 0===o&&(o=10),e.call(this,vert
 
 /*!
  * @pixi/filter-rgb-split - v2.0.0
- * Compiled Wed, 26 Jul 2017 18:50:59 UTC
+ * Compiled Wed, 02 Aug 2017 13:37:22 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -161,7 +161,7 @@ var RGBSplitFilter=function(e){function r(r,t,n){void 0===r&&(r=[-10,0]),void 0=
 
 /*!
  * @pixi/filter-shockwave - v2.0.0
- * Compiled Wed, 26 Jul 2017 18:50:59 UTC
+ * Compiled Wed, 02 Aug 2017 13:37:22 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -172,7 +172,7 @@ var ShockwaveFilter=function(e){function t(t,n,r){void 0===t&&(t=[.5,.5]),void 0
 
 /*!
  * @pixi/filter-simple-lightmap - v2.0.0
- * Compiled Wed, 26 Jul 2017 18:50:59 UTC
+ * Compiled Wed, 02 Aug 2017 13:37:22 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -183,7 +183,7 @@ var SimpleLightmapFilter=function(o){function e(e,r,n){void 0===n&&(n=[1,1]),o.c
 
 /*!
  * @pixi/filter-tilt-shift - v2.0.0
- * Compiled Wed, 26 Jul 2017 18:51:00 UTC
+ * Compiled Wed, 02 Aug 2017 13:37:23 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -197,7 +197,7 @@ var TiltShiftFilter=function(t){function i(i,r,e,n){void 0===i&&(i=100),void 0==
 
 /*!
  * @pixi/filter-twist - v2.0.0
- * Compiled Wed, 26 Jul 2017 18:51:02 UTC
+ * Compiled Wed, 02 Aug 2017 13:37:25 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
