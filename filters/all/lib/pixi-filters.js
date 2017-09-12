@@ -1,6 +1,6 @@
 /*!
  * pixi-filters - v2.0.1
- * Compiled Sun, 10 Sep 2017 20:46:15 UTC
+ * Compiled Tue, 12 Sep 2017 16:53:54 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -16,7 +16,7 @@ if (typeof PIXI === 'undefined' || typeof PIXI.filters === 'undefined') { throw 
 
 /*!
  * @pixi/filter-ascii - v2.0.1
- * Compiled Sun, 10 Sep 2017 20:46:00 UTC
+ * Compiled Tue, 12 Sep 2017 16:53:38 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -27,7 +27,7 @@ var AsciiFilter=function(e){function n(n){void 0===n&&(n=8),e.call(this,vertex,f
 
 /*!
  * @pixi/filter-bloom - v2.0.1
- * Compiled Sun, 10 Sep 2017 20:46:00 UTC
+ * Compiled Tue, 12 Sep 2017 16:53:38 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -40,7 +40,7 @@ var BloomFilter=function(r){function t(t){void 0===t&&(t=2),r.call(this),this.bl
 
 /*!
  * @pixi/filter-bulge-pinch - v2.0.1
- * Compiled Sun, 10 Sep 2017 20:46:00 UTC
+ * Compiled Tue, 12 Sep 2017 16:53:38 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -51,7 +51,7 @@ var BulgePinchFilter=function(e){function r(r,t,n){e.call(this,vertex$1,fragment
 
 /*!
  * @pixi/filter-color-replace - v2.0.1
- * Compiled Sun, 10 Sep 2017 20:46:00 UTC
+ * Compiled Tue, 12 Sep 2017 16:53:38 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -62,7 +62,7 @@ var ColorReplaceFilter=function(o){function r(r,e,n){void 0===r&&(r=16711680),vo
 
 /*!
  * @pixi/filter-convolution - v2.0.1
- * Compiled Sun, 10 Sep 2017 20:46:04 UTC
+ * Compiled Tue, 12 Sep 2017 16:53:42 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -73,7 +73,7 @@ var ConvolutionFilter=function(e){function t(t,r,o){e.call(this,vertex$3,fragmen
 
 /*!
  * @pixi/filter-cross-hatch - v2.0.1
- * Compiled Sun, 10 Sep 2017 20:46:04 UTC
+ * Compiled Tue, 12 Sep 2017 16:53:42 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -84,7 +84,7 @@ var CrossHatchFilter=function(r){function o(){r.call(this,vertex$4,fragment$4);}
 
 /*!
  * @pixi/filter-dot - v2.0.1
- * Compiled Sun, 10 Sep 2017 20:46:04 UTC
+ * Compiled Tue, 12 Sep 2017 16:53:42 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -95,7 +95,7 @@ var DotFilter=function(e){function n(n,t){void 0===n&&(n=1),void 0===t&&(t=5),e.
 
 /*!
  * @pixi/filter-drop-shadow - v2.0.1
- * Compiled Sun, 10 Sep 2017 20:46:04 UTC
+ * Compiled Tue, 12 Sep 2017 16:53:42 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -106,7 +106,7 @@ var DropShadowFilter=function(t){function r(r,e,i,n,o){void 0===r&&(r=45),void 0
 
 /*!
  * @pixi/filter-emboss - v2.0.1
- * Compiled Sun, 10 Sep 2017 20:46:07 UTC
+ * Compiled Tue, 12 Sep 2017 16:53:46 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -117,7 +117,7 @@ var EmbossFilter=function(e){function t(t){void 0===t&&(t=5),e.call(this,vertex$
 
 /*!
  * @pixi/filter-glow - v2.0.1
- * Compiled Sun, 10 Sep 2017 20:46:07 UTC
+ * Compiled Tue, 12 Sep 2017 16:53:46 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -128,7 +128,7 @@ var GlowFilter=function(o){function t(t,n,r,e,l){void 0===t&&(t=10),void 0===n&&
 
 /*!
  * @pixi/filter-outline - v2.0.1
- * Compiled Sun, 10 Sep 2017 20:46:07 UTC
+ * Compiled Tue, 12 Sep 2017 16:53:46 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -139,7 +139,7 @@ var OutlineFilter=function(e){function o(o,r){void 0===o&&(o=1),void 0===r&&(r=0
 
 /*!
  * @pixi/filter-pixelate - v2.0.1
- * Compiled Sun, 10 Sep 2017 20:46:07 UTC
+ * Compiled Tue, 12 Sep 2017 16:53:46 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -150,7 +150,7 @@ var PixelateFilter=function(e){function r(r){void 0===r&&(r=10),e.call(this,vert
 
 /*!
  * @pixi/filter-rgb-split - v2.0.1
- * Compiled Sun, 10 Sep 2017 20:46:11 UTC
+ * Compiled Tue, 12 Sep 2017 16:53:50 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -161,7 +161,7 @@ var RGBSplitFilter=function(e){function r(r,t,n){void 0===r&&(r=[-10,0]),void 0=
 
 /*!
  * @pixi/filter-shockwave - v2.0.1
- * Compiled Sun, 10 Sep 2017 20:46:11 UTC
+ * Compiled Tue, 12 Sep 2017 16:53:50 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -172,18 +172,18 @@ var ShockwaveFilter=function(e){function t(t,r,n){void 0===t&&(t=[.5,.5]),void 0
 
 /*!
  * @pixi/filter-simple-lightmap - v2.0.1
- * Compiled Sun, 10 Sep 2017 20:46:11 UTC
+ * Compiled Tue, 12 Sep 2017 16:53:50 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
  */
-var vertex$13="precision mediump float;\n\nvarying vec2 vTextureCoord;\nuniform sampler2D uSampler;\n\nuniform float thickness;\nuniform vec4 outlineColor;\nuniform float pixelWidth;\nuniform float pixelHeight;\nvec2 px = vec2(pixelWidth, pixelHeight);\n\nvoid main(void) {\n    const float PI = 3.14159265358979323846264;\n    vec4 ownColor = texture2D(uSampler, vTextureCoord);\n    vec4 curColor;\n    float maxAlpha = 0.;\n    for (float angle = 0.; angle < PI * 2.; angle +=  + (1 / thickness).toFixed(7) + ) {\n        curColor = texture2D(uSampler, vec2(vTextureCoord.x + thickness * px.x * cos(angle), vTextureCoord.y + thickness * px.y * sin(angle)));\n        maxAlpha = max(maxAlpha, curColor.a);\n    }\n    float resultAlpha = max(maxAlpha, ownColor.a);\n    gl_FragColor = vec4((ownColor.rgb + outlineColor.rgb * (1. - ownColor.a)) * resultAlpha, resultAlpha);\n}\n";
-var fragment$13="varying vec4 vColor;\nvarying vec2 vTextureCoord;\nuniform sampler2D u_texture; //diffuse map\nuniform sampler2D u_lightmap;   //light map\nuniform vec2 resolution; //resolution of screen\nuniform vec4 ambientColor; //ambient RGB, alpha channel is intensity\nvoid main() {\n    vec4 diffuseColor = texture2D(u_texture, vTextureCoord);\n    vec2 lighCoord = (gl_FragCoord.xy / resolution.xy);\n    vec4 light = texture2D(u_lightmap, vTextureCoord);\n    vec3 ambient = ambientColor.rgb * ambientColor.a;\n    vec3 intensity = ambient + light.rgb;\n    vec3 finalColor = diffuseColor.rgb * intensity;\n    gl_FragColor = vColor * vec4(finalColor, diffuseColor.a);\n}\n";
-var SimpleLightmapFilter=function(o){function e(e,r,t){void 0===t&&(t=[1,1]),o.call(this,vertex$13,fragment$13),this.uniforms.u_lightmap=e,this.uniforms.resolution=new Float32Array(t),this.uniforms.ambientColor=new Float32Array(r);}o&&(e.__proto__=o),(e.prototype=Object.create(o&&o.prototype)).constructor=e;var r={texture:{},color:{},resolution:{}};return r.texture.get=function(){return this.uniforms.u_lightmap},r.texture.set=function(o){this.uniforms.u_lightmap=o;},r.color.get=function(){return this.uniforms.ambientColor},r.color.set=function(o){this.uniforms.ambientColor=new Float32Array(o);},r.resolution.get=function(){return this.uniforms.resolution},r.resolution.set=function(o){this.uniforms.resolution=new Float32Array(o);},Object.defineProperties(e.prototype,r),e}(PIXI.Filter);PIXI.filters.SimpleLightmapFilter=SimpleLightmapFilter;
+var vertex$13="attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
+var fragment$13="varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\nuniform sampler2D uLightmap;\nuniform vec4 filterArea;\nuniform vec2 dimensions;\nuniform vec4 ambientColor;\nvoid main() {\n    vec4 diffuseColor = texture2D(uSampler, vTextureCoord);\n    vec2 lightCoord = (vTextureCoord * filterArea.xy) / dimensions;\n    vec4 light = texture2D(uLightmap, lightCoord);\n    vec3 ambient = ambientColor.rgb * ambientColor.a;\n    vec3 intensity = ambient + light.rgb;\n    vec3 finalColor = diffuseColor.rgb * intensity;\n    gl_FragColor = vec4(finalColor, diffuseColor.a);\n}\n";
+var SimpleLightmapFilter=function(t){function e(e,r){void 0===r&&(r=0),t.call(this,vertex$13,fragment$13),this.uniforms.ambientColor=new Float32Array([0,0,0,1]),this.texture=e,this.color=r;}t&&(e.__proto__=t),(e.prototype=Object.create(t&&t.prototype)).constructor=e;var r={texture:{},color:{},alpha:{}};return e.prototype.apply=function(t,e,r,o){this.uniforms.dimensions[0]=e.sourceFrame.width,this.uniforms.dimensions[1]=e.sourceFrame.height,t.applyFilter(this,e,r,o);},r.texture.get=function(){return this.uniforms.uLightmap},r.texture.set=function(t){this.uniforms.uLightmap=t;},r.color.set=function(t){var e=this.uniforms.ambientColor;"number"==typeof t?(PIXI.utils.hex2rgb(t,e),this._color=t):(e[0]=t[0],e[1]=t[1],e[2]=t[2],e[3]=t[3],this._color=PIXI.utils.rgb2hex(e));},r.color.get=function(){return this._color},r.alpha.get=function(){return this.uniforms.ambientColor[3]},r.alpha.set=function(t){this.uniforms.ambientColor[3]=t;},Object.defineProperties(e.prototype,r),e}(PIXI.Filter);PIXI.filters.SimpleLightmapFilter=SimpleLightmapFilter;
 
 /*!
  * @pixi/filter-tilt-shift - v2.0.1
- * Compiled Sun, 10 Sep 2017 20:46:11 UTC
+ * Compiled Tue, 12 Sep 2017 16:53:51 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -194,7 +194,7 @@ var TiltShiftAxisFilter=function(t){function i(i,r,e,n){void 0===i&&(i=100),void
 
 /*!
  * @pixi/filter-twist - v2.0.1
- * Compiled Sun, 10 Sep 2017 20:46:14 UTC
+ * Compiled Tue, 12 Sep 2017 16:53:53 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license

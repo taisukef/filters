@@ -463,9 +463,9 @@
             
             <span class="subtitle">Members</span>
             
-                <li data-name="PIXI.filters.SimpleLightmapFilter#color"><a href="PIXI.filters.SimpleLightmapFilter.html#color">color</a></li>
+                <li data-name="PIXI.filters.SimpleLightmapFilter#alpha"><a href="PIXI.filters.SimpleLightmapFilter.html#alpha">alpha</a></li>
             
-                <li data-name="PIXI.filters.SimpleLightmapFilter#resolution"><a href="PIXI.filters.SimpleLightmapFilter.html#resolution">resolution</a></li>
+                <li data-name="PIXI.filters.SimpleLightmapFilter#color"><a href="PIXI.filters.SimpleLightmapFilter.html#color">color</a></li>
             
                 <li data-name="PIXI.filters.SimpleLightmapFilter#texture"><a href="PIXI.filters.SimpleLightmapFilter.html#texture">texture</a></li>
             
@@ -571,8 +571,8 @@
 
 
     <section>
-        <article class="readme"><h1>PixiJS Filters</h1><p><a target="_blank" href="https://travis-ci.org/pixijs/pixi-filters"><img src="https://travis-ci.org/pixijs/pixi-filters.svg?branch=master" alt="Build Status"></a> <a target="_blank" href="https://cdnjs.com/libraries/pixi-filters"><img src="https://img.shields.io/cdnjs/v/pixi-filters.svg" alt="CDNJS"></a></p>
-<p>Optional filters that work with PixiJS v4.</p>
+        <article class="readme"><h1>PixiJS Filters</h1><p><a target="_blank" href="https://travis-ci.org/pixijs/pixi-filters"><img src="https://travis-ci.org/pixijs/pixi-filters.svg?branch=master" alt="Build Status"></a></p>
+<h2>Filters</h2><p>All filters work with PixiJS v4.</p>
 <table>
 <thead>
 <tr>
@@ -595,7 +595,7 @@
 <tr>
 <td><strong>BulgePinchFilter</strong></td>
 <td><em>@pixi/filter-bulge-pinch</em></td>
-<td><img src="https://pixijs.github.io/pixi-filters/tools/screenshots/dist/bulge-pinch.png" alt="original"></td>
+<td><img src="https://pixijs.github.io/pixi-filters/tools/screenshots/dist/bulge-pinch.gif" alt="original"></td>
 </tr>
 <tr>
 <td><strong>ColorReplaceFilter</strong></td>
@@ -669,9 +669,72 @@
 </tr>
 </tbody>
 </table>
+<h2>Build-In Filters</h2><p>PixiJS has a handful of core filters that are built-in to the PixiJS library.</p>
+<table>
+<thead>
+<tr>
+<th>Filter</th>
+<th>Preview</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DisplacementFilter</strong></td>
+<td><img src="https://pixijs.github.io/pixi-filters/tools/screenshots/dist/displacement.png" alt="original"></td>
+</tr>
+<tr>
+<td><strong>BlurFilter</strong></td>
+<td><img src="https://pixijs.github.io/pixi-filters/tools/screenshots/dist/blur.png" alt="original"></td>
+</tr>
+<tr>
+<td><strong>NoiseFilter</strong></td>
+<td><img src="https://pixijs.github.io/pixi-filters/tools/screenshots/dist/noise.png" alt="original"></td>
+</tr>
+<tr>
+<td><strong>ColorMatrixFilter</strong> (contrast)</td>
+<td><img src="https://pixijs.github.io/pixi-filters/tools/screenshots/dist/color-matrix-contrast.png" alt="original"></td>
+</tr>
+<tr>
+<td><strong>ColorMatrixFilter</strong> (desaturate)</td>
+<td><img src="https://pixijs.github.io/pixi-filters/tools/screenshots/dist/color-matrix-desaturate.png" alt="original"></td>
+</tr>
+<tr>
+<td><strong>ColorMatrixFilter</strong> (kodachrome)</td>
+<td><img src="https://pixijs.github.io/pixi-filters/tools/screenshots/dist/color-matrix-kodachrome.png" alt="original"></td>
+</tr>
+<tr>
+<td><strong>ColorMatrixFilter</strong> (lsd)</td>
+<td><img src="https://pixijs.github.io/pixi-filters/tools/screenshots/dist/color-matrix-lsd.png" alt="original"></td>
+</tr>
+<tr>
+<td><strong>ColorMatrixFilter</strong> (negative)</td>
+<td><img src="https://pixijs.github.io/pixi-filters/tools/screenshots/dist/color-matrix-negative.png" alt="original"></td>
+</tr>
+<tr>
+<td><strong>ColorMatrixFilter</strong> (polaroid)</td>
+<td><img src="https://pixijs.github.io/pixi-filters/tools/screenshots/dist/color-matrix-polaroid.png" alt="original"></td>
+</tr>
+<tr>
+<td><strong>ColorMatrixFilter</strong> (predator)</td>
+<td><img src="https://pixijs.github.io/pixi-filters/tools/screenshots/dist/color-matrix-predator.png" alt="original"></td>
+</tr>
+<tr>
+<td><strong>ColorMatrixFilter</strong> (saturate)</td>
+<td><img src="https://pixijs.github.io/pixi-filters/tools/screenshots/dist/color-matrix-saturate.png" alt="original"></td>
+</tr>
+<tr>
+<td><strong>ColorMatrixFilter</strong> (sepia)</td>
+<td><img src="https://pixijs.github.io/pixi-filters/tools/screenshots/dist/color-matrix-sepia.png" alt="original"></td>
+</tr>
+</tbody>
+</table>
 <h2>Examples</h2><p>Click <a target="_blank" href="https://pixijs.github.io/pixi-filters/examples">here</a> for filter demos.</p>
 <h2>Installation</h2><p>Using NPM:</p>
-<pre class="prettyprint source lang-bash"><code>npm install pixi-filters</code></pre><h2>Documentation</h2><p>API documention can be found <a target="_blank" href="http://pixijs.github.io/pixi-filters/docs/">here</a>.</p></article>
+<pre class="prettyprint source lang-bash"><code>npm install pixi-filters</code></pre><h2>Building</h2><p>PixiJS Filter uses <a target="_blank" href="https://github.com/lerna/lerna">Lerna</a> to build all of the filter separately. Install all dependencies by running the following. Note, it's not required to <code>npm install</code>.</p>
+<pre class="prettyprint source lang-bash"><code>npm run bootstrap</code></pre><p>Build all filters by running the following:</p>
+<pre class="prettyprint source lang-bash"><code>npm run build</code></pre><p>Build single filter by running the following:</p>
+<pre class="prettyprint source lang-bash"><code>npm run build -- --scope &quot;@pixi/filter-emboss&quot;</code></pre><p>Build multiple filters where scope is a glob expression:</p>
+<pre class="prettyprint source lang-bash"><code>npm run build -- --scope &quot;{@pixi/filter-emboss,@pixi/filter-glow}&quot;</code></pre><h2>Documentation</h2><p>API documention can be found <a target="_blank" href="http://pixijs.github.io/pixi-filters/docs/">here</a>.</p></article>
     </section>
 
 
@@ -682,7 +745,7 @@
         
 
         <footer>
-            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a> on Sun Sep 10 2017 13:47:32 GMT-0700 (PDT)
+            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a> on Tue Sep 12 2017 12:54:34 GMT-0400 (EDT)
         </footer>
     </div>
 </div>

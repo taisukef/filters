@@ -463,9 +463,9 @@
             
             <span class="subtitle">Members</span>
             
-                <li data-name="PIXI.filters.SimpleLightmapFilter#color"><a href="PIXI.filters.SimpleLightmapFilter.html#color">color</a></li>
+                <li data-name="PIXI.filters.SimpleLightmapFilter#alpha"><a href="PIXI.filters.SimpleLightmapFilter.html#alpha">alpha</a></li>
             
-                <li data-name="PIXI.filters.SimpleLightmapFilter#resolution"><a href="PIXI.filters.SimpleLightmapFilter.html#resolution">resolution</a></li>
+                <li data-name="PIXI.filters.SimpleLightmapFilter#color"><a href="PIXI.filters.SimpleLightmapFilter.html#color">color</a></li>
             
                 <li data-name="PIXI.filters.SimpleLightmapFilter#texture"><a href="PIXI.filters.SimpleLightmapFilter.html#texture">texture</a></li>
             
@@ -561,7 +561,9 @@
     SimpleLightmapFilter
     </h2>
     
-        <div class="class-description"><p>SimpleLightmap, originally by Oza94<br>http://www.html5gamedevs.com/topic/20027-pixijs-simple-lightmapping/<br>http://codepen.io/Oza94/pen/EPoRxj</p></div>
+        <div class="class-description"><p>SimpleLightmap, originally by Oza94<br>http://www.html5gamedevs.com/topic/20027-pixijs-simple-lightmapping/<br>http://codepen.io/Oza94/pen/EPoRxj</p>
+<p>You have to specify filterArea, or suffer consequences.<br>You may have to use it with <code>filter.dontFit = true</code>,<br> until we rewrite this using same approach as for DisplacementFilter.</p>
+<p><img src="../tools/screenshots/dist/original.png" alt="original"><img src="../tools/screenshots/dist/simple-lightmap.png" alt="filter"></p></div>
     
 </header>  
 
@@ -575,12 +577,12 @@
     <div class="nameContainer">
         <h4 class="name" id="SimpleLightmapFilter">
             
-            new PIXI.filters.SimpleLightmapFilter<span class="signature">(lightmapTexture, ambientColor, <span class="optional">resolution</span>)</span>
+            new PIXI.filters.SimpleLightmapFilter<span class="signature">(texture, <span class="optional">color</span>)</span>
         </h4>
     
         
         <div class="tag-source">
-            <a href="simple-lightmap_src_SimpleLightmapFilter.js.html">simple-lightmap/src/SimpleLightmapFilter.js</a>, <a href="simple-lightmap_src_SimpleLightmapFilter.js.html#line27">line 27</a>
+            <a href="simple-lightmap_src_SimpleLightmapFilter.js.html">simple-lightmap/src/SimpleLightmapFilter.js</a>, <a href="simple-lightmap_src_SimpleLightmapFilter.js.html#line25">line 25</a>
         </div>
         
     </div>
@@ -620,7 +622,7 @@
 	
         <tr>
             
-                <td class="name"><code>lightmapTexture</code></td>
+                <td class="name"><code>texture</code></td>
             
             
             <td class="type">
@@ -652,13 +654,16 @@
 	
         <tr>
             
-                <td class="name"><code>ambientColor</code></td>
+                <td class="name"><code>color</code></td>
             
             
             <td class="type">
             
                 
 <span class="param-type">Array.&lt;number></span>
+|
+
+<span class="param-type">number</span>
 
 
             
@@ -667,39 +672,7 @@
             
                 <td class="default">
                 
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                    
-                        
-                    
-                
-                <p>An RGBA array of the ambient color</p></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>resolution</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;number></span>
-
-
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    [1, 1]
+                    0x000000
                 
                 </td>
             
@@ -713,7 +686,7 @@
                         
                     
                 
-                <p>An array for X/Y resolution</p></td>
+                <p>An RGBA array of the ambient color</p></td>
         </tr>
 	
 	
@@ -762,13 +735,7 @@
         
 
     
-    <pre class="prettyprint"><code>var lightmapTex = new PIXI.RenderTexture(renderer, 400, 300);
-
- // ... render lightmap on lightmapTex
-
- stageContainer.filters = [
-   new SimpleLightmapFilter(lightmapTex, [0.3, 0.3, 0.7, 0.5], [1.0, 1.0])
- ];</code></pre>
+    <pre class="prettyprint"><code>displayObject.filters = [new SimpleLightmapFilter(texture, 0x666666)];</code></pre>
     
 
     
@@ -800,7 +767,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="color">color<span class="type-signature type array.<number>">Array.&lt;number></span> </h4>
+        <h4 class="name" id="alpha">alpha<span class="type-signature type number">number</span> </h4>
     </div>
     
     
@@ -808,7 +775,7 @@
 <dd>
     
     <div class="description">
-        <p>An RGBA array of the ambient color</p>
+        <p>When setting <code>color</code> as hex, this can be used to set alpha independently.</p>
     </div>
     
     
@@ -845,7 +812,7 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="resolution">resolution<span class="type-signature type array.<number>">Array.&lt;number></span> </h4>
+        <h4 class="name" id="color">color<span class="type-signature type array.<number>">Array.&lt;number></span> <span class="type-signature type number">number</span> </h4>
     </div>
     
     
@@ -853,7 +820,7 @@
 <dd>
     
     <div class="description">
-        <p>An array for X/Y resolution</p>
+        <p>An RGBA array of the ambient color or a hex color without alpha</p>
     </div>
     
     
@@ -952,7 +919,7 @@
         
 
         <footer>
-            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a> on Sun Sep 10 2017 13:47:32 GMT-0700 (PDT)
+            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a> on Tue Sep 12 2017 12:54:34 GMT-0400 (EDT)
         </footer>
     </div>
 </div>
