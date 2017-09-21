@@ -344,6 +344,32 @@
             </ul>
         </li>
     
+        <li class="item" data-name="PIXI.filters.GodrayFilter">
+            <span class="title ">
+                
+                <a href="PIXI.filters.GodrayFilter.html">PIXI.filters.GodrayFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li class="parent" data-name="PIXI.filters.GodrayFilter#time"><a href="PIXI.filters.GodrayFilter.html#time">time</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
         <li class="item" data-name="PIXI.filters.OutlineFilter">
             <span class="title ">
                 
@@ -553,52 +579,191 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="tilt-shift_src_TiltShiftYFilter.js.html">Source: tilt-shift/src/TiltShiftYFilter.js</h1>
+        <h1 class="page-title" data-filename="PIXI.filters.GodrayFilter.html">Class: GodrayFilter</h1>
         
 
 
+
+<section>
     
-    <section>
-        <header>
-            <div class="header content-size">
-                <h2>tilt-shift/src/TiltShiftYFilter.js</h2>
-            </div>
-        </header>
-        <article>
-            <pre id="source-code" class="prettyprint source linenums"><code>import TiltShiftAxisFilter from './TiltShiftAxisFilter';
+<header>
+    <div class="header content-size">
+        <h2>GodrayFilter
+        </h2>
+        
+            <div class="class-description"><p>GordayFilter, originally by Alain Galvan<br>https://codepen.io/alaingalvan</p>
+<p>TODO: This filter requires more work on extracting parameters from shader into constructor</p>
+<p><img src="../tools/screenshots/dist/original.png" alt="original"><img src="../tools/screenshots/dist/godray.gif" alt="filter"></p></div>
+        
+    </div>
+</header>  
 
-/**
- * @author Vico @vicocotea
- * original filter https://github.com/evanw/glfx.js/blob/master/src/filters/blur/tiltshift.js by Evan Wallace : http://madebyevan.com/
- */
+<article class="content-size">
+    <div class="container-overview">
+    
+    
+    
+        
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="GodrayFilter">
+            <a class="share-icon" href="#GodrayFilter"><span class="glyphicon glyphicon-link"></span></a>
+            new PIXI.filters.GodrayFilter<span class="signature">()</span>
+            
+            
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="godray_src_GodrayFilter.js.html#line22">GodrayFilter.js:22</a>
+        </div>
+        
+    </div>
 
-/**
- * A TiltShiftYFilter.
- *
- * @class
- * @extends PIXI.TiltShiftAxisFilter
- * @memberof PIXI.filters
- * @private
- */
-export default class TiltShiftYFilter extends TiltShiftAxisFilter {
-    /**
-     * Updates the filter delta values.
-     */
-    updateDelta() {
-        const dx = this.uniforms.end.x - this.uniforms.start.x;
-        const dy = this.uniforms.end.y - this.uniforms.start.y;
-        const d = Math.sqrt(dx * dx + dy * dy);
-        this.uniforms.delta.x = -dy / d;
-        this.uniforms.delta.y = dx / d;
-    }
-}
+    
+</dt>
+<dd>
+    
+    
 
-// Export to PixiJS namespace
-PIXI.filters.TiltShiftYFilter = TiltShiftYFilter;
-</code></pre>
-        </article>
-    </section>
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+
+    
+    <pre class="prettyprint"><code>displayObject.filters = [new GodrayFilter()];</code></pre>
+    
+
+    
+</dd>
+
+    
+    </div>
+    
+    
+        <h3 class="subsection-title">Extends</h3>
+        
+        <ul>
+            <li>PIXI.Filter</li>
+        </ul>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Members</h3>
+        
+        <dl class="list-members">
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="time">
+            <a class="share-icon" href="#time"><span class="glyphicon glyphicon-link"></span></a>
+            time<span class="type-signature type">number</span>
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The current time.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+    
+    
+    
+    
+
+    
+</article>
+
+</section>  
 
 
 
@@ -608,7 +773,7 @@ PIXI.filters.TiltShiftYFilter = TiltShiftYFilter;
 
         <footer class="content-size">
             <div class="footer">
-                Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a> on Thu Sep 21 2017 12:02:02 GMT-0400 (EDT)
+                Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a> on Thu Sep 21 2017 08:38:53 GMT-0400 (EDT)
             </div>
         </footer>
     </div>
