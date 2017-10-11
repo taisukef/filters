@@ -591,7 +591,7 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="drop-shadow_src_DropShadowFilter.js.html">Source: drop-shadow/src/DropShadowFilter.js</h1>
+        <h1 class="page-title" data-filename="zoom-blur_src_ZoomBlurFilter.js.html">Source: zoom-blur/src/ZoomBlurFilter.js</h1>
         
 
 
@@ -599,123 +599,133 @@
     <section>
         <header>
             <div class="header content-size">
-                <h2>drop-shadow/src/DropShadowFilter.js</h2>
+                <h2>zoom-blur/src/ZoomBlurFilter.js</h2>
             </div>
         </header>
         <article>
-            <pre id="source-code" class="prettyprint source linenums"><code>import {vertex} from '@tools/fragments';
-import fragment from './dropshadow.frag';
+            <pre id="source-code" class="prettyprint source linenums"><code>import vertex from './zoom-blur.vert';
+import fragment from './zoom-blur.frag';
 
 /**
- * Drop shadow filter.
- * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/drop-shadow.png)
+ * The ZoomFilter applies a Zoom blur to an object.
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/zoom-filter.png)
+ *
  * @class
  * @extends PIXI.Filter
  * @memberof PIXI.filters
- * @param {number} [rotation=45] The angle of the shadow in degrees.
- * @param {number} [distance=5] Distance of shadow
- * @param {number} [blur=2] Blur of the shadow
- * @param {number} [color=0x000000] Color of the shadow
- * @param {number} [alpha=0.5] Alpha of the shadow
+ * @param {number} [strength=2] Sets the strength of the zoom blur effect
+ * @param {PIXI.Point|number[]} [center=[0,0]] The center of the zoom.
+ * @param {number} [innerRadius=0] The inner radius of zoom. The part in inner circle won't apply zoom blur effect.
+ * @param {number} [radius=1E9] Very very large outer radius of the zoom.
  */
-export default class DropShadowFilter extends PIXI.Filter {
-    constructor(rotation = 45, distance = 5, blur = 2, color = 0x000000, alpha = 0.5) {
-        super();
+export default class ZoomBlurFilter extends PIXI.Filter
+{
+    constructor(strength = 0.1, center = [0, 0], innerRadius = 0, radius = 1E9) {
+        super(vertex, fragment);
 
-        this.tintFilter = new PIXI.Filter(vertex, fragment);
-        this.blurFilter = new PIXI.filters.BlurFilter();
-        this.blurFilter.blur = blur;
+        this.center = center;
+        this.strength = strength;
+        this.innerRadius = innerRadius;
+        this.radius = radius;
 
-        this.rotation = rotation;
-        this.padding = distance;
-        this.distance = distance;
-        this.alpha = alpha;
-        this.color = color;
-    }
-
-    apply(filterManager, input, output) {
-        const target = filterManager.getRenderTarget();
-        target.transform = new PIXI.Matrix();
-        target.transform.translate(
-            this.distance * Math.cos(this.angle), 
-            this.distance * Math.sin(this.angle)
-        );
-        this.tintFilter.apply(filterManager, input, target, true);
-        this.blurFilter.apply(filterManager, target, output);
-        super.apply(filterManager, input, output);
-        target.transform = null;
-        filterManager.returnRenderTarget(target);
-    }
-
-    updatePadding() {
-        this.padding = this.distance + (this.blur * 2);
+        this._defaultSize = new Float32Array([0, 0]);
+        this._size = new Float32Array([0, 0]);
+        this.clearSize();
     }
 
     /**
-     * Distance offset of the shadow
-     * @member {number}
-     * @default 5
-     */
-    get distance() {
-        return this._distance;
-    }
-    set distance(value) {
-        this._distance = value;
-        this.updatePadding();
-    }
-
-    /**
-     * The angle of the shadow in degrees
-     * @member {number}
-     * @default 2
-     */
-    get rotation() {
-        return this.angle / PIXI.DEG_TO_RAD;
-    }
-    set rotation(value) {
-        this.angle = value * PIXI.DEG_TO_RAD;
+     * Apply the filter
+     * @override
+     * @private
+     */ 
+    apply(filterManager, input, output, clear)
+    {
+        // Apply the input source if view is not set
+        if (!this._customSize)
+        {
+            this._defaultSize[0] = input.sourceFrame.width;
+            this._defaultSize[1] = input.sourceFrame.height;
+        }
+        filterManager.applyFilter(this, input, output, clear);
     }
 
     /**
-     * The blur of the shadow
-     * @member {number}
-     * @default 2
+     * Set the view size, if defining a region.
+     * @method
+     * @param {number} width - Width of the view size
+     * @param {number} height - Height of the view size
      */
-    get blur() {
-        return this.blurFilter.blur;
-    }
-    set blur(value) {
-        this.blurFilter.blur = value;
-        this.updatePadding();
+    setSize(width, height) {
+        this._customSize = true;
+        this._size[0] = width;
+        this._size[1] = height;
+        this.uniforms.uViewSize = this._size;
     }
 
     /**
-     * The alpha of the shadow
-     * @member {number}
-     * @default 1
+     * Clear the defined view size of the region to effect.
+     * @method
      */
-    get alpha() {
-        return this.tintFilter.uniforms.alpha;
-    }
-    set alpha(value) {
-        this.tintFilter.uniforms.alpha = value;
+    clearSize() {
+        this._customSize = false;
+        this.uniforms.uViewSize = this._defaultSize;
     }
 
     /**
-     * The color of the shadow.
-     * @member {number}
-     * @default 0x000000
+     * Center of the effect.
+     *
+     * @member {PIXI.Point|number[]}
+     * @default [0, 0]
      */
-    get color() {
-        return PIXI.utils.rgb2hex(this.tintFilter.uniforms.color);
+    get center() {
+        return this.uniforms.uCenter;
     }
-    set color(value) {
-        PIXI.utils.hex2rgb(value, this.tintFilter.uniforms.color);
+    set center(value) {
+        this.uniforms.uCenter = value;
+    }
+
+    /**
+     * Intensity of the zoom effect.
+     *
+     * @member {number}
+     * @default 0.1
+     */
+    get strength() {
+        return this.uniforms.uStrength;
+    }
+    set strength(value) {
+        this.uniforms.uStrength = value;
+    }
+
+    /**
+     * Radius of the inner region not effected by blur.
+     *
+     * @member {number}
+     * @default 0
+     */
+    get innerRadius() {
+        return this.uniforms.uInnerRadius;
+    }
+    set innerRadius(value) {
+        this.uniforms.uInnerRadius = value;
+    }
+
+    /**
+     * Outer radius of the effect. The default value is very very big.
+     *
+     * @member {number}
+     * @default 1E9
+     */
+    get radius() {
+        return this.uniforms.uRadius;
+    }
+    set radius(value) {
+        this.uniforms.uRadius = value;
     }
 }
 
 // Export to PixiJS namespace
-PIXI.filters.DropShadowFilter = DropShadowFilter;
+PIXI.filters.ZoomBlurFilter = ZoomBlurFilter;
 
 </code></pre>
         </article>

@@ -353,6 +353,12 @@
             
             <span class="subtitle">Members</span>
             
+                <li class="parent" data-name="PIXI.filters.GodrayFilter#angle"><a href="PIXI.filters.GodrayFilter.html#angle">angle</a></li>
+            
+                <li class="parent" data-name="PIXI.filters.GodrayFilter#gain"><a href="PIXI.filters.GodrayFilter.html#gain">gain</a></li>
+            
+                <li class="parent" data-name="PIXI.filters.GodrayFilter#lacunarity"><a href="PIXI.filters.GodrayFilter.html#lacunarity">lacunarity</a></li>
+            
                 <li class="parent" data-name="PIXI.filters.GodrayFilter#time"><a href="PIXI.filters.GodrayFilter.html#time">time</a></li>
             
             </ul>
@@ -591,8 +597,7 @@
         <h2>GodrayFilter
         </h2>
         
-            <div class="class-description"><p>GordayFilter, originally by Alain Galvan<br>https://codepen.io/alaingalvan</p>
-<p>TODO: This filter requires more work on extracting parameters from shader into constructor</p>
+            <div class="class-description"><p>GordayFilter, <a target="_blank" href="https://codepen.io/alaingalvan">originally</a> by Alain Galvan</p>
 <p><img src="../tools/screenshots/dist/original.png" alt="original"><img src="../tools/screenshots/dist/godray.gif" alt="filter"></p></div>
         
     </div>
@@ -608,14 +613,14 @@
     <div class="nameContainer">
         <h4 class="name" id="GodrayFilter">
             <a class="share-icon" href="#GodrayFilter"><span class="glyphicon glyphicon-link"></span></a>
-            new PIXI.filters.GodrayFilter<span class="signature">()</span>
+            new PIXI.filters.GodrayFilter<span class="signature">(<span class="optional">angle</span>, <span class="optional">gain</span>, <span class="optional">lacunrity</span>, <span class="optional">time</span>)</span>
             
             
         </h4>
     
         
         <div class="tag-source">
-            <a href="godray_src_GodrayFilter.js.html#line22">GodrayFilter.js:22</a>
+            <a href="godray_src_GodrayFilter.js.html#line24">GodrayFilter.js:24</a>
         </div>
         
     </div>
@@ -630,6 +635,174 @@
     
     
     
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		<th>Default</th>
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>angle</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    30
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>Angle of the rays.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>gain</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    0.5
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>General intensity of the effect.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>lacunrity</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    2
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>The density of the fractal noise.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>time</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>The current time position.</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
     
     
     
@@ -705,6 +878,165 @@
             
 <dt>
     <div class="nameContainer">
+        <h4 class="name" id="angle">
+            <a class="share-icon" href="#angle"><span class="glyphicon glyphicon-link"></span></a>
+            angle<span class="type-signature type">number</span>
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The angle of the rays in degrees. For instance, a value of 0 is vertical rays,<br>values of 90 or -90 produce horizontal rays.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>30</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="gain">
+            <a class="share-icon" href="#gain"><span class="glyphicon glyphicon-link"></span></a>
+            gain<span class="type-signature type">number</span>
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>General intensity of the effect. A value closer to 1 will produce a more intense effect,<br>where a value closer to 0 will produce a subtler effect.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0.5</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="lacunarity">
+            <a class="share-icon" href="#lacunarity"><span class="glyphicon glyphicon-link"></span></a>
+            lacunarity<span class="type-signature type">number</span>
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The density of the fractal noise. A higher amount produces more rays and a smaller amound<br>produces fewer waves.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>2.0</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
         <h4 class="name" id="time">
             <a class="share-icon" href="#time"><span class="glyphicon glyphicon-link"></span></a>
             time<span class="type-signature type">number</span>
@@ -773,7 +1105,7 @@
 
         <footer class="content-size">
             <div class="footer">
-                Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a> on Thu Sep 21 2017 08:38:53 GMT-0400 (EDT)
+                Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a> on Wed Oct 11 2017 14:07:52 GMT-0400 (EDT)
             </div>
         </footer>
     </div>

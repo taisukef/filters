@@ -591,136 +591,732 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="drop-shadow_src_DropShadowFilter.js.html">Source: drop-shadow/src/DropShadowFilter.js</h1>
+        <h1 class="page-title" data-filename="PIXI.filters.ZoomBlurFilter.html">Class: ZoomBlurFilter</h1>
         
 
 
+
+<section>
     
-    <section>
-        <header>
-            <div class="header content-size">
-                <h2>drop-shadow/src/DropShadowFilter.js</h2>
-            </div>
-        </header>
-        <article>
-            <pre id="source-code" class="prettyprint source linenums"><code>import {vertex} from '@tools/fragments';
-import fragment from './dropshadow.frag';
+<header>
+    <div class="header content-size">
+        <h2>ZoomBlurFilter
+        </h2>
+        
+            <div class="class-description"><p>The ZoomFilter applies a Zoom blur to an object.<br><img src="../tools/screenshots/dist/original.png" alt="original"><img src="../tools/screenshots/dist/zoom-filter.png" alt="filter"></p></div>
+        
+    </div>
+</header>  
 
-/**
- * Drop shadow filter.
- * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/drop-shadow.png)
- * @class
- * @extends PIXI.Filter
- * @memberof PIXI.filters
- * @param {number} [rotation=45] The angle of the shadow in degrees.
- * @param {number} [distance=5] Distance of shadow
- * @param {number} [blur=2] Blur of the shadow
- * @param {number} [color=0x000000] Color of the shadow
- * @param {number} [alpha=0.5] Alpha of the shadow
- */
-export default class DropShadowFilter extends PIXI.Filter {
-    constructor(rotation = 45, distance = 5, blur = 2, color = 0x000000, alpha = 0.5) {
-        super();
+<article class="content-size">
+    <div class="container-overview">
+    
+    
+    
+        
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="ZoomBlurFilter">
+            <a class="share-icon" href="#ZoomBlurFilter"><span class="glyphicon glyphicon-link"></span></a>
+            new PIXI.filters.ZoomBlurFilter<span class="signature">(<span class="optional">strength</span>, <span class="optional">center</span>, <span class="optional">innerRadius</span>, <span class="optional">radius</span>)</span>
+            
+            
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="zoom-blur_src_ZoomBlurFilter.js.html#line18">ZoomBlurFilter.js:18</a>
+        </div>
+        
+    </div>
 
-        this.tintFilter = new PIXI.Filter(vertex, fragment);
-        this.blurFilter = new PIXI.filters.BlurFilter();
-        this.blurFilter.blur = blur;
+    
+</dt>
+<dd>
+    
+    
 
-        this.rotation = rotation;
-        this.padding = distance;
-        this.distance = distance;
-        this.alpha = alpha;
-        this.color = color;
-    }
+    
+    
+    
+    
+    
+        
 
-    apply(filterManager, input, output) {
-        const target = filterManager.getRenderTarget();
-        target.transform = new PIXI.Matrix();
-        target.transform.translate(
-            this.distance * Math.cos(this.angle), 
-            this.distance * Math.sin(this.angle)
-        );
-        this.tintFilter.apply(filterManager, input, target, true);
-        this.blurFilter.apply(filterManager, target, output);
-        super.apply(filterManager, input, output);
-        target.transform = null;
-        filterManager.returnRenderTarget(target);
-    }
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		<th>Default</th>
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>strength</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
 
-    updatePadding() {
-        this.padding = this.distance + (this.blur * 2);
-    }
 
-    /**
-     * Distance offset of the shadow
-     * @member {number}
-     * @default 5
-     */
-    get distance() {
-        return this._distance;
-    }
-    set distance(value) {
-        this._distance = value;
-        this.updatePadding();
-    }
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    2
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>Sets the strength of the zoom blur effect</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>center</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">PIXI.Point</span>
+|
 
-    /**
-     * The angle of the shadow in degrees
-     * @member {number}
-     * @default 2
-     */
-    get rotation() {
-        return this.angle / PIXI.DEG_TO_RAD;
-    }
-    set rotation(value) {
-        this.angle = value * PIXI.DEG_TO_RAD;
-    }
+<span class="param-type">Array.&lt;number></span>
 
-    /**
-     * The blur of the shadow
-     * @member {number}
-     * @default 2
-     */
-    get blur() {
-        return this.blurFilter.blur;
-    }
-    set blur(value) {
-        this.blurFilter.blur = value;
-        this.updatePadding();
-    }
 
-    /**
-     * The alpha of the shadow
-     * @member {number}
-     * @default 1
-     */
-    get alpha() {
-        return this.tintFilter.uniforms.alpha;
-    }
-    set alpha(value) {
-        this.tintFilter.uniforms.alpha = value;
-    }
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    [0,0]
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>The center of the zoom.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>innerRadius</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
 
-    /**
-     * The color of the shadow.
-     * @member {number}
-     * @default 0x000000
-     */
-    get color() {
-        return PIXI.utils.rgb2hex(this.tintFilter.uniforms.color);
-    }
-    set color(value) {
-        PIXI.utils.hex2rgb(value, this.tintFilter.uniforms.color);
-    }
-}
 
-// Export to PixiJS namespace
-PIXI.filters.DropShadowFilter = DropShadowFilter;
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>The inner radius of zoom. The part in inner circle won't apply zoom blur effect.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>radius</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
 
-</code></pre>
-        </article>
-    </section>
 
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    1E9
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>Very very large outer radius of the zoom.</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+    
+    </div>
+    
+    
+        <h3 class="subsection-title">Extends</h3>
+        
+        <ul>
+            <li>PIXI.Filter</li>
+        </ul>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Members</h3>
+        
+        <dl class="list-members">
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="center">
+            <a class="share-icon" href="#center"><span class="glyphicon glyphicon-link"></span></a>
+            center<span class="type-signature type">PIXI.Point | Array.&lt;number></span>
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Center of the effect.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>[0, 0]</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="innerRadius">
+            <a class="share-icon" href="#innerRadius"><span class="glyphicon glyphicon-link"></span></a>
+            innerRadius<span class="type-signature type">number</span>
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Radius of the inner region not effected by blur.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="radius">
+            <a class="share-icon" href="#radius"><span class="glyphicon glyphicon-link"></span></a>
+            radius<span class="type-signature type">number</span>
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Outer radius of the effect. The default value is very very big.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>1E9</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="strength">
+            <a class="share-icon" href="#strength"><span class="glyphicon glyphicon-link"></span></a>
+            strength<span class="type-signature type">number</span>
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Intensity of the zoom effect.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0.1</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+        <h3 class="subsection-title">Methods</h3>
+        
+        <dl class="list-methods">
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="clearSize">
+            <a class="share-icon" href="#clearSize"><span class="glyphicon glyphicon-link"></span></a>
+            clearSize<span class="signature">()</span>
+            
+            
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="zoom-blur_src_ZoomBlurFilter.js.html#line66">ZoomBlurFilter.js:66</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Clear the defined view size of the region to effect.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="setSize">
+            <a class="share-icon" href="#setSize"><span class="glyphicon glyphicon-link"></span></a>
+            setSize<span class="signature">(width, height)</span>
+            
+            
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="zoom-blur_src_ZoomBlurFilter.js.html#line55">ZoomBlurFilter.js:55</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Set the view size, if defining a region.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>width</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>Width of the view size</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>height</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>Height of the view size</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+    
+    
+
+    
+</article>
+
+</section>  
 
 
 
@@ -730,7 +1326,7 @@ PIXI.filters.DropShadowFilter = DropShadowFilter;
 
         <footer class="content-size">
             <div class="footer">
-                Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a> on Wed Oct 11 2017 15:44:45 GMT-0400 (EDT)
+                Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a> on Wed Oct 11 2017 15:44:45 GMT-0400 (EDT)
             </div>
         </footer>
     </div>

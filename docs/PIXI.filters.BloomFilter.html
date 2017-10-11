@@ -550,6 +550,44 @@
             </ul>
         </li>
     
+        <li class="item" data-name="PIXI.filters.ZoomBlurFilter">
+            <span class="title ">
+                
+                <a href="PIXI.filters.ZoomBlurFilter.html">PIXI.filters.ZoomBlurFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li class="parent" data-name="PIXI.filters.ZoomBlurFilter#center"><a href="PIXI.filters.ZoomBlurFilter.html#center">center</a></li>
+            
+                <li class="parent" data-name="PIXI.filters.ZoomBlurFilter#innerRadius"><a href="PIXI.filters.ZoomBlurFilter.html#innerRadius">innerRadius</a></li>
+            
+                <li class="parent" data-name="PIXI.filters.ZoomBlurFilter#radius"><a href="PIXI.filters.ZoomBlurFilter.html#radius">radius</a></li>
+            
+                <li class="parent" data-name="PIXI.filters.ZoomBlurFilter#strength"><a href="PIXI.filters.ZoomBlurFilter.html#strength">strength</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li class="parent" data-name="PIXI.filters.ZoomBlurFilter#clearSize"><a href="PIXI.filters.ZoomBlurFilter.html#clearSize">clearSize</a></li>
+            
+                <li class="parent" data-name="PIXI.filters.ZoomBlurFilter#setSize"><a href="PIXI.filters.ZoomBlurFilter.html#setSize">setSize</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
     </ul>
 </div>
     <div class="main">
@@ -580,14 +618,14 @@
     <div class="nameContainer">
         <h4 class="name" id="BloomFilter">
             <a class="share-icon" href="#BloomFilter"><span class="glyphicon glyphicon-link"></span></a>
-            new PIXI.filters.BloomFilter<span class="signature">(<span class="optional">blur</span>)</span>
+            new PIXI.filters.BloomFilter<span class="signature">(<span class="optional">blur</span>, <span class="optional">quality</span>, <span class="optional">resolution</span>, <span class="optional">kernelSize</span>)</span>
             
             
         </h4>
     
         
         <div class="tag-source">
-            <a href="bloom_src_BloomFilter.js.html#line15">BloomFilter.js:15</a>
+            <a href="bloom_src_BloomFilter.js.html#line18">BloomFilter.js:18</a>
         </div>
         
     </div>
@@ -660,6 +698,114 @@
                     
                 
                 <p>Sets the strength of both the blurX and blurY properties simultaneously</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>quality</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    4
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>The quality of the blurX &amp; blurY filter.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>resolution</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    PIXI.settings.RESOLUTION
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>The resolution of the blurX &amp; blurY filter.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>kernelSize</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    5
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>The kernelSize of the blurX &amp; blurY filter.Options: 5, 7, 9, 11, 13, 15.</p></td>
         </tr>
 	
 	
@@ -909,7 +1055,7 @@
 
         <footer class="content-size">
             <div class="footer">
-                Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a> on Thu Sep 21 2017 12:02:03 GMT-0400 (EDT)
+                Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a> on Wed Oct 11 2017 15:44:45 GMT-0400 (EDT)
             </div>
         </footer>
     </div>
