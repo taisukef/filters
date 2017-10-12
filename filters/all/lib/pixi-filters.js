@@ -1,6 +1,6 @@
 /*!
- * pixi-filters - v2.0.2
- * Compiled Wed, 11 Oct 2017 19:44:15 UTC
+ * pixi-filters - v2.1.0
+ * Compiled Thu, 12 Oct 2017 13:21:45 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -15,8 +15,8 @@
 if (typeof PIXI === 'undefined' || typeof PIXI.filters === 'undefined') { throw 'PixiJS is required'; }
 
 /*!
- * @pixi/filter-ascii - v2.0.2
- * Compiled Wed, 11 Oct 2017 19:44:00 UTC
+ * @pixi/filter-ascii - v2.1.0
+ * Compiled Thu, 12 Oct 2017 13:21:32 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -26,8 +26,8 @@ var fragment="varying vec2 vTextureCoord;\n\nuniform vec4 filterArea;\nuniform f
 var AsciiFilter=function(e){function n(n){void 0===n&&(n=8),e.call(this,vertex,fragment),this.size=n;}e&&(n.__proto__=e),(n.prototype=Object.create(e&&e.prototype)).constructor=n;var r={size:{}};return r.size.get=function(){return this.uniforms.pixelSize},r.size.set=function(e){this.uniforms.pixelSize=e;},Object.defineProperties(n.prototype,r),n}(PIXI.Filter);PIXI.filters.AsciiFilter=AsciiFilter;
 
 /*!
- * @pixi/filter-bloom - v2.0.2
- * Compiled Wed, 11 Oct 2017 19:44:00 UTC
+ * @pixi/filter-bloom - v2.1.0
+ * Compiled Thu, 12 Oct 2017 13:21:32 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -39,8 +39,8 @@ var VoidFilter=ref.VoidFilter;
 var BloomFilter=function(r){function t(t,l,e,i){void 0===t&&(t=2),void 0===l&&(l=4),void 0===e&&(e=PIXI.settings.RESOLUTION),void 0===i&&(i=5),r.call(this);var u,o;"number"==typeof t?(u=t,o=t):t instanceof PIXI.Point&&(u=t.x,o=t.y),this.blurXFilter=new BlurXFilter(u,l,e,i),this.blurYFilter=new BlurYFilter(o,l,e,i),this.blurYFilter.blendMode=PIXI.BLEND_MODES.SCREEN,this.defaultFilter=new VoidFilter;}r&&(t.__proto__=r),(t.prototype=Object.create(r&&r.prototype)).constructor=t;var l={blur:{},blurX:{},blurY:{}};return t.prototype.apply=function(r,t,l){var e=r.getRenderTarget(!0);this.defaultFilter.apply(r,t,l),this.blurXFilter.apply(r,t,e),this.blurYFilter.apply(r,e,l),r.returnRenderTarget(e);},l.blur.get=function(){return this.blurXFilter.blur},l.blur.set=function(r){this.blurXFilter.blur=this.blurYFilter.blur=r;},l.blurX.get=function(){return this.blurXFilter.blur},l.blurX.set=function(r){this.blurXFilter.blur=r;},l.blurY.get=function(){return this.blurYFilter.blur},l.blurY.set=function(r){this.blurYFilter.blur=r;},Object.defineProperties(t.prototype,l),t}(PIXI.Filter);PIXI.filters.BloomFilter=BloomFilter;
 
 /*!
- * @pixi/filter-bulge-pinch - v2.0.2
- * Compiled Wed, 11 Oct 2017 19:44:00 UTC
+ * @pixi/filter-bulge-pinch - v2.1.0
+ * Compiled Thu, 12 Oct 2017 13:21:32 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -50,8 +50,8 @@ var fragment$1="uniform float radius;\nuniform float strength;\nuniform vec2 cen
 var BulgePinchFilter=function(e){function r(r,t,n){e.call(this,vertex$1,fragment$1),this.center=r||[.5,.5],this.radius=t||100,this.strength=n||1;}e&&(r.__proto__=e),(r.prototype=Object.create(e&&e.prototype)).constructor=r;var t={radius:{},strength:{},center:{}};return r.prototype.apply=function(e,r,t){this.uniforms.dimensions[0]=r.sourceFrame.width,this.uniforms.dimensions[1]=r.sourceFrame.height,e.applyFilter(this,r,t);},t.radius.get=function(){return this.uniforms.radius},t.radius.set=function(e){this.uniforms.radius=e;},t.strength.get=function(){return this.uniforms.strength},t.strength.set=function(e){this.uniforms.strength=e;},t.center.get=function(){return this.uniforms.center},t.center.set=function(e){this.uniforms.center=e;},Object.defineProperties(r.prototype,t),r}(PIXI.Filter);PIXI.filters.BulgePinchFilter=BulgePinchFilter;
 
 /*!
- * @pixi/filter-color-replace - v2.0.2
- * Compiled Wed, 11 Oct 2017 19:44:00 UTC
+ * @pixi/filter-color-replace - v2.1.0
+ * Compiled Thu, 12 Oct 2017 13:21:32 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -61,8 +61,8 @@ var fragment$2="varying vec2 vTextureCoord;\nuniform sampler2D texture;\nuniform
 var ColorReplaceFilter=function(o){function r(r,e,n){void 0===r&&(r=16711680),void 0===e&&(e=0),void 0===n&&(n=.4),o.call(this,vertex$2,fragment$2),this.originalColor=r,this.newColor=e,this.epsilon=n;}o&&(r.__proto__=o),(r.prototype=Object.create(o&&o.prototype)).constructor=r;var e={originalColor:{},newColor:{},epsilon:{}};return e.originalColor.set=function(o){var r=this.uniforms.originalColor;"number"==typeof o?(PIXI.utils.hex2rgb(o,r),this._originalColor=o):(r[0]=o[0],r[1]=o[1],r[2]=o[2],this._originalColor=PIXI.utils.rgb2hex(r));},e.originalColor.get=function(){return this._originalColor},e.newColor.set=function(o){var r=this.uniforms.newColor;"number"==typeof o?(PIXI.utils.hex2rgb(o,r),this._newColor=o):(r[0]=o[0],r[1]=o[1],r[2]=o[2],this._newColor=PIXI.utils.rgb2hex(r));},e.newColor.get=function(){return this._newColor},e.epsilon.set=function(o){this.uniforms.epsilon=o;},e.epsilon.get=function(){return this.uniforms.epsilon},Object.defineProperties(r.prototype,e),r}(PIXI.Filter);PIXI.filters.ColorReplaceFilter=ColorReplaceFilter;
 
 /*!
- * @pixi/filter-convolution - v2.0.2
- * Compiled Wed, 11 Oct 2017 19:44:03 UTC
+ * @pixi/filter-convolution - v2.1.0
+ * Compiled Thu, 12 Oct 2017 13:21:35 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -72,8 +72,8 @@ var fragment$3="precision mediump float;\n\nvarying mediump vec2 vTextureCoord;\
 var ConvolutionFilter=function(e){function t(t,r,o){e.call(this,vertex$3,fragment$3),this.matrix=t,this.width=r,this.height=o;}e&&(t.__proto__=e),(t.prototype=Object.create(e&&e.prototype)).constructor=t;var r={matrix:{},width:{},height:{}};return r.matrix.get=function(){return this.uniforms.matrix},r.matrix.set=function(e){this.uniforms.matrix=new Float32Array(e);},r.width.get=function(){return 1/this.uniforms.texelSize[0]},r.width.set=function(e){this.uniforms.texelSize[0]=1/e;},r.height.get=function(){return 1/this.uniforms.texelSize[1]},r.height.set=function(e){this.uniforms.texelSize[1]=1/e;},Object.defineProperties(t.prototype,r),t}(PIXI.Filter);PIXI.filters.ConvolutionFilter=ConvolutionFilter;
 
 /*!
- * @pixi/filter-cross-hatch - v2.0.2
- * Compiled Wed, 11 Oct 2017 19:44:03 UTC
+ * @pixi/filter-cross-hatch - v2.1.0
+ * Compiled Thu, 12 Oct 2017 13:21:35 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -83,8 +83,8 @@ var fragment$4="precision mediump float;\n\nvarying vec2 vTextureCoord;\n\nunifo
 var CrossHatchFilter=function(r){function o(){r.call(this,vertex$4,fragment$4);}return r&&(o.__proto__=r),o.prototype=Object.create(r&&r.prototype),o.prototype.constructor=o,o}(PIXI.Filter);PIXI.filters.CrossHatchFilter=CrossHatchFilter;
 
 /*!
- * @pixi/filter-dot - v2.0.2
- * Compiled Wed, 11 Oct 2017 19:44:03 UTC
+ * @pixi/filter-dot - v2.1.0
+ * Compiled Thu, 12 Oct 2017 13:21:35 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -94,8 +94,8 @@ var fragment$5="precision mediump float;\n\nvarying vec2 vTextureCoord;\nvarying
 var DotFilter=function(e){function n(n,t){void 0===n&&(n=1),void 0===t&&(t=5),e.call(this,vertex$5,fragment$5),this.scale=n,this.angle=t;}e&&(n.__proto__=e),(n.prototype=Object.create(e&&e.prototype)).constructor=n;var t={scale:{},angle:{}};return t.scale.get=function(){return this.uniforms.scale},t.scale.set=function(e){this.uniforms.scale=e;},t.angle.get=function(){return this.uniforms.angle},t.angle.set=function(e){this.uniforms.angle=e;},Object.defineProperties(n.prototype,t),n}(PIXI.Filter);PIXI.filters.DotFilter=DotFilter;
 
 /*!
- * @pixi/filter-drop-shadow - v2.0.2
- * Compiled Wed, 11 Oct 2017 19:44:04 UTC
+ * @pixi/filter-drop-shadow - v2.1.0
+ * Compiled Thu, 12 Oct 2017 13:21:35 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -105,8 +105,8 @@ var fragment$6="varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\nunifor
 var DropShadowFilter=function(t){function r(r,e,i,n,o){void 0===r&&(r=45),void 0===e&&(e=5),void 0===i&&(i=2),void 0===n&&(n=0),void 0===o&&(o=.5),t.call(this),this.tintFilter=new PIXI.Filter(vertex$6,fragment$6),this.blurFilter=new PIXI.filters.BlurFilter,this.blurFilter.blur=i,this.rotation=r,this.padding=e,this.distance=e,this.alpha=o,this.color=n;}t&&(r.__proto__=t),(r.prototype=Object.create(t&&t.prototype)).constructor=r;var e={distance:{},rotation:{},blur:{},alpha:{},color:{}};return r.prototype.apply=function(r,e,i){var n=r.getRenderTarget();n.transform=new PIXI.Matrix,n.transform.translate(this.distance*Math.cos(this.angle),this.distance*Math.sin(this.angle)),this.tintFilter.apply(r,e,n,!0),this.blurFilter.apply(r,n,i),t.prototype.apply.call(this,r,e,i),n.transform=null,r.returnRenderTarget(n);},r.prototype.updatePadding=function(){this.padding=this.distance+2*this.blur;},e.distance.get=function(){return this._distance},e.distance.set=function(t){this._distance=t,this.updatePadding();},e.rotation.get=function(){return this.angle/PIXI.DEG_TO_RAD},e.rotation.set=function(t){this.angle=t*PIXI.DEG_TO_RAD;},e.blur.get=function(){return this.blurFilter.blur},e.blur.set=function(t){this.blurFilter.blur=t,this.updatePadding();},e.alpha.get=function(){return this.tintFilter.uniforms.alpha},e.alpha.set=function(t){this.tintFilter.uniforms.alpha=t;},e.color.get=function(){return PIXI.utils.rgb2hex(this.tintFilter.uniforms.color)},e.color.set=function(t){PIXI.utils.hex2rgb(t,this.tintFilter.uniforms.color);},Object.defineProperties(r.prototype,e),r}(PIXI.Filter);PIXI.filters.DropShadowFilter=DropShadowFilter;
 
 /*!
- * @pixi/filter-emboss - v2.0.2
- * Compiled Wed, 11 Oct 2017 19:44:07 UTC
+ * @pixi/filter-emboss - v2.1.0
+ * Compiled Thu, 12 Oct 2017 13:21:38 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -116,8 +116,8 @@ var fragment$7="precision mediump float;\n\nvarying vec2 vTextureCoord;\n\nunifo
 var EmbossFilter=function(e){function t(t){void 0===t&&(t=5),e.call(this,vertex$7,fragment$7),this.strength=t;}e&&(t.__proto__=e),(t.prototype=Object.create(e&&e.prototype)).constructor=t;var r={strength:{}};return r.strength.get=function(){return this.uniforms.strength},r.strength.set=function(e){this.uniforms.strength=e;},Object.defineProperties(t.prototype,r),t}(PIXI.Filter);PIXI.filters.EmbossFilter=EmbossFilter;
 
 /*!
- * @pixi/filter-glow - v2.0.2
- * Compiled Wed, 11 Oct 2017 19:44:07 UTC
+ * @pixi/filter-glow - v2.1.0
+ * Compiled Thu, 12 Oct 2017 13:21:38 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -127,8 +127,8 @@ var fragment$8="varying vec2 vTextureCoord;\nvarying vec4 vColor;\n\nuniform sam
 var GlowFilter=function(o){function t(t,n,r,e,l){void 0===t&&(t=10),void 0===n&&(n=4),void 0===r&&(r=0),void 0===e&&(e=16777215),void 0===l&&(l=.1),o.call(this,vertex$8,fragment$8.replace(/%QUALITY_DIST%/gi,""+(1/l/t).toFixed(7)).replace(/%DIST%/gi,""+t.toFixed(7))),this.uniforms.glowColor=new Float32Array([0,0,0,1]),this.distance=t,this.color=e,this.outerStrength=n,this.innerStrength=r;}o&&(t.__proto__=o),(t.prototype=Object.create(o&&o.prototype)).constructor=t;var n={color:{},distance:{},outerStrength:{},innerStrength:{}};return n.color.get=function(){return PIXI.utils.rgb2hex(this.uniforms.glowColor)},n.color.set=function(o){PIXI.utils.hex2rgb(o,this.uniforms.glowColor);},n.distance.get=function(){return this.uniforms.distance},n.distance.set=function(o){this.uniforms.distance=o;},n.outerStrength.get=function(){return this.uniforms.outerStrength},n.outerStrength.set=function(o){this.uniforms.outerStrength=o;},n.innerStrength.get=function(){return this.uniforms.innerStrength},n.innerStrength.set=function(o){this.uniforms.innerStrength=o;},Object.defineProperties(t.prototype,n),t}(PIXI.Filter);PIXI.filters.GlowFilter=GlowFilter;
 
 /*!
- * @pixi/filter-outline - v2.0.2
- * Compiled Wed, 11 Oct 2017 19:44:07 UTC
+ * @pixi/filter-outline - v2.1.0
+ * Compiled Thu, 12 Oct 2017 13:21:38 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -138,8 +138,8 @@ var fragment$9="varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\n\nunif
 var OutlineFilter=function(e){function o(o,r){void 0===o&&(o=1),void 0===r&&(r=0),e.call(this,vertex$9,fragment$9.replace(/%THICKNESS%/gi,(1/o).toFixed(7))),this.thickness=o,this.uniforms.outlineColor=new Float32Array([0,0,0,1]),this.color=r;}e&&(o.__proto__=e),(o.prototype=Object.create(e&&e.prototype)).constructor=o;var r={color:{},thickness:{}};return r.color.get=function(){return PIXI.utils.rgb2hex(this.uniforms.outlineColor)},r.color.set=function(e){PIXI.utils.hex2rgb(e,this.uniforms.outlineColor);},r.thickness.get=function(){return this.uniforms.thickness},r.thickness.set=function(e){this.uniforms.thickness=e;},Object.defineProperties(o.prototype,r),o}(PIXI.Filter);PIXI.filters.OutlineFilter=OutlineFilter;
 
 /*!
- * @pixi/filter-pixelate - v2.0.2
- * Compiled Wed, 11 Oct 2017 19:44:07 UTC
+ * @pixi/filter-pixelate - v2.1.0
+ * Compiled Thu, 12 Oct 2017 13:21:38 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -149,8 +149,8 @@ var fragment$10="precision mediump float;\n\nvarying vec2 vTextureCoord;\n\nunif
 var PixelateFilter=function(e){function r(r){void 0===r&&(r=10),e.call(this,vertex$10,fragment$10),this.size=r;}e&&(r.__proto__=e),(r.prototype=Object.create(e&&e.prototype)).constructor=r;var o={size:{}};return o.size.get=function(){return this.uniforms.size},o.size.set=function(e){"number"==typeof e&&(e=[e,e]),this.uniforms.size=e;},Object.defineProperties(r.prototype,o),r}(PIXI.Filter);PIXI.filters.PixelateFilter=PixelateFilter;
 
 /*!
- * @pixi/filter-rgb-split - v2.0.2
- * Compiled Wed, 11 Oct 2017 19:44:11 UTC
+ * @pixi/filter-rgb-split - v2.1.0
+ * Compiled Thu, 12 Oct 2017 13:21:41 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -160,8 +160,8 @@ var fragment$11="precision mediump float;\n\nvarying vec2 vTextureCoord;\n\nunif
 var RGBSplitFilter=function(e){function r(r,t,n){void 0===r&&(r=[-10,0]),void 0===t&&(t=[0,10]),void 0===n&&(n=[0,0]),e.call(this,vertex$11,fragment$11),this.red=r,this.green=t,this.blue=n;}e&&(r.__proto__=e),(r.prototype=Object.create(e&&e.prototype)).constructor=r;var t={red:{},green:{},blue:{}};return t.red.get=function(){return this.uniforms.red},t.red.set=function(e){this.uniforms.red=e;},t.green.get=function(){return this.uniforms.green},t.green.set=function(e){this.uniforms.green=e;},t.blue.get=function(){return this.uniforms.blue},t.blue.set=function(e){this.uniforms.blue=e;},Object.defineProperties(r.prototype,t),r}(PIXI.Filter);PIXI.filters.RGBSplitFilter=RGBSplitFilter;
 
 /*!
- * @pixi/filter-shockwave - v2.0.2
- * Compiled Wed, 11 Oct 2017 19:44:11 UTC
+ * @pixi/filter-shockwave - v2.1.0
+ * Compiled Thu, 12 Oct 2017 13:21:41 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -171,8 +171,8 @@ var fragment$12="varying vec2 vTextureCoord;\n\nuniform sampler2D uSampler;\n\nu
 var ShockwaveFilter=function(e){function t(t,r,n){void 0===t&&(t=[.5,.5]),void 0===r&&(r=[10,.8,.1]),void 0===n&&(n=0),e.call(this,vertex$12,fragment$12,{center:{type:"v2",value:{x:.5,y:.5}},params:{type:"v3",value:{x:10,y:.8,z:.1}},time:{type:"1f",value:0},dimensions:{type:"2f",value:[0,0]}}),this.center=t,this.params=r,this.time=n;}e&&(t.__proto__=e),(t.prototype=Object.create(e&&e.prototype)).constructor=t;var r={center:{},params:{},time:{}};return t.prototype.apply=function(e,t,r){this.uniforms.dimensions[0]=t.sourceFrame.width,this.uniforms.dimensions[1]=t.sourceFrame.height,e.applyFilter(this,t,r);},r.center.get=function(){return this.uniforms.center},r.center.set=function(e){this.uniforms.center=e;},r.params.get=function(){return this.uniforms.params},r.params.set=function(e){this.uniforms.params=e;},r.time.get=function(){return this.uniforms.time},r.time.set=function(e){this.uniforms.time=e;},Object.defineProperties(t.prototype,r),t}(PIXI.Filter);PIXI.filters.ShockwaveFilter=ShockwaveFilter;
 
 /*!
- * @pixi/filter-simple-lightmap - v2.0.2
- * Compiled Wed, 11 Oct 2017 19:44:11 UTC
+ * @pixi/filter-simple-lightmap - v2.1.0
+ * Compiled Thu, 12 Oct 2017 13:21:41 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -182,8 +182,8 @@ var fragment$13="varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\nunifo
 var SimpleLightmapFilter=function(t){function e(e,r,o){void 0===r&&(r=0),void 0===o&&(o=1),t.call(this,vertex$13,fragment$13),this.uniforms.ambientColor=new Float32Array([0,0,0,o]),this.texture=e,this.color=r;}t&&(e.__proto__=t),(e.prototype=Object.create(t&&t.prototype)).constructor=e;var r={texture:{},color:{},alpha:{}};return e.prototype.apply=function(t,e,r,o){this.uniforms.dimensions[0]=e.sourceFrame.width,this.uniforms.dimensions[1]=e.sourceFrame.height,t.applyFilter(this,e,r,o);},r.texture.get=function(){return this.uniforms.uLightmap},r.texture.set=function(t){this.uniforms.uLightmap=t;},r.color.set=function(t){var e=this.uniforms.ambientColor;"number"==typeof t?(PIXI.utils.hex2rgb(t,e),this._color=t):(e[0]=t[0],e[1]=t[1],e[2]=t[2],e[3]=t[3],this._color=PIXI.utils.rgb2hex(e));},r.color.get=function(){return this._color},r.alpha.get=function(){return this.uniforms.ambientColor[3]},r.alpha.set=function(t){this.uniforms.ambientColor[3]=t;},Object.defineProperties(e.prototype,r),e}(PIXI.Filter);PIXI.filters.SimpleLightmapFilter=SimpleLightmapFilter;
 
 /*!
- * @pixi/filter-tilt-shift - v2.0.2
- * Compiled Wed, 11 Oct 2017 19:44:11 UTC
+ * @pixi/filter-tilt-shift - v2.1.0
+ * Compiled Thu, 12 Oct 2017 13:21:41 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -193,8 +193,8 @@ var fragment$14="varying vec2 vTextureCoord;\n\nuniform sampler2D uSampler;\nuni
 var TiltShiftAxisFilter=function(t){function i(i,r,e,n){void 0===i&&(i=100),void 0===r&&(r=600),void 0===e&&(e=null),void 0===n&&(n=null),t.call(this,vertex$14,fragment$14),this.uniforms.blur=i,this.uniforms.gradientBlur=r,this.uniforms.start=e||new PIXI.Point(0,window.innerHeight/2),this.uniforms.end=n||new PIXI.Point(600,window.innerHeight/2),this.uniforms.delta=new PIXI.Point(30,30),this.uniforms.texSize=new PIXI.Point(window.innerWidth,window.innerHeight),this.updateDelta();}t&&(i.__proto__=t),(i.prototype=Object.create(t&&t.prototype)).constructor=i;var r={blur:{},gradientBlur:{},start:{},end:{}};return i.prototype.updateDelta=function(){this.uniforms.delta.x=0,this.uniforms.delta.y=0;},r.blur.get=function(){return this.uniforms.blur},r.blur.set=function(t){this.uniforms.blur=t;},r.gradientBlur.get=function(){return this.uniforms.gradientBlur},r.gradientBlur.set=function(t){this.uniforms.gradientBlur=t;},r.start.get=function(){return this.uniforms.start},r.start.set=function(t){this.uniforms.start=t,this.updateDelta();},r.end.get=function(){return this.uniforms.end},r.end.set=function(t){this.uniforms.end=t,this.updateDelta();},Object.defineProperties(i.prototype,r),i}(PIXI.Filter);PIXI.filters.TiltShiftAxisFilter=TiltShiftAxisFilter;var TiltShiftXFilter=function(t){function i(){t.apply(this,arguments);}return t&&(i.__proto__=t),i.prototype=Object.create(t&&t.prototype),i.prototype.constructor=i,i.prototype.updateDelta=function(){var t=this.uniforms.end.x-this.uniforms.start.x,i=this.uniforms.end.y-this.uniforms.start.y,r=Math.sqrt(t*t+i*i);this.uniforms.delta.x=t/r,this.uniforms.delta.y=i/r;},i}(TiltShiftAxisFilter);PIXI.filters.TiltShiftXFilter=TiltShiftXFilter;var TiltShiftYFilter=function(t){function i(){t.apply(this,arguments);}return t&&(i.__proto__=t),i.prototype=Object.create(t&&t.prototype),i.prototype.constructor=i,i.prototype.updateDelta=function(){var t=this.uniforms.end.x-this.uniforms.start.x,i=this.uniforms.end.y-this.uniforms.start.y,r=Math.sqrt(t*t+i*i);this.uniforms.delta.x=-i/r,this.uniforms.delta.y=t/r;},i}(TiltShiftAxisFilter);PIXI.filters.TiltShiftYFilter=TiltShiftYFilter;var TiltShiftFilter=function(t){function i(i,r,e,n){void 0===i&&(i=100),void 0===r&&(r=600),void 0===e&&(e=null),void 0===n&&(n=null),t.call(this),this.tiltShiftXFilter=new TiltShiftXFilter(i,r,e,n),this.tiltShiftYFilter=new TiltShiftYFilter(i,r,e,n);}t&&(i.__proto__=t),(i.prototype=Object.create(t&&t.prototype)).constructor=i;var r={blur:{},gradientBlur:{},start:{},end:{}};return i.prototype.apply=function(t,i,r){var e=t.getRenderTarget(!0);this.tiltShiftXFilter.apply(t,i,e),this.tiltShiftYFilter.apply(t,e,r),t.returnRenderTarget(e);},r.blur.get=function(){return this.tiltShiftXFilter.blur},r.blur.set=function(t){this.tiltShiftXFilter.blur=this.tiltShiftYFilter.blur=t;},r.gradientBlur.get=function(){return this.tiltShiftXFilter.gradientBlur},r.gradientBlur.set=function(t){this.tiltShiftXFilter.gradientBlur=this.tiltShiftYFilter.gradientBlur=t;},r.start.get=function(){return this.tiltShiftXFilter.start},r.start.set=function(t){this.tiltShiftXFilter.start=this.tiltShiftYFilter.start=t;},r.end.get=function(){return this.tiltShiftXFilter.end},r.end.set=function(t){this.tiltShiftXFilter.end=this.tiltShiftYFilter.end=t;},Object.defineProperties(i.prototype,r),i}(PIXI.Filter);PIXI.filters.TiltShiftFilter=TiltShiftFilter;
 
 /*!
- * @pixi/filter-twist - v2.0.2
- * Compiled Wed, 11 Oct 2017 19:44:14 UTC
+ * @pixi/filter-twist - v2.1.0
+ * Compiled Thu, 12 Oct 2017 13:21:44 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -204,15 +204,15 @@ var fragment$15="varying vec2 vTextureCoord;\n\nuniform sampler2D uSampler;\nuni
 var TwistFilter=function(o){function n(n,r,t){void 0===n&&(n=200),void 0===r&&(r=4),void 0===t&&(t=20),o.call(this,vertex$15,fragment$15),this.radius=n,this.angle=r,this.padding=t;}o&&(n.__proto__=o),(n.prototype=Object.create(o&&o.prototype)).constructor=n;var r={offset:{},radius:{},angle:{}};return r.offset.get=function(){return this.uniforms.offset},r.offset.set=function(o){this.uniforms.offset=o;},r.radius.get=function(){return this.uniforms.radius},r.radius.set=function(o){this.uniforms.radius=o;},r.angle.get=function(){return this.uniforms.angle},r.angle.set=function(o){this.uniforms.angle=o;},Object.defineProperties(n.prototype,r),n}(PIXI.Filter);PIXI.filters.TwistFilter=TwistFilter;
 
 /*!
- * @pixi/filter-zoom-blur - v2.0.2
- * Compiled Wed, 11 Oct 2017 19:44:14 UTC
+ * @pixi/filter-zoom-blur - v2.1.0
+ * Compiled Thu, 12 Oct 2017 13:21:44 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
  */
 var vertex$16="attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}\n";
-var fragment$16="varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\n\nuniform vec2 uViewSize;\nuniform vec2 uCenter;\nuniform float uStrength;\nuniform float uInnerRadius;\nuniform float uRadius;\n\n\nfloat random(vec3 scale, float seed) {\n    // use the fragment position for a different seed per-pixel\n    return fract(sin(dot(gl_FragCoord.xyz + seed, scale)) * 43758.5453 + seed);\n}\n\nvoid main() {\n\n    vec2 texCoord = gl_FragCoord.xy / uViewSize.xy;\n    texCoord.y = 1.0 - texCoord.y;\n\n    vec2 center = uCenter.xy / uViewSize.xy;\n    vec2 dir = vec2(center - texCoord);\n\n    dir.x *= uViewSize.x / uViewSize.y;\n\n    float dist = length(dir);\n\n    float strength = uStrength;\n\n    // randomize the lookup values to hide the fixed number of samples\n    float offset = random(vec3(12.9898, 78.233, 151.7182), 0.0);\n\n    const float count = 32.0;\n    float countLimit = count;\n\n    float minGradient = uInnerRadius * 0.3;\n    float gradient = uRadius * 0.3;\n\n    float innerRadius = (uInnerRadius + minGradient * 0.5) / uViewSize.y;\n    float radius = (uRadius - gradient * 0.5) / uViewSize.y;\n\n    float delta = 0.0;\n    float gap;\n    if (dist < innerRadius) {\n        delta = innerRadius - dist;\n        gap = minGradient;\n    } else if (dist > radius) {\n        delta = dist - radius;\n        gap = gradient;\n    }\n\n    if (delta > 0.0) {\n        float normalCount = gap / uViewSize.y;\n        delta = (normalCount - delta) / normalCount;\n        countLimit *= delta;\n        strength *= delta;\n        if (countLimit < 1.0)\n        {\n            gl_FragColor = texture2D(uSampler, vTextureCoord);\n            return;\n        }\n    }\n\n    dir *= strength;\n\n    vec4 color = vec4(0.0);\n    float total = 0.0;\n\n    for (float t = 0.0; t < count; t++) {\n        float percent = (t + offset) / count;\n        float weight = 4.0 * (percent - percent * percent);\n        vec2 p = vTextureCoord + dir * percent;\n        vec4 sample = texture2D(uSampler, p);\n\n        // switch to pre-multiplied alpha to correctly blur transparent images\n        sample.rgb *= sample.a;\n\n        color += sample * weight;\n        total += weight;\n\n        if (t > countLimit){\n            break;\n        }\n    }\n\n    gl_FragColor = color / total;\n\n    // switch back from pre-multiplied alpha\n    gl_FragColor.rgb /= gl_FragColor.a + 0.00001;\n}\n";
-var ZoomBlurFilter=function(t){function e(e,n,i,r){void 0===e&&(e=.1),void 0===n&&(n=[0,0]),void 0===i&&(i=0),void 0===r&&(r=1e9),t.call(this,vertex$16,fragment$16),this.center=n,this.strength=e,this.innerRadius=i,this.radius=r,this._defaultSize=new Float32Array([0,0]),this._size=new Float32Array([0,0]),this.clearSize();}t&&(e.__proto__=t),(e.prototype=Object.create(t&&t.prototype)).constructor=e;var n={center:{},strength:{},innerRadius:{},radius:{}};return e.prototype.apply=function(t,e,n,i){this._customSize||(this._defaultSize[0]=e.sourceFrame.width,this._defaultSize[1]=e.sourceFrame.height),t.applyFilter(this,e,n,i);},e.prototype.setSize=function(t,e){this._customSize=!0,this._size[0]=t,this._size[1]=e,this.uniforms.uViewSize=this._size;},e.prototype.clearSize=function(){this._customSize=!1,this.uniforms.uViewSize=this._defaultSize;},n.center.get=function(){return this.uniforms.uCenter},n.center.set=function(t){this.uniforms.uCenter=t;},n.strength.get=function(){return this.uniforms.uStrength},n.strength.set=function(t){this.uniforms.uStrength=t;},n.innerRadius.get=function(){return this.uniforms.uInnerRadius},n.innerRadius.set=function(t){this.uniforms.uInnerRadius=t;},n.radius.get=function(){return this.uniforms.uRadius},n.radius.set=function(t){this.uniforms.uRadius=t;},Object.defineProperties(e.prototype,n),e}(PIXI.Filter);PIXI.filters.ZoomBlurFilter=ZoomBlurFilter;
+var fragment$16="varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\nuniform vec4 filterArea;\n\nuniform vec2 uCenter;\nuniform float uStrength;\nuniform float uInnerRadius;\nuniform float uRadius;\n\nfloat random(vec3 scale, float seed) {\n    // use the fragment position for a different seed per-pixel\n    return fract(sin(dot(gl_FragCoord.xyz + seed, scale)) * 43758.5453 + seed);\n}\n\nvoid main() {\n\n    vec2 center = uCenter.xy / filterArea.xy;\n    vec2 dir = vec2(center - vTextureCoord);\n    float dist = length(vec2(dir.x, dir.y * filterArea.y / filterArea.x));\n\n    float strength = uStrength;\n\n    const float count = 32.0;\n    float countLimit = count;\n\n    float minGradient = uInnerRadius * 0.3;\n    float gradient = uRadius * 0.3;\n\n    float innerRadius = (uInnerRadius + minGradient * 0.5) / filterArea.x;\n    float radius = (uRadius - gradient * 0.5) / filterArea.x;\n\n    float delta = 0.0;\n    float gap;\n    if (dist < innerRadius) {\n        delta = innerRadius - dist;\n        gap = minGradient;\n    } else if (dist > radius) {\n        delta = dist - radius;\n        gap = gradient;\n    }\n\n    if (delta > 0.0) {\n        float normalCount = gap / filterArea.x;\n        delta = (normalCount - delta) / normalCount;\n        countLimit *= delta;\n        strength *= delta;\n        if (countLimit < 1.0)\n        {\n            gl_FragColor = texture2D(uSampler, vTextureCoord);\n            return;\n        }\n    }\n\n    // randomize the lookup values to hide the fixed number of samples\n    float offset = random(vec3(12.9898, 78.233, 151.7182), 0.0);\n\n    float total = 0.0;\n    vec4 color = vec4(0.0);\n\n    dir *= strength;\n\n    for (float t = 0.0; t < count; t++) {\n        float percent = (t + offset) / count;\n        float weight = 4.0 * (percent - percent * percent);\n        vec2 p = vTextureCoord + dir * percent;\n        vec4 sample = texture2D(uSampler, p);\n\n        // switch to pre-multiplied alpha to correctly blur transparent images\n        sample.rgb *= sample.a;\n\n        color += sample * weight;\n        total += weight;\n\n        if (t > countLimit){\n            break;\n        }\n    }\n\n    gl_FragColor = color / total;\n\n    // switch back from pre-multiplied alpha\n    gl_FragColor.rgb /= gl_FragColor.a + 0.00001;\n}\n";
+var ZoomBlurFilter=function(n){function t(t,e,r,i){void 0===t&&(t=.1),void 0===e&&(e=[0,0]),void 0===r&&(r=0),void 0===i&&(i=1e8),n.call(this,vertex$16,fragment$16),this.center=e,this.strength=t,this.innerRadius=r,this.radius=i;}n&&(t.__proto__=n),(t.prototype=Object.create(n&&n.prototype)).constructor=t;var e={center:{},strength:{},innerRadius:{},radius:{}};return e.center.get=function(){return this.uniforms.uCenter},e.center.set=function(n){this.uniforms.uCenter=n;},e.strength.get=function(){return this.uniforms.uStrength},e.strength.set=function(n){this.uniforms.uStrength=n;},e.innerRadius.get=function(){return this.uniforms.uInnerRadius},e.innerRadius.set=function(n){this.uniforms.uInnerRadius=n;},e.radius.get=function(){return this.uniforms.uRadius},e.radius.set=function(n){this.uniforms.uRadius=n;},Object.defineProperties(t.prototype,e),t}(PIXI.Filter);PIXI.filters.ZoomBlurFilter=ZoomBlurFilter;
 
 exports.AsciiFilter = AsciiFilter;
 exports.BloomFilter = BloomFilter;
