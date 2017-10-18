@@ -683,96 +683,519 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="bulge-pinch_src_BulgePinchFilter.js.html">Source: bulge-pinch/src/BulgePinchFilter.js</h1>
+        <h1 class="page-title" data-filename="PIXI.filters.MultiColorReplaceFilter.html">Class: MultiColorReplaceFilter</h1>
         
 
 
+
+<section>
     
-    <section>
-        <header>
-            <div class="header content-size">
-                <h2>bulge-pinch/src/BulgePinchFilter.js</h2>
-            </div>
-        </header>
-        <article>
-            <pre id="source-code" class="prettyprint source linenums"><code>import vertex from './bulgePinch.vert';
-import fragment from './bulgePinch.frag';
+<header>
+    <div class="header content-size">
+        <h2>MultiColorReplaceFilter
+        </h2>
+        
+            <div class="class-description"><p>Filter for replacing a color with another color. Similar to ColorReplaceFilter, but support multiple
+colors.
+<img src="../tools/screenshots/dist/original.png" alt="original"><img src="../tools/screenshots/dist/multi-color-replace.png" alt="filter"></p></div>
+        
+    </div>
+</header>  
 
-/**
- * @author Julien CLEREL @JuloxRox
- * original filter https://github.com/evanw/glfx.js/blob/master/src/filters/warp/bulgepinch.js by Evan Wallace : http://madebyevan.com/
- */
+<article class="content-size">
+    <div class="container-overview">
+    
+    
+    
+        
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="MultiColorReplaceFilter">
+            <a class="share-icon" href="#MultiColorReplaceFilter"><span class="glyphicon glyphicon-link"></span></a>
+            new PIXI.filters.MultiColorReplaceFilter<span class="signature">(replacements, <span class="optional">epsilon</span>, <span class="optional">maxColors</span>)</span>
+            
+            
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="multi-color-replace_src_MultiColorReplaceFilter.js.html#line41">MultiColorReplaceFilter.js:41</a>
+        </div>
+        
+    </div>
 
-/**
- * Bulges or pinches the image in a circle.
- * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/bulge-pinch.gif)
- *
- * @class
- * @extends PIXI.Filter
- * @memberof PIXI.filters
- * @param {PIXI.Point|Array&lt;number>} [center=[0,0]] The x and y coordinates of the center of the circle of effect.
- * @param {number} [radius=100] The radius of the circle of effect.
- * @param {number} [strength=1] -1 to 1 (-1 is strong pinch, 0 is no effect, 1 is strong bulge)
- */
-export default class BulgePinchFilter extends PIXI.Filter {
+    
+</dt>
+<dd>
+    
+    
 
-    constructor(center, radius, strength) {
-        super(vertex, fragment);
-        this.center = center || [0.5, 0.5];
-        this.radius = radius || 100;
-        this.strength = strength || 1;
-    }
+    
+    
+    
+    
+    
+        
 
-    apply(filterManager, input, output) {
-        this.uniforms.dimensions[0] = input.sourceFrame.width;
-        this.uniforms.dimensions[1] = input.sourceFrame.height;
-        filterManager.applyFilter(this, input, output);
-    }
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		<th>Default</th>
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>replacements</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Array></span>
 
-    /**
-     * The radius of the circle of effect.
-     *
-     * @member {number}
-     */
-    get radius() {
-        return this.uniforms.radius;
-    }
-    set radius(value) {
-        this.uniforms.radius = value;
-    }
 
-    /**
-     * The strength of the effect. -1 to 1 (-1 is strong pinch, 0 is no effect, 1 is strong bulge)
-     *
-     * @member {number}
-     */
-    get strength() {
-        return this.uniforms.strength;
-    }
-    set strength(value) {
-        this.uniforms.strength = value;
-    }
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                    
+                        
+                    
+                
+                <p>The collection of replacement items. Each item is color-pair (an array length is 2).
+                      In the pair, the first value is original color , the second value is target color.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>epsilon</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
 
-    /**
-     * The x and y coordinates of the center of the circle of effect.
-     *
-     * @member {PIXI.Point}
-     */
-    get center() {
-        return this.uniforms.center;
-    }
-    set center(value) {
-        this.uniforms.center = value;
-    }
-}
 
-// Export to PixiJS namespace
-PIXI.filters.BulgePinchFilter = BulgePinchFilter;
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    0.05
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>Tolerance of the floating-point comparison between colors
+                                 (lower = more exact, higher = more inclusive)</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>maxColors</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
 
-</code></pre>
-        </article>
-    </section>
 
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>The maximum number of replacements filter is able to use. Because the
+                              fragment is only compiled once, this cannot be changed after construction.
+                              If omitted, the default value is the length of <code>replacements</code>.</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example</h5>
+        
+
+    
+    <pre class="prettyprint"><code>// replaces pure red with pure blue, and replaces pure green with pure white
+ someSprite.filters = [new MultiColorReplaceFilter(
+   [
+     [0xFF0000, 0x0000FF],
+     [0x00FF00, 0xFFFFFF]
+   ],
+   0.001
+ )];
+
+ You also could use [R, G, B] as the color
+ someOtherSprite.filters = [new MultiColorReplaceFilter(
+   [
+     [ [1,0,0], [0,0,1] ],
+     [ [0,1,0], [1,1,1] ]
+   ],
+   0.001
+ )];</code></pre>
+    
+
+    
+</dd>
+
+    
+    </div>
+    
+    
+        <h3 class="subsection-title">Extends</h3>
+        
+        <ul>
+            <li>PIXI.Filter</li>
+        </ul>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Members</h3>
+        
+        <dl class="list-members">
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="epsilon">
+            <a class="share-icon" href="#epsilon"><span class="glyphicon glyphicon-link"></span></a>
+            epsilon<span class="type-signature type">number</span>
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Tolerance of the floating-point comparison between colors (lower = more exact, higher = more inclusive)</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0.05</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="maxColors">
+            <a class="share-icon" href="#maxColors"><span class="glyphicon glyphicon-link"></span></a>
+            maxColors<span class="type-signature type">number</span><span class="access-signature">readonly</span>
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The maximum number of color replacements supported by this filter. Can be changed
+<em>only</em> during construction.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="replacements">
+            <a class="share-icon" href="#replacements"><span class="glyphicon glyphicon-link"></span></a>
+            replacements<span class="type-signature type">Array.&lt;Array></span>
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The source and target colors for replacement. See constructor for information on the format.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+        <h3 class="subsection-title">Methods</h3>
+        
+        <dl class="list-methods">
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="refresh">
+            <a class="share-icon" href="#refresh"><span class="glyphicon glyphicon-link"></span></a>
+            refresh<span class="signature">()</span>
+            
+            
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="multi-color-replace_src_MultiColorReplaceFilter.js.html#line122">MultiColorReplaceFilter.js:122</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Should be called after changing any of the contents of the replacements.
+This is a convenience method for resetting the <code>replacements</code>.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+    
+    
+
+    
+</article>
+
+</section>  
 
 
 
@@ -782,7 +1205,7 @@ PIXI.filters.BulgePinchFilter = BulgePinchFilter;
 
         <footer class="content-size">
             <div class="footer">
-                Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Oct 18 2017 16:51:59 GMT-0400 (EDT)
+                Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Oct 18 2017 16:51:59 GMT-0400 (EDT)
             </div>
         </footer>
     </div>

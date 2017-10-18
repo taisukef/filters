@@ -683,96 +683,678 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="bulge-pinch_src_BulgePinchFilter.js.html">Source: bulge-pinch/src/BulgePinchFilter.js</h1>
+        <h1 class="page-title" data-filename="PIXI.filters.AdvancedBloomFilter.html">Class: AdvancedBloomFilter</h1>
         
 
 
+
+<section>
     
-    <section>
-        <header>
-            <div class="header content-size">
-                <h2>bulge-pinch/src/BulgePinchFilter.js</h2>
-            </div>
-        </header>
-        <article>
-            <pre id="source-code" class="prettyprint source linenums"><code>import vertex from './bulgePinch.vert';
-import fragment from './bulgePinch.frag';
+<header>
+    <div class="header content-size">
+        <h2>AdvancedBloomFilter
+        </h2>
+        
+            <div class="class-description"><p>The AdvancedBloomFilter applies a Bloom Effect to an object. Unlike the normal BloomFilter
+this had some advanced controls for adjusting the look of the bloom. Note: this filter
+is slower than normal BloomFilter.
+<img src="../tools/screenshots/dist/original.png" alt="original"><img src="../tools/screenshots/dist/advanced-bloom.png" alt="filter"></p></div>
+        
+    </div>
+</header>  
 
-/**
- * @author Julien CLEREL @JuloxRox
- * original filter https://github.com/evanw/glfx.js/blob/master/src/filters/warp/bulgepinch.js by Evan Wallace : http://madebyevan.com/
- */
+<article class="content-size">
+    <div class="container-overview">
+    
+    
+    
+        
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="AdvancedBloomFilter">
+            <a class="share-icon" href="#AdvancedBloomFilter"><span class="glyphicon glyphicon-link"></span></a>
+            new PIXI.filters.AdvancedBloomFilter<span class="signature">(<span class="optional">options</span>)</span>
+            
+            
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="advanced-bloom_src_AdvancedBloomFilter.js.html#line27">AdvancedBloomFilter.js:27</a>
+        </div>
+        
+    </div>
 
-/**
- * Bulges or pinches the image in a circle.
- * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/bulge-pinch.gif)
- *
- * @class
- * @extends PIXI.Filter
- * @memberof PIXI.filters
- * @param {PIXI.Point|Array&lt;number>} [center=[0,0]] The x and y coordinates of the center of the circle of effect.
- * @param {number} [radius=100] The radius of the circle of effect.
- * @param {number} [strength=1] -1 to 1 (-1 is strong pinch, 0 is no effect, 1 is strong bulge)
- */
-export default class BulgePinchFilter extends PIXI.Filter {
+    
+</dt>
+<dd>
+    
+    
 
-    constructor(center, radius, strength) {
-        super(vertex, fragment);
-        this.center = center || [0.5, 0.5];
-        this.radius = radius || 100;
-        this.strength = strength || 1;
-    }
+    
+    
+    
+    
+    
+        
 
-    apply(filterManager, input, output) {
-        this.uniforms.dimensions[0] = input.sourceFrame.width;
-        this.uniforms.dimensions[1] = input.sourceFrame.height;
-        filterManager.applyFilter(this, input, output);
-    }
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+|
 
-    /**
-     * The radius of the circle of effect.
-     *
-     * @member {number}
-     */
-    get radius() {
-        return this.uniforms.radius;
-    }
-    set radius(value) {
-        this.uniforms.radius = value;
-    }
+<span class="param-type">number</span>
 
-    /**
-     * The strength of the effect. -1 to 1 (-1 is strong pinch, 0 is no effect, 1 is strong bulge)
-     *
-     * @member {number}
-     */
-    get strength() {
-        return this.uniforms.strength;
-    }
-    set strength(value) {
-        this.uniforms.strength = value;
-    }
 
-    /**
-     * The x and y coordinates of the center of the circle of effect.
-     *
-     * @member {PIXI.Point}
-     */
-    get center() {
-        return this.uniforms.center;
-    }
-    set center(value) {
-        this.uniforms.center = value;
-    }
-}
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>The optional parameters of advanced bloom filter.
+                       When options is a number , it will be <code>options.threshold</code>.</p>
+                
 
-// Export to PixiJS namespace
-PIXI.filters.BulgePinchFilter = BulgePinchFilter;
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		<th>Default</th>
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>threshold</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
 
-</code></pre>
-        </article>
-    </section>
 
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    0.5
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>Defines how bright a color needs to be to affect bloom.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>bloomScale</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    1.0
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>To adjust the strength of the bloom. Higher values is more intense brightness.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>brightness</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    1.0
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>The brightness, lower value is more subtle brightness, higher value is blown-out.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>blur</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    8
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>Sets the strength of both the blurX and blurY properties simultaneously</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>quality</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    4
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>The quality of the blurX &amp; blurY filter.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>resolution</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    PIXI.settings.RESOLUTION
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>The resolution of the blurX &amp; blurY filter.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>kernelSize</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    5
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>The kernelSize of the blurX &amp; blurY filter.Options: 5, 7, 9, 11, 13, 15.</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+            </td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+    
+    </div>
+    
+    
+        <h3 class="subsection-title">Extends</h3>
+        
+        <ul>
+            <li>PIXI.Filter</li>
+        </ul>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Members</h3>
+        
+        <dl class="list-members">
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="bloomScale">
+            <a class="share-icon" href="#bloomScale"><span class="glyphicon glyphicon-link"></span></a>
+            bloomScale<span class="type-signature type">number</span>
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>To adjust the strength of the bloom. Higher values is more intense brightness.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>1.0</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="blur">
+            <a class="share-icon" href="#blur"><span class="glyphicon glyphicon-link"></span></a>
+            blur<span class="type-signature type">number</span>
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Sets the strength of both the blurX and blurY properties simultaneously</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>2</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="brightness">
+            <a class="share-icon" href="#brightness"><span class="glyphicon glyphicon-link"></span></a>
+            brightness<span class="type-signature type">number</span>
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The brightness, lower value is more subtle brightness, higher value is blown-out.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>1.0</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="threshold">
+            <a class="share-icon" href="#threshold"><span class="glyphicon glyphicon-link"></span></a>
+            threshold<span class="type-signature type">number</span>
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Defines how bright a color needs to be to affect bloom.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0.5</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+    
+    
+    
+    
+
+    
+</article>
+
+</section>  
 
 
 
@@ -782,7 +1364,7 @@ PIXI.filters.BulgePinchFilter = BulgePinchFilter;
 
         <footer class="content-size">
             <div class="footer">
-                Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Oct 18 2017 16:51:59 GMT-0400 (EDT)
+                Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Oct 18 2017 16:51:59 GMT-0400 (EDT)
             </div>
         </footer>
     </div>

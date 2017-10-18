@@ -56,6 +56,38 @@
     </div>
     <ul class="list">
     
+        <li class="item" data-name="PIXI.filters.AdvancedBloomFilter">
+            <span class="title ">
+                
+                <a href="PIXI.filters.AdvancedBloomFilter.html">PIXI.filters.AdvancedBloomFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li class="parent" data-name="PIXI.filters.AdvancedBloomFilter#bloomScale"><a href="PIXI.filters.AdvancedBloomFilter.html#bloomScale">bloomScale</a></li>
+            
+                <li class="parent" data-name="PIXI.filters.AdvancedBloomFilter#blur"><a href="PIXI.filters.AdvancedBloomFilter.html#blur">blur</a></li>
+            
+                <li class="parent" data-name="PIXI.filters.AdvancedBloomFilter#brightness"><a href="PIXI.filters.AdvancedBloomFilter.html#brightness">brightness</a></li>
+            
+                <li class="parent" data-name="PIXI.filters.AdvancedBloomFilter#threshold"><a href="PIXI.filters.AdvancedBloomFilter.html#threshold">threshold</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
         <li class="item" data-name="PIXI.filters.AsciiFilter">
             <span class="title ">
                 
@@ -376,6 +408,40 @@
             </ul>
         </li>
     
+        <li class="item" data-name="PIXI.filters.MultiColorReplaceFilter">
+            <span class="title ">
+                
+                <a href="PIXI.filters.MultiColorReplaceFilter.html">PIXI.filters.MultiColorReplaceFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li class="parent" data-name="PIXI.filters.MultiColorReplaceFilter#epsilon"><a href="PIXI.filters.MultiColorReplaceFilter.html#epsilon">epsilon</a></li>
+            
+                <li class="parent" data-name="PIXI.filters.MultiColorReplaceFilter#maxColors"><a href="PIXI.filters.MultiColorReplaceFilter.html#maxColors">maxColors</a></li>
+            
+                <li class="parent" data-name="PIXI.filters.MultiColorReplaceFilter#replacements"><a href="PIXI.filters.MultiColorReplaceFilter.html#replacements">replacements</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li class="parent" data-name="PIXI.filters.MultiColorReplaceFilter#refresh"><a href="PIXI.filters.MultiColorReplaceFilter.html#refresh">refresh</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
         <li class="item" data-name="PIXI.filters.OutlineFilter">
             <span class="title ">
                 
@@ -582,6 +648,38 @@
             </ul>
         </li>
     
+        <li class="item" data-name="PIXI.filters.ZoomBlurFilter">
+            <span class="title ">
+                
+                <a href="PIXI.filters.ZoomBlurFilter.html">PIXI.filters.ZoomBlurFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li class="parent" data-name="PIXI.filters.ZoomBlurFilter#center"><a href="PIXI.filters.ZoomBlurFilter.html#center">center</a></li>
+            
+                <li class="parent" data-name="PIXI.filters.ZoomBlurFilter#innerRadius"><a href="PIXI.filters.ZoomBlurFilter.html#innerRadius">innerRadius</a></li>
+            
+                <li class="parent" data-name="PIXI.filters.ZoomBlurFilter#radius"><a href="PIXI.filters.ZoomBlurFilter.html#radius">radius</a></li>
+            
+                <li class="parent" data-name="PIXI.filters.ZoomBlurFilter#strength"><a href="PIXI.filters.ZoomBlurFilter.html#strength">strength</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
     </ul>
 </div>
     <div class="main">
@@ -603,7 +701,7 @@ import main from './main.frag';
 
 /**
 * GordayFilter, {@link https://codepen.io/alaingalvan originally} by Alain Galvan
-* 
+*
 *
 *
 * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/godray.gif)
@@ -615,15 +713,23 @@ import main from './main.frag';
 *  displayObject.filters = [new GodrayFilter()];
 * @param {number} [angle=30] Angle of the rays.
 * @param {number} [gain=0.5] General intensity of the effect.
-* @param {number} [lacunrity=2] The density of the fractal noise.
+* @param {number} [lacunrity=2.5] The density of the fractal noise.
 * @param {number} [time=0] The current time position.
 */
 export default class GodrayFilter extends PIXI.Filter {
 
-    constructor(angle = 30, gain = 0.5, lacunarity = 2, time = 0) {
+    constructor(angle = 30, gain = 0.5, lacunarity = 2.5, time = 0) {
         super(vertex, main.replace("$perlin", perlin));
 
+        /**
+         * The angle of the rays in degrees. For instance, a value of 0 is vertical rays,
+         * values of 90 or -90 produce horizontal rays.
+         *
+         * @member {number}
+         * @default 30
+         */
         this.angle = angle;
+
         this.gain = gain;
         this.lacunarity = lacunarity;
         this.time = time;
@@ -639,6 +745,15 @@ export default class GodrayFilter extends PIXI.Filter {
     apply(filterManager, input, output, clear) {
         this.uniforms.dimensions[0] = input.sourceFrame.width;
         this.uniforms.dimensions[1] = input.sourceFrame.height;
+        const radians = this.angle * PIXI.DEG_TO_RAD;
+
+        //compensate angle, divide by wh or multiply by hw
+        const cos = Math.cos(radians) * input.sourceFrame.width;
+        const sin = Math.sin(radians) * input.sourceFrame.height;
+        const d = Math.sqrt(cos * cos + sin * sin);
+        const dir = this.uniforms.angleDir;
+        dir[0] = cos / d;
+        dir[1] = sin / d;
 
         // draw the filter...
         filterManager.applyFilter(this, input, output, clear);
@@ -654,20 +769,6 @@ export default class GodrayFilter extends PIXI.Filter {
     }
     set time(value) {
         this.uniforms.time = value;
-    }
-
-    /**
-     * The angle of the rays in degrees. For instance, a value of 0 is vertical rays, 
-     * values of 90 or -90 produce horizontal rays. 
-     *
-     * @member {number}
-     * @default 30
-     */
-    get angle() {
-        return this.uniforms.angle;
-    }
-    set angle(value) {
-        this.uniforms.angle = value;
     }
 
     /**
@@ -689,7 +790,7 @@ export default class GodrayFilter extends PIXI.Filter {
      * produces fewer waves.
      *
      * @member {number}
-     * @default 2.0
+     * @default 2.5
      */
     get lacunarity() {
         return this.uniforms.lacunarity;
@@ -715,7 +816,7 @@ PIXI.filters.GodrayFilter = GodrayFilter;
 
         <footer class="content-size">
             <div class="footer">
-                Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a> on Wed Oct 11 2017 14:07:52 GMT-0400 (EDT)
+                Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Oct 18 2017 16:51:59 GMT-0400 (EDT)
             </div>
         </footer>
     </div>

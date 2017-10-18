@@ -683,7 +683,7 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="bulge-pinch_src_BulgePinchFilter.js.html">Source: bulge-pinch/src/BulgePinchFilter.js</h1>
+        <h1 class="page-title" data-filename="advanced-bloom_src_ExtractBrightnessFilter.js.html">Source: advanced-bloom/src/ExtractBrightnessFilter.js</h1>
         
 
 
@@ -691,83 +691,40 @@
     <section>
         <header>
             <div class="header content-size">
-                <h2>bulge-pinch/src/BulgePinchFilter.js</h2>
+                <h2>advanced-bloom/src/ExtractBrightnessFilter.js</h2>
             </div>
         </header>
         <article>
-            <pre id="source-code" class="prettyprint source linenums"><code>import vertex from './bulgePinch.vert';
-import fragment from './bulgePinch.frag';
+            <pre id="source-code" class="prettyprint source linenums"><code>import vertex from './extract-brightness.vert';
+import fragment from './extract-brightness.frag';
 
 /**
- * @author Julien CLEREL @JuloxRox
- * original filter https://github.com/evanw/glfx.js/blob/master/src/filters/warp/bulgepinch.js by Evan Wallace : http://madebyevan.com/
- */
-
-/**
- * Bulges or pinches the image in a circle.
- * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/bulge-pinch.gif)
- *
+ * Internal filter for AdvancedBloomFilter to get brightness.
  * @class
- * @extends PIXI.Filter
- * @memberof PIXI.filters
- * @param {PIXI.Point|Array&lt;number>} [center=[0,0]] The x and y coordinates of the center of the circle of effect.
- * @param {number} [radius=100] The radius of the circle of effect.
- * @param {number} [strength=1] -1 to 1 (-1 is strong pinch, 0 is no effect, 1 is strong bulge)
+ * @private
+ * @param {number} [threshold=0.5] Defines how bright a color needs to be extracted.
  */
-export default class BulgePinchFilter extends PIXI.Filter {
+export default class ExtractBrightnessFilter extends PIXI.Filter {
 
-    constructor(center, radius, strength) {
+    constructor(threshold = 0.5) {
         super(vertex, fragment);
-        this.center = center || [0.5, 0.5];
-        this.radius = radius || 100;
-        this.strength = strength || 1;
-    }
 
-    apply(filterManager, input, output) {
-        this.uniforms.dimensions[0] = input.sourceFrame.width;
-        this.uniforms.dimensions[1] = input.sourceFrame.height;
-        filterManager.applyFilter(this, input, output);
+        this.threshold = threshold;
     }
 
     /**
-     * The radius of the circle of effect.
+     * Defines how bright a color needs to be extracted.
      *
      * @member {number}
+     * @default 0.5
      */
-    get radius() {
-        return this.uniforms.radius;
+    get threshold() {
+        return this.uniforms.threshold;
     }
-    set radius(value) {
-        this.uniforms.radius = value;
-    }
-
-    /**
-     * The strength of the effect. -1 to 1 (-1 is strong pinch, 0 is no effect, 1 is strong bulge)
-     *
-     * @member {number}
-     */
-    get strength() {
-        return this.uniforms.strength;
-    }
-    set strength(value) {
-        this.uniforms.strength = value;
-    }
-
-    /**
-     * The x and y coordinates of the center of the circle of effect.
-     *
-     * @member {PIXI.Point}
-     */
-    get center() {
-        return this.uniforms.center;
-    }
-    set center(value) {
-        this.uniforms.center = value;
+    set threshold(value) {
+        this.uniforms.threshold = value;
     }
 }
-
-// Export to PixiJS namespace
-PIXI.filters.BulgePinchFilter = BulgePinchFilter;
 
 </code></pre>
         </article>
