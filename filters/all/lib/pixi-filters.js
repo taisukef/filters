@@ -1,6 +1,6 @@
 /*!
- * pixi-filters - v2.1.1
- * Compiled Wed, 18 Oct 2017 20:51:49 UTC
+ * pixi-filters - v2.2.0
+ * Compiled Wed, 18 Oct 2017 20:54:29 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -26,8 +26,8 @@ var fragment="varying vec2 vTextureCoord;\n\nuniform vec4 filterArea;\nuniform f
 var AsciiFilter=function(e){function n(n){void 0===n&&(n=8),e.call(this,vertex,fragment),this.size=n;}e&&(n.__proto__=e),(n.prototype=Object.create(e&&e.prototype)).constructor=n;var r={size:{}};return r.size.get=function(){return this.uniforms.pixelSize},r.size.set=function(e){this.uniforms.pixelSize=e;},Object.defineProperties(n.prototype,r),n}(PIXI.Filter);PIXI.filters.AsciiFilter=AsciiFilter;
 
 /*!
- * @pixi/filter-advanced-bloom - v2.1.0
- * Compiled Wed, 18 Oct 2017 20:51:33 UTC
+ * @pixi/filter-advanced-bloom - v2.2.0
+ * Compiled Wed, 18 Oct 2017 20:54:27 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
