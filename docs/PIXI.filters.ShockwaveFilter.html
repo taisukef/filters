@@ -535,11 +535,19 @@
             
             <span class="subtitle">Members</span>
             
+                <li class="parent" data-name="PIXI.filters.ShockwaveFilter#amplitude"><a href="PIXI.filters.ShockwaveFilter.html#amplitude">amplitude</a></li>
+            
+                <li class="parent" data-name="PIXI.filters.ShockwaveFilter#brightness"><a href="PIXI.filters.ShockwaveFilter.html#brightness">brightness</a></li>
+            
                 <li class="parent" data-name="PIXI.filters.ShockwaveFilter#center"><a href="PIXI.filters.ShockwaveFilter.html#center">center</a></li>
             
-                <li class="parent" data-name="PIXI.filters.ShockwaveFilter#params"><a href="PIXI.filters.ShockwaveFilter.html#params">params</a></li>
+                <li class="parent" data-name="PIXI.filters.ShockwaveFilter#radius"><a href="PIXI.filters.ShockwaveFilter.html#radius">radius</a></li>
+            
+                <li class="parent" data-name="PIXI.filters.ShockwaveFilter#speed"><a href="PIXI.filters.ShockwaveFilter.html#speed">speed</a></li>
             
                 <li class="parent" data-name="PIXI.filters.ShockwaveFilter#time"><a href="PIXI.filters.ShockwaveFilter.html#time">time</a></li>
+            
+                <li class="parent" data-name="PIXI.filters.ShockwaveFilter#wavelength"><a href="PIXI.filters.ShockwaveFilter.html#wavelength">wavelength</a></li>
             
             </ul>
             <ul class="typedefs itemMembers">
@@ -695,9 +703,7 @@
         <h2>ShockwaveFilter
         </h2>
         
-            <div class="class-description"><p>The ColorMatrixFilter class lets you apply a 4x4 matrix transformation on the RGBA
-color and alpha values of every pixel on your displayObject to produce a result
-with a new set of RGBA color and alpha values. It's pretty powerful!
+            <div class="class-description"><p>The ShockwaveFilter class lets you apply a shockwave effect.<br>
 <img src="../tools/screenshots/dist/original.png" alt="original"><img src="../tools/screenshots/dist/shockwave.gif" alt="filter"></p></div>
         
     </div>
@@ -713,14 +719,14 @@ with a new set of RGBA color and alpha values. It's pretty powerful!
     <div class="nameContainer">
         <h4 class="name" id="ShockwaveFilter">
             <a class="share-icon" href="#ShockwaveFilter"><span class="glyphicon glyphicon-link"></span></a>
-            new PIXI.filters.ShockwaveFilter<span class="signature">(<span class="optional">center</span>, <span class="optional">params</span>, <span class="optional">time</span>)</span>
+            new PIXI.filters.ShockwaveFilter<span class="signature">(<span class="optional">center</span>, <span class="optional">options</span>, <span class="optional">time</span>)</span>
             
             
         </h4>
     
         
         <div class="tag-source">
-            <a href="shockwave_src_ShockwaveFilter.js.html#line19">ShockwaveFilter.js:19</a>
+            <a href="shockwave_src_ShockwaveFilter.js.html#line23">ShockwaveFilter.js:23</a>
         </div>
         
     </div>
@@ -767,6 +773,9 @@ with a new set of RGBA color and alpha values. It's pretty powerful!
             
                 
 <span class="param-type">PIXI.Point</span>
+|
+
+<span class="param-type">Array.&lt;number></span>
 
 
             
@@ -789,20 +798,20 @@ with a new set of RGBA color and alpha values. It's pretty powerful!
                         
                     
                 
-                <p>See center property</p></td>
+                <p>See <code>center</code> property.</p></td>
         </tr>
 	
 	
 	
         <tr>
             
-                <td class="name"><code>params</code></td>
+                <td class="name"><code>options</code></td>
             
             
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;number></span>
+<span class="param-type">object</span>
 
 
             
@@ -810,8 +819,6 @@ with a new set of RGBA color and alpha values. It's pretty powerful!
             
             
                 <td class="default">
-                
-                    [10, 0.8, 0.1]
                 
                 </td>
             
@@ -825,7 +832,211 @@ with a new set of RGBA color and alpha values. It's pretty powerful!
                         
                     
                 
-                <p>See params property</p></td>
+                <p>The optional parameters of shockwave filter.</p>
+                
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		<th>Default</th>
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>amplitude</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    0.5
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>See `amplitude`` property.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>wavelength</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    1.0
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>See <code>wavelength</code> property.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>speed</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    500.0
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>See <code>speed</code> property.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>brightness</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    8
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>See <code>brightness</code> property.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>radius</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    4
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>See <code>radius</code> property.</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+            </td>
         </tr>
 	
 	
@@ -861,7 +1072,7 @@ with a new set of RGBA color and alpha values. It's pretty powerful!
                         
                     
                 
-                <p>See time property</p></td>
+                <p>See <code>time</code> property.</p></td>
         </tr>
 	
 	
@@ -934,9 +1145,109 @@ with a new set of RGBA color and alpha values. It's pretty powerful!
             
 <dt>
     <div class="nameContainer">
+        <h4 class="name" id="amplitude">
+            <a class="share-icon" href="#amplitude"><span class="glyphicon glyphicon-link"></span></a>
+            amplitude<span class="type-signature type">number</span>
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The amplitude of the shockwave.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="brightness">
+            <a class="share-icon" href="#brightness"><span class="glyphicon glyphicon-link"></span></a>
+            brightness<span class="type-signature type">number</span>
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The brightness of the shockwave.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
         <h4 class="name" id="center">
             <a class="share-icon" href="#center"><span class="glyphicon glyphicon-link"></span></a>
-            center<span class="type-signature type">PIXI.Point</span>
+            center<span class="type-signature type">PIXI.Point | Array.&lt;number></span>
             
             
         </h4>
@@ -985,9 +1296,9 @@ with a new set of RGBA color and alpha values. It's pretty powerful!
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="params">
-            <a class="share-icon" href="#params"><span class="glyphicon glyphicon-link"></span></a>
-            params<span class="type-signature type">Array.&lt;number></span>
+        <h4 class="name" id="radius">
+            <a class="share-icon" href="#radius"><span class="glyphicon glyphicon-link"></span></a>
+            radius<span class="type-signature type">number</span>
             
             
         </h4>
@@ -998,8 +1309,59 @@ with a new set of RGBA color and alpha values. It's pretty powerful!
 <dd>
     
     <div class="description">
-        <p>Sets the params of the shockwave. These modify the look and behavior of
-the shockwave as it ripples out.</p>
+        <p>The maximum radius of shockwave.
+<code>&lt; 0.0</code> means it's infinity.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="speed">
+            <a class="share-icon" href="#speed"><span class="glyphicon glyphicon-link"></span></a>
+            speed<span class="type-signature type">number</span>
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The speed about the shockwave ripples out.
+The unit is <code>pixel/second</code></p>
     </div>
     
     
@@ -1049,8 +1411,58 @@ the shockwave as it ripples out.</p>
 <dd>
     
     <div class="description">
-        <p>Sets the elapsed time of the shockwave. This controls the speed at which
-the shockwave ripples out.</p>
+        <p>Sets the elapsed time of the shockwave.
+It could control the current size of shockwave.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="wavelength">
+            <a class="share-icon" href="#wavelength"><span class="glyphicon glyphicon-link"></span></a>
+            wavelength<span class="type-signature type">number</span>
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The wavelength of the shockwave.</p>
     </div>
     
     
@@ -1105,7 +1517,7 @@ the shockwave ripples out.</p>
 
         <footer class="content-size">
             <div class="footer">
-                Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Oct 19 2017 10:06:51 GMT-0400 (EDT)
+                Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Oct 31 2017 14:04:10 GMT-0400 (EDT)
             </div>
         </footer>
     </div>
