@@ -795,507 +795,106 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="PIXI.filters.TiltShiftFilter.html">Class: TiltShiftFilter</h1>
+        <h1 class="page-title" data-filename="radial-blur_src_RadialBlurFilter.js.html">Source: radial-blur/src/RadialBlurFilter.js</h1>
         
 
 
+    
+    <section>
+        <header>
+            <div class="header content-size">
+                <h2>radial-blur/src/RadialBlurFilter.js</h2>
+            </div>
+        </header>
+        <article>
+            <pre id="source-code" class="prettyprint source linenums"><code>import {vertex} from '@tools/fragments';
+import fragment from './radial-blur.frag';
 
-<section>
-    
-<header>
-    <div class="header content-size">
-        <h2>TiltShiftFilter
-        </h2>
-        
-            <div class="class-description"><p>A TiltShift Filter. Manages the pass of both a TiltShiftXFilter and TiltShiftYFilter.<br>
-<img src="../tools/screenshots/dist/original.png" alt="original"><img src="../tools/screenshots/dist/tilt-shift.png" alt="filter"></p></div>
-        
-    </div>
-</header>  
+/**
+ * The RadialBlurFilter applies a Motion blur to an object.&lt;br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/radial-blur.png)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @param {number} [angle=0] Sets the angle of the motion for blur effect.
+ * @param {PIXI.Point|number[]} [center=[0,0]] The center of the radial.
+ * @param {number} [kernelSize=5] - The kernelSize of the blur filter. But be odd number >= 3
+ * @param {number} [radius=-1] - The maximum size of the blur radius, `-1` is infinite
+ */
+export default class RadialBlurFilter extends PIXI.Filter {
+    constructor(angle = 0, center = [0, 0], kernelSize = 5, radius = -1) {
+        super(vertex, fragment);
 
-<article class="content-size">
-    <div class="container-overview">
-    
-    
-    
-        
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="TiltShiftFilter">
-            <a class="share-icon" href="#TiltShiftFilter"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">
-                new PIXI.filters.TiltShiftFilter
-            </span>
-            <span class="signature">(<span class="optional">blur</span>, <span class="optional">gradientBlur</span>, <span class="optional">start</span>, <span class="optional">end</span>)</span>
-            
-            
-            
-            
-        </h4>
-    
-        
-        <div class="tag-source">
-            <a href="tilt-shift_src_TiltShiftFilter.js.html#line23">TiltShiftFilter.js:23</a>
-        </div>
-        
-    </div>
+        this._angle = 0;
+        this.angle = angle;
+        this.center = center;
+        this.kernelSize = kernelSize;
+        this.radius = radius;
+    }
 
-    
-</dt>
-<dd>
-    
-    
+    /**
+     * Override existing apply method in PIXI.Filter
+     * @private
+     */
+    apply(filterManager, input, output, clear) {
+        this.uniforms.uKernelSize = this._angle !== 0 ? this.kernelSize : 0;
+        filterManager.applyFilter(this, input, output, clear);
+    }
 
-    
-    
-    
-    
-    
-        
+    /**
+     * Sets the angle in degrees of the motion for blur effect.
+     *
+     * @member {PIXI.Point|number[]}
+     * @default [0, 0]
+     */
+    set angle(value) {
+        this._angle = value;
+        this.uniforms.uRadian = value * Math.PI / 180;
+    }
 
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		<th>Default</th>
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>blur</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
+    get angle() {
+        return this._angle;
+    }
 
+    /**
+     * Center of the effect.
+     *
+     * @member {PIXI.Point|number[]}
+     * @default [0, 0]
+     */
+    get center() {
+        return this.uniforms.uCenter;
+    }
 
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    100
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>The strength of the blur.</p></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>gradientBlur</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
+    set center(value) {
+        this.uniforms.uCenter = value;
+    }
 
+    /**
+     * Outer radius of the effect. The default value of `-1` is infinite.
+     *
+     * @member {number}
+     * @default -1
+     */
+    get radius() {
+        return this.uniforms.uRadius;
+    }
 
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    600
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>The strength of the gradient blur.</p></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>start</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">PIXI.Point</span>
+    set radius(value) {
+        if (value &lt; 0 || value === Infinity) {
+            value = -1;
+        }
+        this.uniforms.uRadius = value;
+    }
+}
 
+// Export to PixiJS namespace
+PIXI.filters.RadialBlurFilter = RadialBlurFilter;
+</code></pre>
+        </article>
+    </section>
 
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    null
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>The Y value to start the effect at.</p></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>end</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">PIXI.Point</span>
-
-
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    null
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>The Y value to end the effect at.</p></td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-    
-    </div>
-    
-    
-        <h3 class="subsection-title">Extends</h3>
-        
-        <ul>
-            <li>PIXI.Filter</li>
-        </ul>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        <h3 class="subsection-title">Members</h3>
-        
-        <dl class="list-members">
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="blur">
-            <a class="share-icon" href="#blur"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">blur</span>
-            <span class="type-signature type">number</span>
-            
-            
-            
-            
-        </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>The strength of the blur.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="end">
-            <a class="share-icon" href="#end"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">end</span>
-            <span class="type-signature type">PIXI.Point</span>
-            
-            
-            
-            
-        </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>The Y value to end the effect at.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="gradientBlur">
-            <a class="share-icon" href="#gradientBlur"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">gradientBlur</span>
-            <span class="type-signature type">number</span>
-            
-            
-            
-            
-        </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>The strength of the gradient blur.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="start">
-            <a class="share-icon" href="#start"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">start</span>
-            <span class="type-signature type">PIXI.Point</span>
-            
-            
-            
-            
-        </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>The Y value to start the effect at.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        </dl>
-    
-    
-    
-    
-    
-    
-    
-
-    
-</article>
-
-</section>  
 
 
 
@@ -1305,7 +904,7 @@
 
         <footer class="content-size">
             <div class="footer">
-                Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Dec 17 2017 19:36:53 GMT-0500 (EST)
+                Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Dec 17 2017 19:36:52 GMT-0500 (EST)
             </div>
         </footer>
     </div>

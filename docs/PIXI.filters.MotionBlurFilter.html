@@ -795,7 +795,7 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="PIXI.filters.TiltShiftFilter.html">Class: TiltShiftFilter</h1>
+        <h1 class="page-title" data-filename="PIXI.filters.MotionBlurFilter.html">Class: MotionBlurFilter</h1>
         
 
 
@@ -804,11 +804,11 @@
     
 <header>
     <div class="header content-size">
-        <h2>TiltShiftFilter
+        <h2>MotionBlurFilter
         </h2>
         
-            <div class="class-description"><p>A TiltShift Filter. Manages the pass of both a TiltShiftXFilter and TiltShiftYFilter.<br>
-<img src="../tools/screenshots/dist/original.png" alt="original"><img src="../tools/screenshots/dist/tilt-shift.png" alt="filter"></p></div>
+            <div class="class-description"><p>The MotionBlurFilter applies a Motion blur to an object.<br>
+<img src="../tools/screenshots/dist/original.png" alt="original"><img src="../tools/screenshots/dist/motion-blur.png" alt="filter"></p></div>
         
     </div>
 </header>  
@@ -821,12 +821,12 @@
         
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="TiltShiftFilter">
-            <a class="share-icon" href="#TiltShiftFilter"><span class="glyphicon glyphicon-link"></span></a>
+        <h4 class="name" id="MotionBlurFilter">
+            <a class="share-icon" href="#MotionBlurFilter"><span class="glyphicon glyphicon-link"></span></a>
             <span class="">
-                new PIXI.filters.TiltShiftFilter
+                new PIXI.filters.MotionBlurFilter
             </span>
-            <span class="signature">(<span class="optional">blur</span>, <span class="optional">gradientBlur</span>, <span class="optional">start</span>, <span class="optional">end</span>)</span>
+            <span class="signature">(<span class="optional">velocity</span>, <span class="optional">kernelSize</span>, <span class="optional">offset</span>)</span>
             
             
             
@@ -835,7 +835,7 @@
     
         
         <div class="tag-source">
-            <a href="tilt-shift_src_TiltShiftFilter.js.html#line23">TiltShiftFilter.js:23</a>
+            <a href="motion-blur_src_MotionBlurFilter.js.html#line17">MotionBlurFilter.js:17</a>
         </div>
         
     </div>
@@ -875,7 +875,46 @@
 	
         <tr>
             
-                <td class="name"><code>blur</code></td>
+                <td class="name"><code>velocity</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">PIXI.Point</span>
+|
+
+<span class="param-type">Array.&lt;number></span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    [0, 0]
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>Sets the velocity of the motion for blur effect.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>kernelSize</code></td>
             
             
             <td class="type">
@@ -890,7 +929,7 @@
             
                 <td class="default">
                 
-                    100
+                    5
                 
                 </td>
             
@@ -904,14 +943,14 @@
                         
                     
                 
-                <p>The strength of the blur.</p></td>
+                <p>The kernelSize of the blur filter. Must be odd number &gt;= 5</p></td>
         </tr>
 	
 	
 	
         <tr>
             
-                <td class="name"><code>gradientBlur</code></td>
+                <td class="name"><code>offset</code></td>
             
             
             <td class="type">
@@ -926,7 +965,7 @@
             
                 <td class="default">
                 
-                    600
+                    0
                 
                 </td>
             
@@ -940,79 +979,7 @@
                         
                     
                 
-                <p>The strength of the gradient blur.</p></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>start</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">PIXI.Point</span>
-
-
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    null
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>The Y value to start the effect at.</p></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>end</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">PIXI.Point</span>
-
-
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    null
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>The Y value to end the effect at.</p></td>
+                <p>The offset of the blur filter.</p></td>
         </tr>
 	
 	
@@ -1083,9 +1050,9 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="blur">
-            <a class="share-icon" href="#blur"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">blur</span>
+        <h4 class="name" id="kernelSize">
+            <a class="share-icon" href="#kernelSize"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">kernelSize</span>
             <span class="type-signature type">number</span>
             
             
@@ -1099,7 +1066,8 @@
 <dd>
     
     <div class="description">
-        <p>The strength of the blur.</p>
+        <p>The kernelSize of the blur, higher values are slower but look better.
+Use odd value greater than 5.</p>
     </div>
     
     
@@ -1118,56 +1086,8 @@
     
     
     
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="end">
-            <a class="share-icon" href="#end"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">end</span>
-            <span class="type-signature type">PIXI.Point</span>
-            
-            
-            
-            
-        </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>The Y value to end the effect at.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>5</li></ul></dd>
     
     
     
@@ -1185,9 +1105,9 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="gradientBlur">
-            <a class="share-icon" href="#gradientBlur"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">gradientBlur</span>
+        <h4 class="name" id="offset">
+            <a class="share-icon" href="#offset"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">offset</span>
             <span class="type-signature type">number</span>
             
             
@@ -1201,7 +1121,7 @@
 <dd>
     
     <div class="description">
-        <p>The strength of the gradient blur.</p>
+        <p>The offset of the blur filter.</p>
     </div>
     
     
@@ -1219,6 +1139,9 @@
     
     
     
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0</li></ul></dd>
     
     
     
@@ -1236,10 +1159,10 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="start">
-            <a class="share-icon" href="#start"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">start</span>
-            <span class="type-signature type">PIXI.Point</span>
+        <h4 class="name" id="velocity">
+            <a class="share-icon" href="#velocity"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">velocity</span>
+            <span class="type-signature type">PIXI.Point | Array.&lt;number></span>
             
             
             
@@ -1252,7 +1175,7 @@
 <dd>
     
     <div class="description">
-        <p>The Y value to start the effect at.</p>
+        <p>Sets the velocity of the motion for blur effect.</p>
     </div>
     
     
@@ -1270,6 +1193,9 @@
     
     
     
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>[0, 0]</li></ul></dd>
     
     
     

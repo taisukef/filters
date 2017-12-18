@@ -795,7 +795,7 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="PIXI.filters.TiltShiftFilter.html">Class: TiltShiftFilter</h1>
+        <h1 class="page-title" data-filename="PIXI.filters.OldFilmFilter.html">Class: OldFilmFilter</h1>
         
 
 
@@ -804,11 +804,11 @@
     
 <header>
     <div class="header content-size">
-        <h2>TiltShiftFilter
+        <h2>OldFilmFilter
         </h2>
         
-            <div class="class-description"><p>A TiltShift Filter. Manages the pass of both a TiltShiftXFilter and TiltShiftYFilter.<br>
-<img src="../tools/screenshots/dist/original.png" alt="original"><img src="../tools/screenshots/dist/tilt-shift.png" alt="filter"></p></div>
+            <div class="class-description"><p>The OldFilmFilter applies a Old film effect to an object.<br>
+<img src="../tools/screenshots/dist/original.png" alt="original"><img src="../tools/screenshots/dist/old-film.gif" alt="filter"></p></div>
         
     </div>
 </header>  
@@ -821,12 +821,12 @@
         
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="TiltShiftFilter">
-            <a class="share-icon" href="#TiltShiftFilter"><span class="glyphicon glyphicon-link"></span></a>
+        <h4 class="name" id="OldFilmFilter">
+            <a class="share-icon" href="#OldFilmFilter"><span class="glyphicon glyphicon-link"></span></a>
             <span class="">
-                new PIXI.filters.TiltShiftFilter
+                new PIXI.filters.OldFilmFilter
             </span>
-            <span class="signature">(<span class="optional">blur</span>, <span class="optional">gradientBlur</span>, <span class="optional">start</span>, <span class="optional">end</span>)</span>
+            <span class="signature">(<span class="optional">options</span>, <span class="optional">seed</span>)</span>
             
             
             
@@ -835,7 +835,7 @@
     
         
         <div class="tag-source">
-            <a href="tilt-shift_src_TiltShiftFilter.js.html#line23">TiltShiftFilter.js:23</a>
+            <a href="old-film_src_OldFilmFilter.js.html#line30">OldFilmFilter.js:30</a>
         </div>
         
     </div>
@@ -875,7 +875,63 @@
 	
         <tr>
             
-                <td class="name"><code>blur</code></td>
+                <td class="name"><code>options</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+|
+
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>The optional parameters of old film effect.
+                       When options is a number , it will be <code>seed</code></p>
+                
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		<th>Default</th>
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>sepia</code></td>
             
             
             <td class="type">
@@ -890,7 +946,7 @@
             
                 <td class="default">
                 
-                    100
+                    0.3
                 
                 </td>
             
@@ -904,14 +960,16 @@
                         
                     
                 
-                <p>The strength of the blur.</p></td>
+                <p>The amount of saturation of sepia effect,
+       a value of <code>1</code> is more saturation and closer to <code>0</code> is less, and a value of
+       <code>0</code> produces no sepia effect</p></td>
         </tr>
 	
 	
 	
         <tr>
             
-                <td class="name"><code>gradientBlur</code></td>
+                <td class="name"><code>noise</code></td>
             
             
             <td class="type">
@@ -926,7 +984,7 @@
             
                 <td class="default">
                 
-                    600
+                    0.3
                 
                 </td>
             
@@ -940,20 +998,20 @@
                         
                     
                 
-                <p>The strength of the gradient blur.</p></td>
+                <p>Opacity/intensity of the noise effect between <code>0</code> and <code>1</code></p></td>
         </tr>
 	
 	
 	
         <tr>
             
-                <td class="name"><code>start</code></td>
+                <td class="name"><code>noiseSize</code></td>
             
             
             <td class="type">
             
                 
-<span class="param-type">PIXI.Point</span>
+<span class="param-type">number</span>
 
 
             
@@ -962,7 +1020,7 @@
             
                 <td class="default">
                 
-                    null
+                    1.0
                 
                 </td>
             
@@ -976,20 +1034,20 @@
                         
                     
                 
-                <p>The Y value to start the effect at.</p></td>
+                <p>The size of the noise particles</p></td>
         </tr>
 	
 	
 	
         <tr>
             
-                <td class="name"><code>end</code></td>
+                <td class="name"><code>scratch</code></td>
             
             
             <td class="type">
             
                 
-<span class="param-type">PIXI.Point</span>
+<span class="param-type">number</span>
 
 
             
@@ -998,7 +1056,7 @@
             
                 <td class="default">
                 
-                    null
+                    0.5
                 
                 </td>
             
@@ -1012,7 +1070,230 @@
                         
                     
                 
-                <p>The Y value to end the effect at.</p></td>
+                <p>How often scratches appear</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>scratchDensity</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    0.3
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>The density of the number of scratches</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>scratchWidth</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    1.0
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>The width of the scratches</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>vignetting</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    0.3
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>The radius of the vignette effect, smaller
+       values produces a smaller vignette</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>vignettingAlpha</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    1.0
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>Amount of opacity of vignette</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>vignettingBlur</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    0.3
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>Blur intensity of the vignette</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+            </td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>seed</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>A see value to apply to the random noise generation</p></td>
         </tr>
 	
 	
@@ -1083,9 +1364,9 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="blur">
-            <a class="share-icon" href="#blur"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">blur</span>
+        <h4 class="name" id="noise">
+            <a class="share-icon" href="#noise"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">noise</span>
             <span class="type-signature type">number</span>
             
             
@@ -1099,7 +1380,7 @@
 <dd>
     
     <div class="description">
-        <p>The strength of the blur.</p>
+        <p>Opacity/intensity of the noise effect between <code>0</code> and <code>1</code></p>
     </div>
     
     
@@ -1118,56 +1399,8 @@
     
     
     
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="end">
-            <a class="share-icon" href="#end"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">end</span>
-            <span class="type-signature type">PIXI.Point</span>
-            
-            
-            
-            
-        </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>The Y value to end the effect at.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0</li></ul></dd>
     
     
     
@@ -1185,9 +1418,9 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="gradientBlur">
-            <a class="share-icon" href="#gradientBlur"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">gradientBlur</span>
+        <h4 class="name" id="noiseSize">
+            <a class="share-icon" href="#noiseSize"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">noiseSize</span>
             <span class="type-signature type">number</span>
             
             
@@ -1201,7 +1434,223 @@
 <dd>
     
     <div class="description">
-        <p>The strength of the gradient blur.</p>
+        <p>The size of the noise particles</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="scratch">
+            <a class="share-icon" href="#scratch"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">scratch</span>
+            <span class="type-signature type">number</span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>How often scratches appear</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="scratchDensity">
+            <a class="share-icon" href="#scratchDensity"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">scratchDensity</span>
+            <span class="type-signature type">number</span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The density of the number of scratches</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="scratchWidth">
+            <a class="share-icon" href="#scratchWidth"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">scratchWidth</span>
+            <span class="type-signature type">number</span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The width of the scratches</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="seed">
+            <a class="share-icon" href="#seed"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">seed</span>
+            <span class="type-signature type">number</span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>A see value to apply to the random noise generation</p>
     </div>
     
     
@@ -1236,10 +1685,10 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="start">
-            <a class="share-icon" href="#start"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">start</span>
-            <span class="type-signature type">PIXI.Point</span>
+        <h4 class="name" id="sepia">
+            <a class="share-icon" href="#sepia"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">sepia</span>
+            <span class="type-signature type">number</span>
             
             
             
@@ -1252,7 +1701,9 @@
 <dd>
     
     <div class="description">
-        <p>The Y value to start the effect at.</p>
+        <p>The amount of saturation of sepia effect,
+a value of <code>1</code> is more saturation and closer to <code>0</code> is less,
+and a value of <code>0</code> produces no sepia effect</p>
     </div>
     
     
@@ -1270,6 +1721,172 @@
     
     
     
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="vignetting">
+            <a class="share-icon" href="#vignetting"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">vignetting</span>
+            <span class="type-signature type">number</span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The radius of the vignette effect, smaller
+values produces a smaller vignette</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="vignettingAlpha">
+            <a class="share-icon" href="#vignettingAlpha"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">vignettingAlpha</span>
+            <span class="type-signature type">number</span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Amount of opacity of vignette</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="vignettingBlur">
+            <a class="share-icon" href="#vignettingBlur"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">vignettingBlur</span>
+            <span class="type-signature type">number</span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Blur intensity of the vignette</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0</li></ul></dd>
     
     
     
