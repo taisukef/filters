@@ -1037,7 +1037,7 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="PIXI.filters.OutlineFilter.html">Class: OutlineFilter</h1>
+        <h1 class="page-title" data-filename="PIXI.filters.GlitchFilter.html">Class: GlitchFilter</h1>
         
 
 
@@ -1046,13 +1046,11 @@
     
 <header>
     <div class="header content-size">
-        <h2>OutlineFilter
+        <h2>GlitchFilter
         </h2>
         
-            <div class="class-description"><p>OutlineFilter, originally by mishaa
-http://www.html5gamedevs.com/topic/10640-outline-a-sprite-change-certain-colors/?p=69966
-http://codepen.io/mishaa/pen/emGNRB<br>
-<img src="../tools/screenshots/dist/original.png" alt="original"><img src="../tools/screenshots/dist/outline.png" alt="filter"></p></div>
+            <div class="class-description"><p>The GlitchFilter applies a glitch effect to an object.<br>
+<img src="../tools/screenshots/dist/original.png" alt="original"><img src="../tools/screenshots/dist/glitch.png" alt="filter"></p></div>
         
     </div>
 </header>  
@@ -1065,12 +1063,12 @@ http://codepen.io/mishaa/pen/emGNRB<br>
         
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="OutlineFilter">
-            <a class="share-icon" href="#OutlineFilter"><span class="glyphicon glyphicon-link"></span></a>
+        <h4 class="name" id="GlitchFilter">
+            <a class="share-icon" href="#GlitchFilter"><span class="glyphicon glyphicon-link"></span></a>
             <span class="">
-                new PIXI.filters.OutlineFilter
+                new PIXI.filters.GlitchFilter
             </span>
-            <span class="signature">(<span class="optional">thickness</span>, <span class="optional">color</span>, <span class="optional">quality</span>)</span>
+            <span class="signature">(<span class="optional">options</span>)</span>
             
             
             
@@ -1079,7 +1077,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
     
         
         <div class="tag-source">
-            <a href="outline_src_OutlineFilter.js.html#line24">OutlineFilter.js:24</a>
+            <a href="glitch_src_GlitchFilter.js.html#line33">GlitchFilter.js:33</a>
         </div>
         
     </div>
@@ -1107,6 +1105,52 @@ http://codepen.io/mishaa/pen/emGNRB<br>
 		<th>Type</th>
 		
 		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>The more optional parameters of the filter.</p>
+                
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
 		<th>Default</th>
 		
 		
@@ -1119,7 +1163,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
 	
         <tr>
             
-                <td class="name"><code>thickness</code></td>
+                <td class="name"><code>slices</code></td>
             
             
             <td class="type">
@@ -1134,7 +1178,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
             
                 <td class="default">
                 
-                    1
+                    5
                 
                 </td>
             
@@ -1148,14 +1192,14 @@ http://codepen.io/mishaa/pen/emGNRB<br>
                         
                     
                 
-                <p>The tickness of the outline. Make it 2 times more for resolution 2</p></td>
+                <p>The maximum number of slices.</p></td>
         </tr>
 	
 	
 	
         <tr>
             
-                <td class="name"><code>color</code></td>
+                <td class="name"><code>offset</code></td>
             
             
             <td class="type">
@@ -1170,7 +1214,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
             
                 <td class="default">
                 
-                    0x000000
+                    100
                 
                 </td>
             
@@ -1184,14 +1228,14 @@ http://codepen.io/mishaa/pen/emGNRB<br>
                         
                     
                 
-                <p>The color of the outline.</p></td>
+                <p>The maximum offset amount of slices.</p></td>
         </tr>
 	
 	
 	
         <tr>
             
-                <td class="name"><code>quality</code></td>
+                <td class="name"><code>direction</code></td>
             
             
             <td class="type">
@@ -1206,7 +1250,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
             
                 <td class="default">
                 
-                    0.1
+                    0
                 
                 </td>
             
@@ -1220,8 +1264,309 @@ http://codepen.io/mishaa/pen/emGNRB<br>
                         
                     
                 
-                <p>The quality of the outline from <code>0</code> to <code>1</code>, using a higher quality
-       setting will result in slower performance and more accuracy.</p></td>
+                <p>The angle in degree of the offset of slices.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>fillMode</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>The fill mode of the space after the offset. Acceptable values:</p>
+<ul>
+<li><code>0</code> <a href="PIXI.filters.GlitchFilter.html#.TRANSPARENT">TRANSPARENT</a></li>
+<li><code>1</code> <a href="PIXI.filters.GlitchFilter.html#.ORIGINAL">ORIGINAL</a></li>
+<li><code>2</code> <a href="PIXI.filters.GlitchFilter.html#.LOOP">LOOP</a></li>
+<li><code>3</code> <a href="PIXI.filters.GlitchFilter.html#.CLAMP">CLAMP</a></li>
+<li><code>4</code> <a href="PIXI.filters.GlitchFilter.html#.MIRROR">MIRROR</a></li>
+</ul></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>seed</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>A seed value for randomizing glitch effect.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>average</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p><code>true</code> will divide the bands roughly based on equal amounts
+                where as setting to <code>false</code> will vary the band sizes dramatically (more random looking).</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>minSize</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    8
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>Minimum size of individual slice. Segment of total <code>sampleSize</code></p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>sampleSize</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    512
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>The resolution of the displacement map texture.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>red</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    [0,0]
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>Red channel offset</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>green</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    [0,0]
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>Green channel offset.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>blue</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    [0,0]
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>Blue channel offset.</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+            </td>
         </tr>
 	
 	
@@ -1264,14 +1609,6 @@ http://codepen.io/mishaa/pen/emGNRB<br>
     
     
     
-        <h5>Example</h5>
-        
-
-    
-    <pre class="prettyprint"><code>someSprite.shader = new OutlineFilter(9, 0xFF0000);</code></pre>
-    
-
-    
 </dd>
 
     
@@ -1300,12 +1637,12 @@ http://codepen.io/mishaa/pen/emGNRB<br>
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id=".MAX_SAMPLES">
-            <a class="share-icon" href="#.MAX_SAMPLES"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">PIXI.filters.OutlineFilter.MAX_SAMPLES</span>
-            <span class="type-signature type">number</span>
+        <h4 class="name" id=".CLAMP">
+            <a class="share-icon" href="#.CLAMP"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">PIXI.filters.GlitchFilter.CLAMP</span>
+            <span class="type-signature type">int</span>
             
-            <span class="access-signature">static</span>
+            <span class="access-signature">static</span><span class="access-signature">readonly</span>
             
             
         </h4>
@@ -1316,7 +1653,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
 <dd>
     
     <div class="description">
-        <p>The maximum number of samples for rendering outline.</p>
+        <p>Fill mode as clamp</p>
     </div>
     
     
@@ -1334,9 +1671,6 @@ http://codepen.io/mishaa/pen/emGNRB<br>
     
     
     
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>100</li></ul></dd>
     
     
     
@@ -1354,12 +1688,12 @@ http://codepen.io/mishaa/pen/emGNRB<br>
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id=".MIN_SAMPLES">
-            <a class="share-icon" href="#.MIN_SAMPLES"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">PIXI.filters.OutlineFilter.MIN_SAMPLES</span>
-            <span class="type-signature type">number</span>
+        <h4 class="name" id=".LOOP">
+            <a class="share-icon" href="#.LOOP"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">PIXI.filters.GlitchFilter.LOOP</span>
+            <span class="type-signature type">int</span>
             
-            <span class="access-signature">static</span>
+            <span class="access-signature">static</span><span class="access-signature">readonly</span>
             
             
         </h4>
@@ -1370,7 +1704,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
 <dd>
     
     <div class="description">
-        <p>The minimum number of samples for rendering outline.</p>
+        <p>Fill mode as loop</p>
     </div>
     
     
@@ -1388,9 +1722,6 @@ http://codepen.io/mishaa/pen/emGNRB<br>
     
     
     
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>1</li></ul></dd>
     
     
     
@@ -1408,12 +1739,12 @@ http://codepen.io/mishaa/pen/emGNRB<br>
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="color">
-            <a class="share-icon" href="#color"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">color</span>
-            <span class="type-signature type">number</span>
+        <h4 class="name" id=".MIRROR">
+            <a class="share-icon" href="#.MIRROR"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">PIXI.filters.GlitchFilter.MIRROR</span>
+            <span class="type-signature type">int</span>
             
-            
+            <span class="access-signature">static</span><span class="access-signature">readonly</span>
             
             
         </h4>
@@ -1424,7 +1755,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
 <dd>
     
     <div class="description">
-        <p>The color of the glow.</p>
+        <p>Fill mode as mirror</p>
     </div>
     
     
@@ -1442,9 +1773,6 @@ http://codepen.io/mishaa/pen/emGNRB<br>
     
     
     
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>0x000000</li></ul></dd>
     
     
     
@@ -1462,10 +1790,112 @@ http://codepen.io/mishaa/pen/emGNRB<br>
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="thickness">
-            <a class="share-icon" href="#thickness"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">thickness</span>
-            <span class="type-signature type">number</span>
+        <h4 class="name" id=".ORIGINAL">
+            <a class="share-icon" href="#.ORIGINAL"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">PIXI.filters.GlitchFilter.ORIGINAL</span>
+            <span class="type-signature type">int</span>
+            
+            <span class="access-signature">static</span><span class="access-signature">readonly</span>
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Fill mode as original</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id=".TRANSPARENT">
+            <a class="share-icon" href="#.TRANSPARENT"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">PIXI.filters.GlitchFilter.TRANSPARENT</span>
+            <span class="type-signature type">int</span>
+            
+            <span class="access-signature">static</span><span class="access-signature">readonly</span>
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Fill mode as transparent</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="average">
+            <a class="share-icon" href="#average"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">average</span>
+            <span class="type-signature type">boolean</span>
             
             
             
@@ -1478,7 +1908,8 @@ http://codepen.io/mishaa/pen/emGNRB<br>
 <dd>
     
     <div class="description">
-        <p>The thickness of the outline.</p>
+        <p><code>true</code> will divide the bands roughly based on equal amounts
+where as setting to <code>false</code> will vary the band sizes dramatically (more random looking).</p>
     </div>
     
     
@@ -1498,7 +1929,680 @@ http://codepen.io/mishaa/pen/emGNRB<br>
     
     
     <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>1</li></ul></dd>
+    <dd class="tag-default"><ul class="dummy"><li>false</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="blue">
+            <a class="share-icon" href="#blue"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">blue</span>
+            <span class="type-signature type">PIXI.Point</span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Blue offset.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="direction">
+            <a class="share-icon" href="#direction"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">direction</span>
+            <span class="type-signature type">number</span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The angle in degree of the offset of slices.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="fillMode">
+            <a class="share-icon" href="#fillMode"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">fillMode</span>
+            <span class="type-signature type">number</span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The fill mode of the space after the offset.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="green">
+            <a class="share-icon" href="#green"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">green</span>
+            <span class="type-signature type">PIXI.Point</span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Green channel offset.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="minSize">
+            <a class="share-icon" href="#minSize"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">minSize</span>
+            <span class="type-signature type">number</span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Minimum size of slices as a portion of the <code>sampleSize</code></p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="offset">
+            <a class="share-icon" href="#offset"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">offset</span>
+            <span class="type-signature type">number</span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The maximum offset value for each of the slices.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="offsets">
+            <a class="share-icon" href="#offsets"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">offsets</span>
+            <span class="type-signature type">Array.&lt;number></span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Manually set custom slices offset of displacement bitmap, this is
+a collection of values from -1 to 1. To change the max offset value
+set <code>offset</code>.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="red">
+            <a class="share-icon" href="#red"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">red</span>
+            <span class="type-signature type">PIXI.Point</span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Red channel offset.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="sampleSize">
+            <a class="share-icon" href="#sampleSize"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">sampleSize</span>
+            <span class="type-signature type">number</span>
+            
+            <span class="access-signature">readonly</span>
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Height of the displacement map canvas.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="seed">
+            <a class="share-icon" href="#seed"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">seed</span>
+            <span class="type-signature type">number</span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>A seed value for randomizing color offset. Animating
+this value to <code>Math.random()</code> produces a twitching effect.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="sizes">
+            <a class="share-icon" href="#sizes"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">sizes</span>
+            <span class="type-signature type">Array.&lt;number></span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Manually custom slices size (height) of displacement bitmap</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="slices">
+            <a class="share-icon" href="#slices"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">slices</span>
+            <span class="type-signature type">number</span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The count of slices.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>5</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="texture">
+            <a class="share-icon" href="#texture"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">texture</span>
+            <span class="type-signature type">PIXI.Texture</span>
+            
+            <span class="access-signature">readonly</span>
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The displacement map is used to generate the bands.
+If using your own texture, <code>slices</code> will be ignored.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -1515,6 +2619,314 @@ http://codepen.io/mishaa/pen/emGNRB<br>
         </dl>
     
     
+    
+        <h3 class="subsection-title">Methods</h3>
+        
+        <dl class="list-methods">
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="destroy">
+            <a class="share-icon" href="#destroy"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">
+                destroy
+            </span>
+            <span class="signature">()</span>
+            
+            
+            
+            
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="glitch_src_GlitchFilter.js.html#line368">GlitchFilter.js:368</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Removes all references</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="redraw">
+            <a class="share-icon" href="#redraw"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">
+                redraw
+            </span>
+            <span class="signature">()</span>
+            
+            
+            
+            
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="glitch_src_GlitchFilter.js.html#line232">GlitchFilter.js:232</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Redraw displacement bitmap texture, advanced usage.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="refresh">
+            <a class="share-icon" href="#refresh"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">
+                refresh
+            </span>
+            <span class="signature">()</span>
+            
+            
+            
+            
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="glitch_src_GlitchFilter.js.html#line223">GlitchFilter.js:223</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Regenerating random size, offsets for slices.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="shuffle">
+            <a class="share-icon" href="#shuffle"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">
+                shuffle
+            </span>
+            <span class="signature">()</span>
+            
+            
+            
+            
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="glitch_src_GlitchFilter.js.html#line195">GlitchFilter.js:195</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Shuffle the sizes of the slices, advanced usage.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        </dl>
     
     
     

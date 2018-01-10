@@ -1037,494 +1037,453 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="PIXI.filters.OutlineFilter.html">Class: OutlineFilter</h1>
+        <h1 class="page-title" data-filename="glitch_src_GlitchFilter.js.html">Source: glitch/src/GlitchFilter.js</h1>
         
 
 
+    
+    <section>
+        <header>
+            <div class="header content-size">
+                <h2>glitch/src/GlitchFilter.js</h2>
+            </div>
+        </header>
+        <article>
+            <pre id="source-code" class="prettyprint source linenums"><code>import {vertex} from '@tools/fragments';
+import fragment from './glitch.frag';
+import * as PIXI from 'pixi.js';
 
-<section>
-    
-<header>
-    <div class="header content-size">
-        <h2>OutlineFilter
-        </h2>
-        
-            <div class="class-description"><p>OutlineFilter, originally by mishaa
-http://www.html5gamedevs.com/topic/10640-outline-a-sprite-change-certain-colors/?p=69966
-http://codepen.io/mishaa/pen/emGNRB<br>
-<img src="../tools/screenshots/dist/original.png" alt="original"><img src="../tools/screenshots/dist/outline.png" alt="filter"></p></div>
-        
-    </div>
-</header>  
+/**
+ * The GlitchFilter applies a glitch effect to an object.&lt;br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/glitch.png)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ * @param {object} [options] - The more optional parameters of the filter.
+ * @param {number} [options.slices=5] - The maximum number of slices.
+ * @param {number} [options.offset=100] - The maximum offset amount of slices.
+ * @param {number} [options.direction=0] - The angle in degree of the offset of slices.
+ * @param {number} [options.fillMode=0] - The fill mode of the space after the offset. Acceptable values:
+ *  - `0` {@link PIXI.filters.GlitchFilter.TRANSPARENT TRANSPARENT}
+ *  - `1` {@link PIXI.filters.GlitchFilter.ORIGINAL ORIGINAL}
+ *  - `2` {@link PIXI.filters.GlitchFilter.LOOP LOOP}
+ *  - `3` {@link PIXI.filters.GlitchFilter.CLAMP CLAMP}
+ *  - `4` {@link PIXI.filters.GlitchFilter.MIRROR MIRROR}
+ * @param {number} [options.seed=0] - A seed value for randomizing glitch effect.
+ * @param {number} [options.average=false] - `true` will divide the bands roughly based on equal amounts
+ *                 where as setting to `false` will vary the band sizes dramatically (more random looking).
+ * @param {number} [options.minSize=8] - Minimum size of individual slice. Segment of total `sampleSize`
+ * @param {number} [options.sampleSize=512] - The resolution of the displacement map texture.
+ * @param {number} [options.red=[0,0]] - Red channel offset
+ * @param {number} [options.green=[0,0]] - Green channel offset.
+ * @param {number} [options.blue=[0,0]] - Blue channel offset.
+ */
+export default class GlitchFilter extends PIXI.Filter {
 
-<article class="content-size">
-    <div class="container-overview">
-    
-    
-    
-        
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="OutlineFilter">
-            <a class="share-icon" href="#OutlineFilter"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">
-                new PIXI.filters.OutlineFilter
-            </span>
-            <span class="signature">(<span class="optional">thickness</span>, <span class="optional">color</span>, <span class="optional">quality</span>)</span>
-            
-            
-            
-            
-        </h4>
-    
-        
-        <div class="tag-source">
-            <a href="outline_src_OutlineFilter.js.html#line24">OutlineFilter.js:24</a>
-        </div>
-        
-    </div>
+    constructor(options = {}) {
 
-    
-</dt>
-<dd>
-    
-    
+        super(vertex, fragment);
 
-    
-    
-    
-    
-    
-        
+        options = Object.assign({
+            slices: 5,
+            offset: 100,
+            direction: 0,
+            fillMode: 0,
+            average: false,
+            seed: 0,
+            red: [0, 0],
+            green: [0, 0],
+            blue: [0, 0],
+            minSize: 8,
+            sampleSize: 512,
+        }, options);
 
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		<th>Default</th>
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>thickness</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
+        this.direction = options.direction;
+        this.red = options.red;
+        this.green = options.green;
+        this.blue = options.blue;
 
+        /**
+         * The maximum offset value for each of the slices.
+         *
+         * @member {number}
+         */
+        this.offset = options.offset;
 
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    1
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>The tickness of the outline. Make it 2 times more for resolution 2</p></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>color</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
+        /**
+         * The fill mode of the space after the offset.
+         *
+         * @member {number}
+         */
+        this.fillMode = options.fillMode;
 
+        /**
+         * `true` will divide the bands roughly based on equal amounts
+         * where as setting to `false` will vary the band sizes dramatically (more random looking).
+         *
+         * @member {boolean}
+         * @default false
+         */
+        this.average = options.average;
 
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    0x000000
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>The color of the outline.</p></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>quality</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
+        /**
+         * A seed value for randomizing color offset. Animating
+         * this value to `Math.random()` produces a twitching effect.
+         *
+         * @member {number}
+         */
+        this.seed = options.seed;
 
+        /**
+         * Minimum size of slices as a portion of the `sampleSize`
+         *
+         * @member {number}
+         */
+        this.minSize = options.minSize;
 
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    0.1
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>The quality of the outline from <code>0</code> to <code>1</code>, using a higher quality
-       setting will result in slower performance and more accuracy.</p></td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
+        /**
+         * Height of the displacement map canvas.
+         *
+         * @member {number}
+         * @readonly
+         */
+        this.sampleSize = options.sampleSize;
 
-    
-    
+        /**
+         * Internally generated canvas.
+         *
+         * @member {HTMLCanvasElement} _canvas
+         * @private
+         */
+        this._canvas = document.createElement('canvas');
+        this._canvas.width = 4;
+        this._canvas.height = this.sampleSize;
 
-    
+        /**
+         * The displacement map is used to generate the bands.
+         * If using your own texture, `slices` will be ignored.
+         *
+         * @member {PIXI.Texture}
+         * @readonly
+         */
+        this.texture = PIXI.Texture.fromCanvas(this._canvas, PIXI.SCALE_MODES.NEAREST);
 
-    
-    
-    
-    
-    
-    
-    
-        <h5>Example</h5>
-        
+        /**
+         * Internal number of slices
+         * @member {number}
+         * @private
+         */
+        this._slices = 0;
 
-    
-    <pre class="prettyprint"><code>someSprite.shader = new OutlineFilter(9, 0xFF0000);</code></pre>
-    
+        // Set slices
+        this.slices = options.slices;
+    }
 
-    
-</dd>
+    /**
+     * Override existing apply method in PIXI.Filter
+     * @private
+     */
+    apply(filterManager, input, output, clear) {
 
-    
-    </div>
-    
-    
-        <h3 class="subsection-title">Extends</h3>
-        
-        <ul>
-            <li>PIXI.Filter</li>
-        </ul>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        <h3 class="subsection-title">Members</h3>
-        
-        <dl class="list-members">
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id=".MAX_SAMPLES">
-            <a class="share-icon" href="#.MAX_SAMPLES"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">PIXI.filters.OutlineFilter.MAX_SAMPLES</span>
-            <span class="type-signature type">number</span>
-            
-            <span class="access-signature">static</span>
-            
-            
-        </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>The maximum number of samples for rendering outline.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>100</li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
+        const width = input.sourceFrame.width;
+        const height = input.sourceFrame.height;
 
-    
-    
-</dd>
+        this.uniforms.dimensions[0] = width;
+        this.uniforms.dimensions[1] = height;
+        this.uniforms.aspect = height / width;
 
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id=".MIN_SAMPLES">
-            <a class="share-icon" href="#.MIN_SAMPLES"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">PIXI.filters.OutlineFilter.MIN_SAMPLES</span>
-            <span class="type-signature type">number</span>
-            
-            <span class="access-signature">static</span>
-            
-            
-        </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>The minimum number of samples for rendering outline.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>1</li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
+        this.uniforms.seed = this.seed;
+        this.uniforms.offset = this.offset;
+        this.uniforms.fillMode = this.fillMode;
 
-    
-    
-</dd>
+        filterManager.applyFilter(this, input, output, clear);
+    }
 
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="color">
-            <a class="share-icon" href="#color"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">color</span>
-            <span class="type-signature type">number</span>
-            
-            
-            
-            
-        </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>The color of the glow.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>0x000000</li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
+    /**
+     * Randomize the slices size (heights).
+     *
+     * @private
+     */
+    _randomizeSizes() {
+        const arr = this._sizes;
+        const last = this._slices - 1;
+        const size = this.sampleSize;
+        const min = Math.min(this.minSize / size, 0.9 / this._slices);
 
-    
-    
-</dd>
+        if (this.average) {
+            const count = this._slices;
+            let rest = 1;
 
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="thickness">
-            <a class="share-icon" href="#thickness"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">thickness</span>
-            <span class="type-signature type">number</span>
-            
-            
-            
-            
-        </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>The thickness of the outline.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>1</li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
+            for (let i = 0; i &lt; last; i++) {
+                const averageWidth = rest / (count - i);
+                const w =  Math.max(averageWidth * (1 - Math.random() * 0.6), min);
+                arr[i] = w;
+                rest -= w;
+            }
+            arr[last] = rest;
+        }
+        else {
+            let rest = 1;
+            const ratio = Math.sqrt(1 / this._slices);
 
-    
-    
-</dd>
+            for (let i = 0; i &lt; last; i++) {
+                const w = Math.max(ratio * rest * Math.random(), min);
+                arr[i] = w;
+                rest -= w;
+            }
+            arr[last] = rest;
+        }
 
-        </dl>
-    
-    
-    
-    
-    
-    
-    
+        this.shuffle();
+    }
 
-    
-</article>
+    /**
+     * Shuffle the sizes of the slices, advanced usage.
+     */
+    shuffle() {
+        const arr = this._sizes;
+        const last = this._slices - 1;
 
-</section>  
+        // shuffle
+        for (let i = last; i > 0; i--) {
+            const rand = (Math.random() * i) >> 0;
+            const temp = arr[i];
+
+            arr[i] = arr[rand];
+            arr[rand] = temp;
+        }
+    }
+
+    /**
+     * Randomize the values for offset from -1 to 1
+     *
+     * @private
+     */
+    _randomizeOffsets() {
+        for (let i = 0 ; i &lt; this._slices; i++) {
+            this._offsets[i] = Math.random() * (Math.random() &lt; 0.5 ? -1 : 1);
+        }
+    }
+
+    /**
+     * Regenerating random size, offsets for slices.
+     */
+    refresh() {
+        this._randomizeSizes();
+        this._randomizeOffsets();
+        this.redraw();
+    }
+
+    /**
+     * Redraw displacement bitmap texture, advanced usage.
+     */
+    redraw() {
+        const size = this.sampleSize;
+        const texture = this.texture;
+        const ctx = this._canvas.getContext('2d');
+        ctx.clearRect(0, 0, 8, size);
+
+        let offset;
+        let y = 0;
+
+        for (let i = 0 ; i &lt; this._slices; i++) {
+            offset = Math.floor(this._offsets[i] * 256);
+            const height = this._sizes[i] * size;
+            const red = offset > 0 ? offset : 0;
+            const green = offset &lt; 0 ? -offset : 0;
+            ctx.fillStyle = 'rgba(' + red + ', ' + green + ', 0, 1)';
+            ctx.fillRect(0, y >> 0, size, height + 1 >> 0);
+            y += height;
+        }
+
+        texture._updateID++;
+        texture.baseTexture.emit('update', texture.baseTexture);
+        this.uniforms.displacementMap = texture;
+    }
+
+    /**
+     * Manually custom slices size (height) of displacement bitmap
+     *
+     * @member {number[]}
+     */
+    set sizes(sizes) {
+        const len = Math.min(this._slices, sizes.length);
+
+        for (let i = 0; i &lt; len; i++){
+            this._sizes[i] = sizes[i];
+        }
+    }
+    get sizes() {
+        return this._sizes;
+    }
+
+    /**
+     * Manually set custom slices offset of displacement bitmap, this is
+     * a collection of values from -1 to 1. To change the max offset value
+     * set `offset`.
+     *
+     * @member {number[]}
+     */
+    set offsets(offsets) {
+        const len = Math.min(this._slices, offsets.length);
+
+        for (let i = 0; i &lt; len; i++){
+            this._offsets[i] = offsets[i];
+        }
+    }
+    get offsets() {
+        return this._offsets;
+    }
+
+    /**
+     * The count of slices.
+     * @member {number}
+     * @default 5
+     */
+    get slices() {
+        return this._slices;
+    }
+    set slices(value) {
+        if (this._slices === value) {
+            return;
+        }
+        this._slices = value;
+        this.uniforms.slices = value;
+        this._sizes = this.uniforms.slicesWidth = new Float32Array(value);
+        this._offsets = this.uniforms.slicesOffset = new Float32Array(value);
+        this.refresh();
+    }
+
+    /**
+     * The angle in degree of the offset of slices.
+     * @member {number}
+     * @default 0
+     */
+    get direction() {
+        return this._direction;
+    }
+    set direction(value) {
+        if (this._direction === value) {
+            return;
+        }
+        this._direction = value;
+
+        const radians = value * PIXI.DEG_TO_RAD;
+
+        this.uniforms.sinDir = Math.sin(radians);
+        this.uniforms.cosDir = Math.cos(radians);
+    }
+
+    /**
+     * Red channel offset.
+     *
+     * @member {PIXI.Point}
+     */
+    get red() {
+        return this.uniforms.red;
+    }
+    set red(value) {
+        this.uniforms.red = value;
+    }
+
+    /**
+     * Green channel offset.
+     *
+     * @member {PIXI.Point}
+     */
+    get green() {
+        return this.uniforms.green;
+    }
+    set green(value) {
+        this.uniforms.green = value;
+    }
+
+    /**
+     * Blue offset.
+     *
+     * @member {PIXI.Point}
+     */
+    get blue() {
+        return this.uniforms.blue;
+    }
+    set blue(value) {
+        this.uniforms.blue = value;
+    }
+
+    /**
+     * Removes all references
+     */
+    destroy() {
+        this.texture.destroy(true);
+        this.texture = null;
+        this._canvas = null;
+        this.red = null;
+        this.green = null;
+        this.blue = null;
+        this._sizes = null;
+        this._offsets = null;
+    }
+}
+
+/**
+ * Fill mode as transparent
+ *
+ * @constant
+ * @static
+ * @member {int} TRANSPARENT
+ * @memberof PIXI.filters.GlitchFilter
+ * @readonly
+ */
+GlitchFilter.TRANSPARENT = 0;
+
+/**
+ * Fill mode as original
+ *
+ * @constant
+ * @static
+ * @member {int} ORIGINAL
+ * @memberof PIXI.filters.GlitchFilter
+ * @readonly
+ */
+GlitchFilter.ORIGINAL = 1;
+
+/**
+ * Fill mode as loop
+ *
+ * @constant
+ * @static
+ * @member {int} LOOP
+ * @memberof PIXI.filters.GlitchFilter
+ * @readonly
+ */
+GlitchFilter.LOOP = 2;
+
+/**
+ * Fill mode as clamp
+ *
+ * @constant
+ * @static
+ * @member {int} CLAMP
+ * @memberof PIXI.filters.GlitchFilter
+ * @readonly
+ */
+GlitchFilter.CLAMP = 3;
+
+/**
+ * Fill mode as mirror
+ *
+ * @constant
+ * @static
+ * @member {int} MIRROR
+ * @memberof PIXI.filters.GlitchFilter
+ * @readonly
+ */
+GlitchFilter.MIRROR = 4;
+</code></pre>
+        </article>
+    </section>
+
 
 
 
@@ -1534,7 +1493,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
 
         <footer class="content-size">
             <div class="footer">
-                Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Jan 10 2018 12:39:43 GMT-0500 (EST)
+                Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Jan 10 2018 12:39:43 GMT-0500 (EST)
             </div>
         </footer>
     </div>

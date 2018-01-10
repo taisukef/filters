@@ -1037,7 +1037,7 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="PIXI.filters.OutlineFilter.html">Class: OutlineFilter</h1>
+        <h1 class="page-title" data-filename="PIXI.filters.ReflectionFilter.html">Class: ReflectionFilter</h1>
         
 
 
@@ -1046,13 +1046,11 @@
     
 <header>
     <div class="header content-size">
-        <h2>OutlineFilter
+        <h2>ReflectionFilter
         </h2>
         
-            <div class="class-description"><p>OutlineFilter, originally by mishaa
-http://www.html5gamedevs.com/topic/10640-outline-a-sprite-change-certain-colors/?p=69966
-http://codepen.io/mishaa/pen/emGNRB<br>
-<img src="../tools/screenshots/dist/original.png" alt="original"><img src="../tools/screenshots/dist/outline.png" alt="filter"></p></div>
+            <div class="class-description"><p>Applies a reflection effect to simulate the reflection on water with waves.<br>
+<img src="../tools/screenshots/dist/original.png" alt="original"><img src="../tools/screenshots/dist/reflection.png" alt="filter"></p></div>
         
     </div>
 </header>  
@@ -1065,12 +1063,12 @@ http://codepen.io/mishaa/pen/emGNRB<br>
         
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="OutlineFilter">
-            <a class="share-icon" href="#OutlineFilter"><span class="glyphicon glyphicon-link"></span></a>
+        <h4 class="name" id="ReflectionFilter">
+            <a class="share-icon" href="#ReflectionFilter"><span class="glyphicon glyphicon-link"></span></a>
             <span class="">
-                new PIXI.filters.OutlineFilter
+                new PIXI.filters.ReflectionFilter
             </span>
-            <span class="signature">(<span class="optional">thickness</span>, <span class="optional">color</span>, <span class="optional">quality</span>)</span>
+            <span class="signature">(<span class="optional">options</span>)</span>
             
             
             
@@ -1079,7 +1077,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
     
         
         <div class="tag-source">
-            <a href="outline_src_OutlineFilter.js.html#line24">OutlineFilter.js:24</a>
+            <a href="reflection_src_ReflectionFilter.js.html#line24">ReflectionFilter.js:24</a>
         </div>
         
     </div>
@@ -1107,6 +1105,52 @@ http://codepen.io/mishaa/pen/emGNRB<br>
 		<th>Type</th>
 		
 		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>The optional parameters of Reflection effect.</p>
+                
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
 		<th>Default</th>
 		
 		
@@ -1119,7 +1163,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
 	
         <tr>
             
-                <td class="name"><code>thickness</code></td>
+                <td class="name"><code>mirror</code></td>
             
             
             <td class="type">
@@ -1134,7 +1178,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
             
                 <td class="default">
                 
-                    1
+                    true
                 
                 </td>
             
@@ -1148,14 +1192,14 @@ http://codepen.io/mishaa/pen/emGNRB<br>
                         
                     
                 
-                <p>The tickness of the outline. Make it 2 times more for resolution 2</p></td>
+                <p><code>true</code> to reflect the image, <code>false</code> for waves-only</p></td>
         </tr>
 	
 	
 	
         <tr>
             
-                <td class="name"><code>color</code></td>
+                <td class="name"><code>boundary</code></td>
             
             
             <td class="type">
@@ -1170,7 +1214,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
             
                 <td class="default">
                 
-                    0x000000
+                    0.5
                 
                 </td>
             
@@ -1184,14 +1228,15 @@ http://codepen.io/mishaa/pen/emGNRB<br>
                         
                     
                 
-                <p>The color of the outline.</p></td>
+                <p>Vertical position of the reflection point, default is 50% (middle)
+                smaller numbers produce a larger reflection, larger numbers produce a smaller reflection.</p></td>
         </tr>
 	
 	
 	
         <tr>
             
-                <td class="name"><code>quality</code></td>
+                <td class="name"><code>amplitude</code></td>
             
             
             <td class="type">
@@ -1206,7 +1251,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
             
                 <td class="default">
                 
-                    0.1
+                    [0, 20]
                 
                 </td>
             
@@ -1220,8 +1265,121 @@ http://codepen.io/mishaa/pen/emGNRB<br>
                         
                     
                 
-                <p>The quality of the outline from <code>0</code> to <code>1</code>, using a higher quality
-       setting will result in slower performance and more accuracy.</p></td>
+                <p>Starting and ending amplitude of waves</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>waveLength</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    [30, 100]
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>Starting and ending length of waves</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>alpha</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    [1, 1]
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>Starting and ending alpha values</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>time</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>Time for animating position of waves</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+            </td>
         </tr>
 	
 	
@@ -1264,14 +1422,6 @@ http://codepen.io/mishaa/pen/emGNRB<br>
     
     
     
-        <h5>Example</h5>
-        
-
-    
-    <pre class="prettyprint"><code>someSprite.shader = new OutlineFilter(9, 0xFF0000);</code></pre>
-    
-
-    
 </dd>
 
     
@@ -1300,12 +1450,12 @@ http://codepen.io/mishaa/pen/emGNRB<br>
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id=".MAX_SAMPLES">
-            <a class="share-icon" href="#.MAX_SAMPLES"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">PIXI.filters.OutlineFilter.MAX_SAMPLES</span>
-            <span class="type-signature type">number</span>
+        <h4 class="name" id="alpha">
+            <a class="share-icon" href="#alpha"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">alpha</span>
+            <span class="type-signature type">Array.&lt;number></span>
             
-            <span class="access-signature">static</span>
+            
             
             
         </h4>
@@ -1316,7 +1466,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
 <dd>
     
     <div class="description">
-        <p>The maximum number of samples for rendering outline.</p>
+        <p>Starting and ending alpha values</p>
     </div>
     
     
@@ -1336,7 +1486,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
     
     
     <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>100</li></ul></dd>
+    <dd class="tag-default"><ul class="dummy"><li>[1, 1]</li></ul></dd>
     
     
     
@@ -1354,12 +1504,12 @@ http://codepen.io/mishaa/pen/emGNRB<br>
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id=".MIN_SAMPLES">
-            <a class="share-icon" href="#.MIN_SAMPLES"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">PIXI.filters.OutlineFilter.MIN_SAMPLES</span>
-            <span class="type-signature type">number</span>
+        <h4 class="name" id="amplitude">
+            <a class="share-icon" href="#amplitude"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">amplitude</span>
+            <span class="type-signature type">Array.&lt;number></span>
             
-            <span class="access-signature">static</span>
+            
             
             
         </h4>
@@ -1370,7 +1520,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
 <dd>
     
     <div class="description">
-        <p>The minimum number of samples for rendering outline.</p>
+        <p>Starting and ending amplitude of waves</p>
     </div>
     
     
@@ -1390,7 +1540,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
     
     
     <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>1</li></ul></dd>
+    <dd class="tag-default"><ul class="dummy"><li>[0, 20]</li></ul></dd>
     
     
     
@@ -1408,9 +1558,9 @@ http://codepen.io/mishaa/pen/emGNRB<br>
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="color">
-            <a class="share-icon" href="#color"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">color</span>
+        <h4 class="name" id="boundary">
+            <a class="share-icon" href="#boundary"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">boundary</span>
             <span class="type-signature type">number</span>
             
             
@@ -1424,7 +1574,8 @@ http://codepen.io/mishaa/pen/emGNRB<br>
 <dd>
     
     <div class="description">
-        <p>The color of the glow.</p>
+        <p>Vertical position of the reflection point, default is 50% (middle)
+smaller numbers produce a larger reflection, larger numbers produce a smaller reflection.</p>
     </div>
     
     
@@ -1444,7 +1595,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
     
     
     <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>0x000000</li></ul></dd>
+    <dd class="tag-default"><ul class="dummy"><li>0.5</li></ul></dd>
     
     
     
@@ -1462,10 +1613,10 @@ http://codepen.io/mishaa/pen/emGNRB<br>
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="thickness">
-            <a class="share-icon" href="#thickness"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">thickness</span>
-            <span class="type-signature type">number</span>
+        <h4 class="name" id="mirror">
+            <a class="share-icon" href="#mirror"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">mirror</span>
+            <span class="type-signature type">boolean</span>
             
             
             
@@ -1478,7 +1629,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
 <dd>
     
     <div class="description">
-        <p>The thickness of the outline.</p>
+        <p><code>true</code> to reflect the image, <code>false</code> for waves-only</p>
     </div>
     
     
@@ -1498,7 +1649,115 @@ http://codepen.io/mishaa/pen/emGNRB<br>
     
     
     <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>1</li></ul></dd>
+    <dd class="tag-default"><ul class="dummy"><li>true</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="time">
+            <a class="share-icon" href="#time"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">time</span>
+            <span class="type-signature type">number</span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Time for animating position of waves</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="waveLength">
+            <a class="share-icon" href="#waveLength"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">waveLength</span>
+            <span class="type-signature type">Array.&lt;number></span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Starting and ending length of waves</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>[30, 100]</li></ul></dd>
     
     
     

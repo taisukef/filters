@@ -1037,494 +1037,134 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="PIXI.filters.OutlineFilter.html">Class: OutlineFilter</h1>
+        <h1 class="page-title" data-filename="adjustment_src_AdjustmentFilter.js.html">Source: adjustment/src/AdjustmentFilter.js</h1>
         
 
 
+    
+    <section>
+        <header>
+            <div class="header content-size">
+                <h2>adjustment/src/AdjustmentFilter.js</h2>
+            </div>
+        </header>
+        <article>
+            <pre id="source-code" class="prettyprint source linenums"><code>import {vertex} from '@tools/fragments';
+import fragment from './adjustment.frag';
+import * as PIXI from 'pixi.js';
 
-<section>
-    
-<header>
-    <div class="header content-size">
-        <h2>OutlineFilter
-        </h2>
-        
-            <div class="class-description"><p>OutlineFilter, originally by mishaa
-http://www.html5gamedevs.com/topic/10640-outline-a-sprite-change-certain-colors/?p=69966
-http://codepen.io/mishaa/pen/emGNRB<br>
-<img src="../tools/screenshots/dist/original.png" alt="original"><img src="../tools/screenshots/dist/outline.png" alt="filter"></p></div>
-        
-    </div>
-</header>  
+/**
+ * The ability to adjust gamma, contrast, saturation, brightness, alpha or color-channel shift. This is a faster
+ * and much simpler to use than {@link http://pixijs.download/release/docs/PIXI.filters.ColorMatrixFilter.html ColorMatrixFilter}
+ * because it does not use a matrix.&lt;br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/adjustment.png)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ *
+ * @param {object|number} [options] - The optional parameters of the filter.
+ * @param {number} [options.gamma=1] - The amount of luminance
+ * @param {number} [options.saturation=1] - The amount of color saturation
+ * @param {number} [options.contrast=1] - The amount of contrast
+ * @param {number} [options.brightness=1] - The overall brightness
+ * @param {number} [options.red=1] - The multipled red channel
+ * @param {number} [options.green=1] - The multipled green channel
+ * @param {number} [options.blue=1] - The multipled blue channel
+ * @param {number} [options.alpha=1] - The overall alpha amount
+ */
+export default class AdjustmentFilter extends PIXI.Filter {
+    constructor(options) {
+        super(vertex, fragment);
 
-<article class="content-size">
-    <div class="container-overview">
-    
-    
-    
-        
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="OutlineFilter">
-            <a class="share-icon" href="#OutlineFilter"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">
-                new PIXI.filters.OutlineFilter
-            </span>
-            <span class="signature">(<span class="optional">thickness</span>, <span class="optional">color</span>, <span class="optional">quality</span>)</span>
-            
-            
-            
-            
-        </h4>
-    
-        
-        <div class="tag-source">
-            <a href="outline_src_OutlineFilter.js.html#line24">OutlineFilter.js:24</a>
-        </div>
-        
-    </div>
+        Object.assign(this, {
+            /**
+             * The amount of luminance
+             * @member {number}
+             * @memberof PIXI.filters.AdjustmentFilter#
+             * @default 1
+             */
+            gamma: 1,
 
-    
-</dt>
-<dd>
-    
-    
+            /**
+             * The amount of saturation
+             * @member {number}
+             * @memberof PIXI.filters.AdjustmentFilter#
+             * @default 1
+             */
+            saturation: 1,
 
-    
-    
-    
-    
-    
-        
+            /**
+             * The amount of contrast
+             * @member {number}
+             * @memberof PIXI.filters.AdjustmentFilter#
+             * @default 1
+             */
+            contrast: 1,
 
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		<th>Default</th>
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>thickness</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
+            /**
+             * The amount of brightness
+             * @member {number}
+             * @memberof PIXI.filters.AdjustmentFilter#
+             * @default 1
+             */
+            brightness: 1,
 
+            /**
+             * The amount of red channel
+             * @member {number}
+             * @memberof PIXI.filters.AdjustmentFilter#
+             * @default 1
+             */
+            red: 1,
 
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    1
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>The tickness of the outline. Make it 2 times more for resolution 2</p></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>color</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
+            /**
+             * The amount of green channel
+             * @member {number}
+             * @memberof PIXI.filters.AdjustmentFilter#
+             * @default 1
+             */
+            green: 1,
 
+            /**
+             * The amount of blue channel
+             * @member {number}
+             * @memberof PIXI.filters.AdjustmentFilter#
+             * @default 1
+             */
+            blue: 1,
 
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    0x000000
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>The color of the outline.</p></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>quality</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
+            /**
+             * The amount of alpha channel
+             * @member {number}
+             * @memberof PIXI.filters.AdjustmentFilter#
+             * @default 1
+             */
+            alpha: 1,
+        }, options);
+    }
 
+    /**
+     * Override existing apply method in PIXI.Filter
+     * @private
+     */
+    apply(filterManager, input, output, clear) {
+        this.uniforms.gamma = Math.max(this.gamma, 0.0001);
+        this.uniforms.saturation = this.saturation;
+        this.uniforms.contrast = this.contrast;
+        this.uniforms.brightness = this.brightness;
+        this.uniforms.red = this.red;
+        this.uniforms.green = this.green;
+        this.uniforms.blue = this.blue;
+        this.uniforms.alpha = this.alpha;
 
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    0.1
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>The quality of the outline from <code>0</code> to <code>1</code>, using a higher quality
-       setting will result in slower performance and more accuracy.</p></td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
+        filterManager.applyFilter(this, input, output, clear);
+    }
+}
+</code></pre>
+        </article>
+    </section>
 
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-        <h5>Example</h5>
-        
-
-    
-    <pre class="prettyprint"><code>someSprite.shader = new OutlineFilter(9, 0xFF0000);</code></pre>
-    
-
-    
-</dd>
-
-    
-    </div>
-    
-    
-        <h3 class="subsection-title">Extends</h3>
-        
-        <ul>
-            <li>PIXI.Filter</li>
-        </ul>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        <h3 class="subsection-title">Members</h3>
-        
-        <dl class="list-members">
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id=".MAX_SAMPLES">
-            <a class="share-icon" href="#.MAX_SAMPLES"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">PIXI.filters.OutlineFilter.MAX_SAMPLES</span>
-            <span class="type-signature type">number</span>
-            
-            <span class="access-signature">static</span>
-            
-            
-        </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>The maximum number of samples for rendering outline.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>100</li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id=".MIN_SAMPLES">
-            <a class="share-icon" href="#.MIN_SAMPLES"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">PIXI.filters.OutlineFilter.MIN_SAMPLES</span>
-            <span class="type-signature type">number</span>
-            
-            <span class="access-signature">static</span>
-            
-            
-        </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>The minimum number of samples for rendering outline.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>1</li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="color">
-            <a class="share-icon" href="#color"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">color</span>
-            <span class="type-signature type">number</span>
-            
-            
-            
-            
-        </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>The color of the glow.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>0x000000</li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="thickness">
-            <a class="share-icon" href="#thickness"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">thickness</span>
-            <span class="type-signature type">number</span>
-            
-            
-            
-            
-        </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>The thickness of the outline.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>1</li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        </dl>
-    
-    
-    
-    
-    
-    
-    
-
-    
-</article>
-
-</section>  
 
 
 
@@ -1534,7 +1174,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
 
         <footer class="content-size">
             <div class="footer">
-                Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Jan 10 2018 12:39:43 GMT-0500 (EST)
+                Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Jan 10 2018 12:39:43 GMT-0500 (EST)
             </div>
         </footer>
     </div>

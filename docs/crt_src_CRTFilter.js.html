@@ -1037,494 +1037,215 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="PIXI.filters.OutlineFilter.html">Class: OutlineFilter</h1>
+        <h1 class="page-title" data-filename="crt_src_CRTFilter.js.html">Source: crt/src/CRTFilter.js</h1>
         
 
 
+    
+    <section>
+        <header>
+            <div class="header content-size">
+                <h2>crt/src/CRTFilter.js</h2>
+            </div>
+        </header>
+        <article>
+            <pre id="source-code" class="prettyprint source linenums"><code>import {vertex} from '@tools/fragments';
+import fragment from './crt.frag';
+import * as PIXI from 'pixi.js';
 
-<section>
-    
-<header>
-    <div class="header content-size">
-        <h2>OutlineFilter
-        </h2>
-        
-            <div class="class-description"><p>OutlineFilter, originally by mishaa
-http://www.html5gamedevs.com/topic/10640-outline-a-sprite-change-certain-colors/?p=69966
-http://codepen.io/mishaa/pen/emGNRB<br>
-<img src="../tools/screenshots/dist/original.png" alt="original"><img src="../tools/screenshots/dist/outline.png" alt="filter"></p></div>
-        
-    </div>
-</header>  
+/**
+ * The CRTFilter applies a CRT effect to an object.&lt;br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/crt.gif)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ *
+ * @param {object} [options] - The optional parameters of CRT effect
+ * @param {number} [options.curvature=1.0] - Bent of interlaced lines, higher value means more bend
+ * @param {number} [options.lineWidth=1.0] - Width of the interlaced lines
+ * @param {number} [options.lineContrast=0.25] - Contrast of interlaced lines
+ * @param {number} [options.verticalLine=false] - `true` is vertical lines, `false` is horizontal
+ * @param {number} [options.noise=0.3] - Opacity/intensity of the noise effect between `0` and `1`
+ * @param {number} [options.noiseSize=1.0] - The size of the noise particles
+ * @param {number} [options.seed=0] - A seed value to apply to the random noise generation
+ * @param {number} [options.vignetting=0.3] - The radius of the vignette effect, smaller
+ *        values produces a smaller vignette
+ * @param {number} [options.vignettingAlpha=1.0] - Amount of opacity of vignette
+ * @param {number} [options.vignettingBlur=0.3] - Blur intensity of the vignette
+ * @param {number} [options.time=0] - For animating interlaced lines
+ */
+export default class CRTFilter extends PIXI.Filter {
+    constructor(options) {
+        super(vertex, fragment);
 
-<article class="content-size">
-    <div class="container-overview">
-    
-    
-    
-        
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="OutlineFilter">
-            <a class="share-icon" href="#OutlineFilter"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">
-                new PIXI.filters.OutlineFilter
-            </span>
-            <span class="signature">(<span class="optional">thickness</span>, <span class="optional">color</span>, <span class="optional">quality</span>)</span>
-            
-            
-            
-            
-        </h4>
-    
-        
-        <div class="tag-source">
-            <a href="outline_src_OutlineFilter.js.html#line24">OutlineFilter.js:24</a>
-        </div>
-        
-    </div>
+        /**
+         * For animating interlaced lines
+         *
+         * @member {number}
+         * @default 0
+         */
+        this.time = 0;
 
-    
-</dt>
-<dd>
-    
-    
+        /**
+         * A seed value to apply to the random noise generation
+         *
+         * @member {number}
+         * @default 0
+         */
+        this.seed = 0;
 
-    
-    
-    
-    
-    
-        
+        Object.assign(this, {
+            curvature: 1.0,
+            lineWidth: 1.0,
+            lineContrast: 0.25,
+            verticalLine: false,
+            noise: 0.0,
+            noiseSize: 1.0,
+            seed: 0.0,
+            vignetting: 0.3,
+            vignettingAlpha: 1.0,
+            vignettingBlur: 0.3,
+            time: 0.0,
+        }, options);
+    }
 
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		<th>Default</th>
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>thickness</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
+    /**
+     * Override existing apply method in PIXI.Filter
+     * @private
+     */
+    apply(filterManager, input, output, clear) {
+        this.uniforms.dimensions[0] = input.sourceFrame.width;
+        this.uniforms.dimensions[1] = input.sourceFrame.height;
 
+        this.uniforms.seed = this.seed;
+        this.uniforms.time = this.time;
 
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    1
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>The tickness of the outline. Make it 2 times more for resolution 2</p></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>color</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
+        filterManager.applyFilter(this, input, output, clear);
+    }
 
+    /**
+     * Bent of interlaced lines, higher value means more bend
+     *
+     * @member {number}
+     * @default 1
+     */
+    set curvature(value) {
+        this.uniforms.curvature = value;
+    }
+    get curvature() {
+        return this.uniforms.curvature;
+    }
 
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    0x000000
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>The color of the outline.</p></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>quality</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
+    /**
+     * Width of interlaced lines
+     *
+     * @member {number}
+     * @default 1
+     */
+    set lineWidth(value) {
+        this.uniforms.lineWidth = value;
+    }
+    get lineWidth() {
+        return this.uniforms.lineWidth;
+    }
 
+    /**
+     * Contrast of interlaced lines
+     *
+     * @member {number}
+     * @default 0.25
+     */
+    set lineContrast(value) {
+        this.uniforms.lineContrast = value;
+    }
+    get lineContrast() {
+        return this.uniforms.lineContrast;
+    }
 
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    0.1
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>The quality of the outline from <code>0</code> to <code>1</code>, using a higher quality
-       setting will result in slower performance and more accuracy.</p></td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
+    /**
+     * `true` for vertical lines, `false` for horizontal lines
+     *
+     * @member {boolean}
+     * @default false
+     */
+    set verticalLine(value) {
+        this.uniforms.verticalLine = value;
+    }
+    get verticalLine() {
+        return this.uniforms.verticalLine;
+    }
 
-    
-    
+    /**
+     * Opacity/intensity of the noise effect between `0` and `1`
+     *
+     * @member {number}
+     * @default 0
+     */
+    set noise(value) {
+        this.uniforms.noise = value;
+    }
+    get noise() {
+        return this.uniforms.noise;
+    }
 
-    
+    /**
+     * The size of the noise particles
+     *
+     * @member {number}
+     * @default 0
+     */
+    set noiseSize(value) {
+        this.uniforms.noiseSize = value;
+    }
+    get noiseSize() {
+        return this.uniforms.noiseSize;
+    }
 
-    
-    
-    
-    
-    
-    
-    
-        <h5>Example</h5>
-        
+    /**
+     * The radius of the vignette effect, smaller
+     * values produces a smaller vignette
+     *
+     * @member {number}
+     * @default 0
+     */
+    set vignetting(value) {
+        this.uniforms.vignetting = value;
+    }
+    get vignetting() {
+        return this.uniforms.vignetting;
+    }
 
-    
-    <pre class="prettyprint"><code>someSprite.shader = new OutlineFilter(9, 0xFF0000);</code></pre>
-    
+    /**
+     * Amount of opacity of vignette
+     *
+     * @member {number}
+     * @default 0
+     */
+    set vignettingAlpha(value) {
+        this.uniforms.vignettingAlpha = value;
+    }
+    get vignettingAlpha() {
+        return this.uniforms.vignettingAlpha;
+    }
 
-    
-</dd>
+    /**
+     * Blur intensity of the vignette
+     *
+     * @member {number}
+     * @default 0
+     */
+    set vignettingBlur(value) {
+        this.uniforms.vignettingBlur = value;
+    }
+    get vignettingBlur() {
+        return this.uniforms.vignettingBlur;
+    }
+}
+</code></pre>
+        </article>
+    </section>
 
-    
-    </div>
-    
-    
-        <h3 class="subsection-title">Extends</h3>
-        
-        <ul>
-            <li>PIXI.Filter</li>
-        </ul>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        <h3 class="subsection-title">Members</h3>
-        
-        <dl class="list-members">
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id=".MAX_SAMPLES">
-            <a class="share-icon" href="#.MAX_SAMPLES"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">PIXI.filters.OutlineFilter.MAX_SAMPLES</span>
-            <span class="type-signature type">number</span>
-            
-            <span class="access-signature">static</span>
-            
-            
-        </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>The maximum number of samples for rendering outline.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>100</li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id=".MIN_SAMPLES">
-            <a class="share-icon" href="#.MIN_SAMPLES"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">PIXI.filters.OutlineFilter.MIN_SAMPLES</span>
-            <span class="type-signature type">number</span>
-            
-            <span class="access-signature">static</span>
-            
-            
-        </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>The minimum number of samples for rendering outline.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>1</li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="color">
-            <a class="share-icon" href="#color"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">color</span>
-            <span class="type-signature type">number</span>
-            
-            
-            
-            
-        </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>The color of the glow.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>0x000000</li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="thickness">
-            <a class="share-icon" href="#thickness"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">thickness</span>
-            <span class="type-signature type">number</span>
-            
-            
-            
-            
-        </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>The thickness of the outline.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>1</li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        </dl>
-    
-    
-    
-    
-    
-    
-    
-
-    
-</article>
-
-</section>  
 
 
 
@@ -1534,7 +1255,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
 
         <footer class="content-size">
             <div class="footer">
-                Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Jan 10 2018 12:39:43 GMT-0500 (EST)
+                Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Jan 10 2018 12:39:43 GMT-0500 (EST)
             </div>
         </footer>
     </div>

@@ -1037,494 +1037,144 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="PIXI.filters.OutlineFilter.html">Class: OutlineFilter</h1>
+        <h1 class="page-title" data-filename="reflection_src_ReflectionFilter.js.html">Source: reflection/src/ReflectionFilter.js</h1>
         
 
 
+    
+    <section>
+        <header>
+            <div class="header content-size">
+                <h2>reflection/src/ReflectionFilter.js</h2>
+            </div>
+        </header>
+        <article>
+            <pre id="source-code" class="prettyprint source linenums"><code>import {vertex} from '@tools/fragments';
+import fragment from './reflection.frag';
+import * as PIXI from 'pixi.js';
 
-<section>
-    
-<header>
-    <div class="header content-size">
-        <h2>OutlineFilter
-        </h2>
-        
-            <div class="class-description"><p>OutlineFilter, originally by mishaa
-http://www.html5gamedevs.com/topic/10640-outline-a-sprite-change-certain-colors/?p=69966
-http://codepen.io/mishaa/pen/emGNRB<br>
-<img src="../tools/screenshots/dist/original.png" alt="original"><img src="../tools/screenshots/dist/outline.png" alt="filter"></p></div>
-        
-    </div>
-</header>  
+/**
+ * Applies a reflection effect to simulate the reflection on water with waves.&lt;br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/reflection.png)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ *
+ * @param {object} [options] - The optional parameters of Reflection effect.
+ * @param {number} [options.mirror=true] - `true` to reflect the image, `false` for waves-only
+ * @param {number} [options.boundary=0.5] - Vertical position of the reflection point, default is 50% (middle)
+ *                 smaller numbers produce a larger reflection, larger numbers produce a smaller reflection.
+ * @param {number} [options.amplitude=[0, 20]] - Starting and ending amplitude of waves
+ * @param {number} [options.waveLength=[30, 100]] - Starting and ending length of waves
+ * @param {number} [options.alpha=[1, 1]] - Starting and ending alpha values
+ * @param {number} [options.time=0] - Time for animating position of waves
+ */
+export default class ReflectionFilter extends PIXI.Filter {
+    constructor(options) {
+        super(vertex, fragment);
 
-<article class="content-size">
-    <div class="container-overview">
-    
-    
-    
-        
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="OutlineFilter">
-            <a class="share-icon" href="#OutlineFilter"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">
-                new PIXI.filters.OutlineFilter
-            </span>
-            <span class="signature">(<span class="optional">thickness</span>, <span class="optional">color</span>, <span class="optional">quality</span>)</span>
-            
-            
-            
-            
-        </h4>
-    
-        
-        <div class="tag-source">
-            <a href="outline_src_OutlineFilter.js.html#line24">OutlineFilter.js:24</a>
-        </div>
-        
-    </div>
+        Object.assign(this, {
+            mirror: true,
+            boundary: 0.5,
+            amplitude: [0, 20],
+            waveLength: [30, 100],
+            alpha: [1, 1],
 
-    
-</dt>
-<dd>
-    
-    
+            /**
+             * Time for animating position of waves
+             *
+             * @member {number}
+             * @memberof PIXI.filters.ReflectionFilter#
+             * @default 0
+             */
+            time: 0,
+        }, options);
+    }
 
-    
-    
-    
-    
-    
-        
+    /**
+     * Override existing apply method in PIXI.Filter
+     * @private
+     */
+    apply(filterManager, input, output, clear) {
+        this.uniforms.dimensions[0] = input.sourceFrame.width;
+        this.uniforms.dimensions[1] = input.sourceFrame.height;
 
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		<th>Default</th>
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>thickness</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
+        this.uniforms.time = this.time;
 
+        filterManager.applyFilter(this, input, output, clear);
+    }
 
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    1
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>The tickness of the outline. Make it 2 times more for resolution 2</p></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>color</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
+    /**
+     * `true` to reflect the image, `false` for waves-only
+     *
+     * @member {boolean}
+     * @default true
+     */
+    set mirror(value) {
+        this.uniforms.mirror = value;
+    }
+    get mirror() {
+        return this.uniforms.mirror;
+    }
 
+    /**
+     * Vertical position of the reflection point, default is 50% (middle)
+     * smaller numbers produce a larger reflection, larger numbers produce a smaller reflection.
+     *
+     * @member {number}
+     * @default 0.5
+     */
+    set boundary(value) {
+        this.uniforms.boundary = value;
+    }
+    get boundary() {
+        return this.uniforms.boundary;
+    }
 
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    0x000000
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>The color of the outline.</p></td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>quality</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
+    /**
+     * Starting and ending amplitude of waves
+     * @member {number[]}
+     * @default [0, 20]
+     */
+    set amplitude(value) {
+        this.uniforms.amplitude[0] = value[0];
+        this.uniforms.amplitude[1] = value[1];
+    }
+    get amplitude() {
+        return this.uniforms.amplitude;
+    }
 
+    /**
+     * Starting and ending length of waves
+     * @member {number[]}
+     * @default [30, 100]
+     */
+    set waveLength(value) {
+        this.uniforms.waveLength[0] = value[0];
+        this.uniforms.waveLength[1] = value[1];
+    }
+    get waveLength() {
+        return this.uniforms.waveLength;
+    }
 
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    0.1
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                <p>The quality of the outline from <code>0</code> to <code>1</code>, using a higher quality
-       setting will result in slower performance and more accuracy.</p></td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
+    /**
+     * Starting and ending alpha values
+     * @member {number[]}
+     * @default [1, 1]
+     */
+    set alpha(value) {
+        this.uniforms.alpha[0] = value[0];
+        this.uniforms.alpha[1] = value[1];
+    }
+    get alpha() {
+        return this.uniforms.alpha;
+    }
+}
+</code></pre>
+        </article>
+    </section>
 
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-        <h5>Example</h5>
-        
-
-    
-    <pre class="prettyprint"><code>someSprite.shader = new OutlineFilter(9, 0xFF0000);</code></pre>
-    
-
-    
-</dd>
-
-    
-    </div>
-    
-    
-        <h3 class="subsection-title">Extends</h3>
-        
-        <ul>
-            <li>PIXI.Filter</li>
-        </ul>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        <h3 class="subsection-title">Members</h3>
-        
-        <dl class="list-members">
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id=".MAX_SAMPLES">
-            <a class="share-icon" href="#.MAX_SAMPLES"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">PIXI.filters.OutlineFilter.MAX_SAMPLES</span>
-            <span class="type-signature type">number</span>
-            
-            <span class="access-signature">static</span>
-            
-            
-        </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>The maximum number of samples for rendering outline.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>100</li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id=".MIN_SAMPLES">
-            <a class="share-icon" href="#.MIN_SAMPLES"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">PIXI.filters.OutlineFilter.MIN_SAMPLES</span>
-            <span class="type-signature type">number</span>
-            
-            <span class="access-signature">static</span>
-            
-            
-        </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>The minimum number of samples for rendering outline.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>1</li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="color">
-            <a class="share-icon" href="#color"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">color</span>
-            <span class="type-signature type">number</span>
-            
-            
-            
-            
-        </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>The color of the glow.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>0x000000</li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="thickness">
-            <a class="share-icon" href="#thickness"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">thickness</span>
-            <span class="type-signature type">number</span>
-            
-            
-            
-            
-        </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>The thickness of the outline.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>1</li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        </dl>
-    
-    
-    
-    
-    
-    
-    
-
-    
-</article>
-
-</section>  
 
 
 
@@ -1534,7 +1184,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
 
         <footer class="content-size">
             <div class="footer">
-                Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Jan 10 2018 12:39:43 GMT-0500 (EST)
+                Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Jan 10 2018 12:39:43 GMT-0500 (EST)
             </div>
         </footer>
     </div>

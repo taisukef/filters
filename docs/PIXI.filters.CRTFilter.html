@@ -1037,7 +1037,7 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="PIXI.filters.OutlineFilter.html">Class: OutlineFilter</h1>
+        <h1 class="page-title" data-filename="PIXI.filters.CRTFilter.html">Class: CRTFilter</h1>
         
 
 
@@ -1046,13 +1046,11 @@
     
 <header>
     <div class="header content-size">
-        <h2>OutlineFilter
+        <h2>CRTFilter
         </h2>
         
-            <div class="class-description"><p>OutlineFilter, originally by mishaa
-http://www.html5gamedevs.com/topic/10640-outline-a-sprite-change-certain-colors/?p=69966
-http://codepen.io/mishaa/pen/emGNRB<br>
-<img src="../tools/screenshots/dist/original.png" alt="original"><img src="../tools/screenshots/dist/outline.png" alt="filter"></p></div>
+            <div class="class-description"><p>The CRTFilter applies a CRT effect to an object.<br>
+<img src="../tools/screenshots/dist/original.png" alt="original"><img src="../tools/screenshots/dist/crt.gif" alt="filter"></p></div>
         
     </div>
 </header>  
@@ -1065,12 +1063,12 @@ http://codepen.io/mishaa/pen/emGNRB<br>
         
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="OutlineFilter">
-            <a class="share-icon" href="#OutlineFilter"><span class="glyphicon glyphicon-link"></span></a>
+        <h4 class="name" id="CRTFilter">
+            <a class="share-icon" href="#CRTFilter"><span class="glyphicon glyphicon-link"></span></a>
             <span class="">
-                new PIXI.filters.OutlineFilter
+                new PIXI.filters.CRTFilter
             </span>
-            <span class="signature">(<span class="optional">thickness</span>, <span class="optional">color</span>, <span class="optional">quality</span>)</span>
+            <span class="signature">(<span class="optional">options</span>)</span>
             
             
             
@@ -1079,7 +1077,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
     
         
         <div class="tag-source">
-            <a href="outline_src_OutlineFilter.js.html#line24">OutlineFilter.js:24</a>
+            <a href="crt_src_CRTFilter.js.html#line29">CRTFilter.js:29</a>
         </div>
         
     </div>
@@ -1107,6 +1105,52 @@ http://codepen.io/mishaa/pen/emGNRB<br>
 		<th>Type</th>
 		
 		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>The optional parameters of CRT effect</p>
+                
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
 		<th>Default</th>
 		
 		
@@ -1119,7 +1163,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
 	
         <tr>
             
-                <td class="name"><code>thickness</code></td>
+                <td class="name"><code>curvature</code></td>
             
             
             <td class="type">
@@ -1134,7 +1178,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
             
                 <td class="default">
                 
-                    1
+                    1.0
                 
                 </td>
             
@@ -1148,14 +1192,14 @@ http://codepen.io/mishaa/pen/emGNRB<br>
                         
                     
                 
-                <p>The tickness of the outline. Make it 2 times more for resolution 2</p></td>
+                <p>Bent of interlaced lines, higher value means more bend</p></td>
         </tr>
 	
 	
 	
         <tr>
             
-                <td class="name"><code>color</code></td>
+                <td class="name"><code>lineWidth</code></td>
             
             
             <td class="type">
@@ -1170,7 +1214,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
             
                 <td class="default">
                 
-                    0x000000
+                    1.0
                 
                 </td>
             
@@ -1184,14 +1228,14 @@ http://codepen.io/mishaa/pen/emGNRB<br>
                         
                     
                 
-                <p>The color of the outline.</p></td>
+                <p>Width of the interlaced lines</p></td>
         </tr>
 	
 	
 	
         <tr>
             
-                <td class="name"><code>quality</code></td>
+                <td class="name"><code>lineContrast</code></td>
             
             
             <td class="type">
@@ -1206,7 +1250,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
             
                 <td class="default">
                 
-                    0.1
+                    0.25
                 
                 </td>
             
@@ -1220,8 +1264,302 @@ http://codepen.io/mishaa/pen/emGNRB<br>
                         
                     
                 
-                <p>The quality of the outline from <code>0</code> to <code>1</code>, using a higher quality
-       setting will result in slower performance and more accuracy.</p></td>
+                <p>Contrast of interlaced lines</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>verticalLine</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p><code>true</code> is vertical lines, <code>false</code> is horizontal</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>noise</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    0.3
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>Opacity/intensity of the noise effect between <code>0</code> and <code>1</code></p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>noiseSize</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    1.0
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>The size of the noise particles</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>seed</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>A seed value to apply to the random noise generation</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>vignetting</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    0.3
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>The radius of the vignette effect, smaller
+       values produces a smaller vignette</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>vignettingAlpha</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    1.0
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>Amount of opacity of vignette</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>vignettingBlur</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    0.3
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>Blur intensity of the vignette</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>time</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>For animating interlaced lines</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+            </td>
         </tr>
 	
 	
@@ -1264,14 +1602,6 @@ http://codepen.io/mishaa/pen/emGNRB<br>
     
     
     
-        <h5>Example</h5>
-        
-
-    
-    <pre class="prettyprint"><code>someSprite.shader = new OutlineFilter(9, 0xFF0000);</code></pre>
-    
-
-    
 </dd>
 
     
@@ -1300,12 +1630,12 @@ http://codepen.io/mishaa/pen/emGNRB<br>
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id=".MAX_SAMPLES">
-            <a class="share-icon" href="#.MAX_SAMPLES"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">PIXI.filters.OutlineFilter.MAX_SAMPLES</span>
+        <h4 class="name" id="curvature">
+            <a class="share-icon" href="#curvature"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">curvature</span>
             <span class="type-signature type">number</span>
             
-            <span class="access-signature">static</span>
+            
             
             
         </h4>
@@ -1316,61 +1646,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
 <dd>
     
     <div class="description">
-        <p>The maximum number of samples for rendering outline.</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>100</li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id=".MIN_SAMPLES">
-            <a class="share-icon" href="#.MIN_SAMPLES"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">PIXI.filters.OutlineFilter.MIN_SAMPLES</span>
-            <span class="type-signature type">number</span>
-            
-            <span class="access-signature">static</span>
-            
-            
-        </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>The minimum number of samples for rendering outline.</p>
+        <p>Bent of interlaced lines, higher value means more bend</p>
     </div>
     
     
@@ -1408,9 +1684,9 @@ http://codepen.io/mishaa/pen/emGNRB<br>
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="color">
-            <a class="share-icon" href="#color"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">color</span>
+        <h4 class="name" id="lineContrast">
+            <a class="share-icon" href="#lineContrast"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">lineContrast</span>
             <span class="type-signature type">number</span>
             
             
@@ -1424,7 +1700,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
 <dd>
     
     <div class="description">
-        <p>The color of the glow.</p>
+        <p>Contrast of interlaced lines</p>
     </div>
     
     
@@ -1444,7 +1720,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
     
     
     <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>0x000000</li></ul></dd>
+    <dd class="tag-default"><ul class="dummy"><li>0.25</li></ul></dd>
     
     
     
@@ -1462,9 +1738,9 @@ http://codepen.io/mishaa/pen/emGNRB<br>
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="thickness">
-            <a class="share-icon" href="#thickness"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">thickness</span>
+        <h4 class="name" id="lineWidth">
+            <a class="share-icon" href="#lineWidth"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">lineWidth</span>
             <span class="type-signature type">number</span>
             
             
@@ -1478,7 +1754,7 @@ http://codepen.io/mishaa/pen/emGNRB<br>
 <dd>
     
     <div class="description">
-        <p>The thickness of the outline.</p>
+        <p>Width of interlaced lines</p>
     </div>
     
     
@@ -1499,6 +1775,439 @@ http://codepen.io/mishaa/pen/emGNRB<br>
     
     <dt class="tag-default">Default Value:</dt>
     <dd class="tag-default"><ul class="dummy"><li>1</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="noise">
+            <a class="share-icon" href="#noise"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">noise</span>
+            <span class="type-signature type">number</span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Opacity/intensity of the noise effect between <code>0</code> and <code>1</code></p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="noiseSize">
+            <a class="share-icon" href="#noiseSize"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">noiseSize</span>
+            <span class="type-signature type">number</span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The size of the noise particles</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="seed">
+            <a class="share-icon" href="#seed"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">seed</span>
+            <span class="type-signature type">number</span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>A seed value to apply to the random noise generation</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="time">
+            <a class="share-icon" href="#time"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">time</span>
+            <span class="type-signature type">number</span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>For animating interlaced lines</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="verticalLine">
+            <a class="share-icon" href="#verticalLine"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">verticalLine</span>
+            <span class="type-signature type">boolean</span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p><code>true</code> for vertical lines, <code>false</code> for horizontal lines</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>false</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="vignetting">
+            <a class="share-icon" href="#vignetting"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">vignetting</span>
+            <span class="type-signature type">number</span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The radius of the vignette effect, smaller
+values produces a smaller vignette</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="vignettingAlpha">
+            <a class="share-icon" href="#vignettingAlpha"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">vignettingAlpha</span>
+            <span class="type-signature type">number</span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Amount of opacity of vignette</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="vignettingBlur">
+            <a class="share-icon" href="#vignettingBlur"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">vignettingBlur</span>
+            <span class="type-signature type">number</span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Blur intensity of the vignette</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0</li></ul></dd>
     
     
     
