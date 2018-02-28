@@ -1121,205 +1121,695 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="advanced-bloom_src_AdvancedBloomFilter.js.html">Source: advanced-bloom/src/AdvancedBloomFilter.js</h1>
+        <h1 class="page-title" data-filename="PIXI.filters.ColorMapFilter.html">Class: ColorMapFilter</h1>
         
 
 
+
+<section>
     
-    <section>
-        <header>
-            <div class="header content-size">
-                <h2>advanced-bloom/src/AdvancedBloomFilter.js</h2>
-            </div>
-        </header>
-        <article>
-            <pre id="source-code" class="prettyprint source linenums"><code>import ExtractBrightnessFilter from './ExtractBrightnessFilter';
-import {KawaseBlurFilter} from '@pixi/filter-kawase-blur';
-import {vertex} from '@tools/fragments';
-import fragment from './advanced-bloom.frag';
-import * as PIXI from 'pixi.js';
+<header>
+    <div class="header content-size">
+        <h2>ColorMapFilter
+        </h2>
+        
+            <div class="class-description"><p>The ColorMapFilter applies a color-map effect to an object.<br>
+<img src="../tools/screenshots/dist/original.png" alt="original"><img src="../tools/screenshots/dist/color-map.png" alt="filter"></p></div>
+        
+    </div>
+</header>  
 
-/**
- * The AdvancedBloomFilter applies a Bloom Effect to an object. Unlike the normal BloomFilter
- * this had some advanced controls for adjusting the look of the bloom. Note: this filter
- * is slower than normal BloomFilter.&lt;br>
- * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/advanced-bloom.png)
- *
- * @class
- * @extends PIXI.Filter
- * @memberof PIXI.filters
- *
- * @param {object|number} [options] - The optional parameters of advanced bloom filter.
- *                        When options is a number , it will be `options.threshold`.
- * @param {number} [options.threshold=0.5] - Defines how bright a color needs to be to affect bloom.
- * @param {number} [options.bloomScale=1.0] - To adjust the strength of the bloom. Higher values is more intense brightness.
- * @param {number} [options.brightness=1.0] - The brightness, lower value is more subtle brightness, higher value is blown-out.
- * @param {number} [options.blur=8] - Sets the strength of the Blur properties simultaneously
- * @param {number} [options.quality=4] - The quality of the Blur filter.
- * @param {number[]} [options.kernels=null] - The kernels of the Blur filter.
- * @param {number|number[]|PIXI.Point} [options.pixelSize=1] - the pixelSize of the Blur filter.
- * @param {number} [options.resolution=PIXI.settings.RESOLUTION] - The resolution of the Blur filter.
- */
-export default class AdvancedBloomFilter extends PIXI.Filter {
+<article class="content-size">
+    <div class="container-overview">
+    
+    
+    
+        
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="ColorMapFilter">
+            <a class="share-icon" href="#ColorMapFilter"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">
+                new PIXI.filters.ColorMapFilter
+            </span>
+            <span class="signature">(<span class="optional">colorMap</span>, <span class="optional">nearest</span>, <span class="optional">mix</span>)</span>
+            
+            
+            
+            
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="color-map_src_ColorMapFilter.js.html#line18">ColorMapFilter.js:18</a>
+        </div>
+        
+    </div>
 
-    constructor(options) {
+    
+</dt>
+<dd>
+    
+    
 
-        super(vertex, fragment);
+    
+    
+    
+    
+    
+        
 
-        if (typeof options === 'number') {
-            options = { threshold: options };
-        }
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		<th>Default</th>
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>colorMap</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">HTMLImageElement</span>
+|
 
-        options = Object.assign({
-            threshold: 0.5,
-            bloomScale: 1.0,
-            brightness: 1.0,
-            kernels: null,
-            blur: 8,
-            quality: 4,
-            pixelSize: 1,
-            resolution: PIXI.settings.RESOLUTION,
-        }, options);
+<span class="param-type">HTMLCanvasElement</span>
+|
 
-        /**
-         * To adjust the strength of the bloom. Higher values is more intense brightness.
-         *
-         * @member {number}
-         * @default 1.0
-         */
-        this.bloomScale = options.bloomScale;
+<span class="param-type">PIXI.BaseTexture</span>
+|
 
-        /**
-         * The brightness, lower value is more subtle brightness, higher value is blown-out.
-         *
-         * @member {number}
-         * @default 1.0
-         */
-        this.brightness = options.brightness;
+<span class="param-type">PIXI.Texture</span>
 
-        const { kernels, blur, quality, pixelSize, resolution } = options;
 
-        this._extractFilter = new ExtractBrightnessFilter(options.threshold);
-        this._extractFilter.resolution = resolution;
-        this._blurFilter = kernels ?
-            new KawaseBlurFilter(kernels) :
-            new KawaseBlurFilter(blur, quality);
-        this.pixelSize = pixelSize;
-        this.resolution = resolution;
-    }
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>The colorMap texture of the filter.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>nearest</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
 
-    /**
-     * Override existing apply method in PIXI.Filter
-     * @private
-     */
-    apply(filterManager, input, output, clear, currentState) {
 
-        const brightTarget = filterManager.getRenderTarget(true);
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>Whether use NEAREST for colorMap texture.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>mix</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
 
-        this._extractFilter.apply(filterManager, input, brightTarget, true, currentState);
 
-        const bloomTarget = filterManager.getRenderTarget(true);
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    1
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>The mix from 0 to 1, where 0 is the original image and 1 is the color mapped image.</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
 
-        this._blurFilter.apply(filterManager, brightTarget, bloomTarget, true, currentState);
+    
+    
 
-        this.uniforms.bloomScale = this.bloomScale;
-        this.uniforms.brightness = this.brightness;
-        this.uniforms.bloomTexture = bloomTarget;
+    
 
-        filterManager.applyFilter(this, input, output, clear);
+    
+    
+    
+    
+    
+    
+    
+</dd>
 
-        filterManager.returnRenderTarget(bloomTarget);
-        filterManager.returnRenderTarget(brightTarget);
-    }
+    
+    </div>
+    
+    
+        <h3 class="subsection-title">Extends</h3>
+        
+        <ul>
+            <li>PIXI.Filter</li>
+        </ul>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Members</h3>
+        
+        <dl class="list-members">
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="colorMap">
+            <a class="share-icon" href="#colorMap"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">colorMap</span>
+            <span class="type-signature type">PIXI.Texture</span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>the colorMap texture</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
 
-    /**
-     * The resolution of the filter.
-     *
-     * @member {number}
-     */
-    get resolution() {
-        return this._resolution;
-    }
-    set resolution(value) {
-        this._resolution = value;
+    
+    
+</dd>
 
-        if (this._extractFilter) {
-            this._extractFilter.resolution = value;
-        }
-        if (this._blurFilter) {
-            this._blurFilter.resolution = value;
-        }
-    }
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="colorSize">
+            <a class="share-icon" href="#colorSize"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">colorSize</span>
+            <span class="type-signature type">number</span>
+            
+            <span class="access-signature">readonly</span>
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>the size of one color slice</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
 
-    /**
-     * Defines how bright a color needs to be to affect bloom.
-     *
-     * @member {number}
-     * @default 0.5
-     */
-    get threshold() {
-        return this._extractFilter.threshold;
-    }
-    set threshold(value) {
-        this._extractFilter.threshold = value;
-    }
+    
+    
+</dd>
 
-    /**
-     * Sets the kernels of the Blur Filter
-     *
-     * @member {number}
-     * @default 4
-     */
-    get kernels() {
-        return this._blurFilter.kernels;
-    }
-    set kernels(value) {
-        this._blurFilter.kernels = value;
-    }
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="mix">
+            <a class="share-icon" href="#mix"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">mix</span>
+            <span class="type-signature type">number</span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>The mix from 0 to 1, where 0 is the original image and 1 is the color mapped image.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
 
-    /**
-     * Sets the strength of the Blur properties simultaneously
-     *
-     * @member {number}
-     * @default 2
-     */
-    get blur() {
-        return this._blurFilter.blur;
-    }
-    set blur(value) {
-        this._blurFilter.blur = value;
-    }
+    
+    
+</dd>
 
-    /**
-     * Sets the quality of the Blur Filter
-     *
-     * @member {number}
-     * @default 4
-     */
-    get quality() {
-        return this._blurFilter.quality;
-    }
-    set quality(value) {
-        this._blurFilter.quality = value;
-    }
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="nearest">
+            <a class="share-icon" href="#nearest"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">nearest</span>
+            <span class="type-signature type">boolean</span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Whether use NEAREST for colorMap texture.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
 
-    /**
-     * Sets the pixelSize of the Kawase Blur filter
-     *
-     * @member {number|number[]|PIXI.Point}
-     * @default 1
-     */
-    get pixelSize() {
-        return this._blurFilter.pixelSize;
-    }
-    set pixelSize(value) {
-        this._blurFilter.pixelSize = value;
-    }
-}
-</code></pre>
-        </article>
-    </section>
+    
+    
+</dd>
 
+        </dl>
+    
+    
+    
+        <h3 class="subsection-title">Methods</h3>
+        
+        <dl class="list-methods">
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="destroy">
+            <a class="share-icon" href="#destroy"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">
+                destroy
+            </span>
+            <span class="signature">(<span class="optional">destroyBase</span>)</span>
+            
+            
+            
+            
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="color-map_src_ColorMapFilter.js.html#line135">ColorMapFilter.js:135</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Destroys this filter</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		<th>Default</th>
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>destroyBase</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>Whether to destroy the base texture of colorMap as well</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="updateColorMap">
+            <a class="share-icon" href="#updateColorMap"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">
+                updateColorMap
+            </span>
+            <span class="signature">()</span>
+            
+            
+            
+            
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="color-map_src_ColorMapFilter.js.html#line119">ColorMapFilter.js:119</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>If the colorMap is based on canvas , and the content of canvas has changed,
+  then call <code>updateColorMap</code> for update texture.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+    
+    
+
+    
+</article>
+
+</section>  
 
 
 
@@ -1329,7 +1819,7 @@ export default class AdvancedBloomFilter extends PIXI.Filter {
 
         <footer class="content-size">
             <div class="footer">
-                Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Feb 28 2018 17:05:35 GMT-0500 (EST)
+                Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Feb 28 2018 17:05:35 GMT-0500 (EST)
             </div>
         </footer>
     </div>

@@ -1121,7 +1121,7 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="advanced-bloom_src_AdvancedBloomFilter.js.html">Source: advanced-bloom/src/AdvancedBloomFilter.js</h1>
+        <h1 class="page-title" data-filename="color-map_src_ColorMapFilter.js.html">Source: color-map/src/ColorMapFilter.js</h1>
         
 
 
@@ -1129,191 +1129,147 @@
     <section>
         <header>
             <div class="header content-size">
-                <h2>advanced-bloom/src/AdvancedBloomFilter.js</h2>
+                <h2>color-map/src/ColorMapFilter.js</h2>
             </div>
         </header>
         <article>
-            <pre id="source-code" class="prettyprint source linenums"><code>import ExtractBrightnessFilter from './ExtractBrightnessFilter';
-import {KawaseBlurFilter} from '@pixi/filter-kawase-blur';
-import {vertex} from '@tools/fragments';
-import fragment from './advanced-bloom.frag';
+            <pre id="source-code" class="prettyprint source linenums"><code>import {vertex} from '@tools/fragments';
+import fragment from './color-map.frag';
 import * as PIXI from 'pixi.js';
 
 /**
- * The AdvancedBloomFilter applies a Bloom Effect to an object. Unlike the normal BloomFilter
- * this had some advanced controls for adjusting the look of the bloom. Note: this filter
- * is slower than normal BloomFilter.&lt;br>
- * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/advanced-bloom.png)
+ * The ColorMapFilter applies a color-map effect to an object.&lt;br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/color-map.png)
  *
  * @class
  * @extends PIXI.Filter
  * @memberof PIXI.filters
- *
- * @param {object|number} [options] - The optional parameters of advanced bloom filter.
- *                        When options is a number , it will be `options.threshold`.
- * @param {number} [options.threshold=0.5] - Defines how bright a color needs to be to affect bloom.
- * @param {number} [options.bloomScale=1.0] - To adjust the strength of the bloom. Higher values is more intense brightness.
- * @param {number} [options.brightness=1.0] - The brightness, lower value is more subtle brightness, higher value is blown-out.
- * @param {number} [options.blur=8] - Sets the strength of the Blur properties simultaneously
- * @param {number} [options.quality=4] - The quality of the Blur filter.
- * @param {number[]} [options.kernels=null] - The kernels of the Blur filter.
- * @param {number|number[]|PIXI.Point} [options.pixelSize=1] - the pixelSize of the Blur filter.
- * @param {number} [options.resolution=PIXI.settings.RESOLUTION] - The resolution of the Blur filter.
+ * @param {HTMLImageElement|HTMLCanvasElement|PIXI.BaseTexture|PIXI.Texture} [colorMap] - The colorMap texture of the filter.
+ * @param {boolean} [nearest=false] - Whether use NEAREST for colorMap texture.
+ * @param {number} [mix=1] - The mix from 0 to 1, where 0 is the original image and 1 is the color mapped image.
  */
-export default class AdvancedBloomFilter extends PIXI.Filter {
+export default class ColorMapFilter extends PIXI.Filter {
 
-    constructor(options) {
-
+    constructor(colorMap, nearest = false, mix = 1) {
         super(vertex, fragment);
 
-        if (typeof options === 'number') {
-            options = { threshold: options };
-        }
+        this._size = 0;
+        this._sliceSize = 0;
+        this._slicePixelSize = 0;
+        this._sliceInnerSize = 0;
 
-        options = Object.assign({
-            threshold: 0.5,
-            bloomScale: 1.0,
-            brightness: 1.0,
-            kernels: null,
-            blur: 8,
-            quality: 4,
-            pixelSize: 1,
-            resolution: PIXI.settings.RESOLUTION,
-        }, options);
+        this._scaleMode = null;
+        this._nearest = false;
+        this.nearest = nearest;
 
         /**
-         * To adjust the strength of the bloom. Higher values is more intense brightness.
-         *
+         * The mix from 0 to 1, where 0 is the original image and 1 is the color mapped image.
          * @member {number}
-         * @default 1.0
          */
-        this.bloomScale = options.bloomScale;
+        this.mix = mix;
 
-        /**
-         * The brightness, lower value is more subtle brightness, higher value is blown-out.
-         *
-         * @member {number}
-         * @default 1.0
-         */
-        this.brightness = options.brightness;
-
-        const { kernels, blur, quality, pixelSize, resolution } = options;
-
-        this._extractFilter = new ExtractBrightnessFilter(options.threshold);
-        this._extractFilter.resolution = resolution;
-        this._blurFilter = kernels ?
-            new KawaseBlurFilter(kernels) :
-            new KawaseBlurFilter(blur, quality);
-        this.pixelSize = pixelSize;
-        this.resolution = resolution;
+        this.colorMap = colorMap;
     }
 
     /**
      * Override existing apply method in PIXI.Filter
      * @private
      */
-    apply(filterManager, input, output, clear, currentState) {
-
-        const brightTarget = filterManager.getRenderTarget(true);
-
-        this._extractFilter.apply(filterManager, input, brightTarget, true, currentState);
-
-        const bloomTarget = filterManager.getRenderTarget(true);
-
-        this._blurFilter.apply(filterManager, brightTarget, bloomTarget, true, currentState);
-
-        this.uniforms.bloomScale = this.bloomScale;
-        this.uniforms.brightness = this.brightness;
-        this.uniforms.bloomTexture = bloomTarget;
+    apply(filterManager, input, output, clear) {
+        this.uniforms._mix = this.mix;
 
         filterManager.applyFilter(this, input, output, clear);
-
-        filterManager.returnRenderTarget(bloomTarget);
-        filterManager.returnRenderTarget(brightTarget);
     }
 
     /**
-     * The resolution of the filter.
-     *
+     * the size of one color slice
      * @member {number}
+     * @readonly
      */
-    get resolution() {
-        return this._resolution;
+    get colorSize() {
+        return this._size;
     }
-    set resolution(value) {
-        this._resolution = value;
 
-        if (this._extractFilter) {
-            this._extractFilter.resolution = value;
+    /**
+     * the colorMap texture
+     * @member {PIXI.Texture}
+     */
+    get colorMap() {
+        return this._colorMap;
+    }
+    set colorMap(colorMap) {
+        if (!(colorMap instanceof PIXI.Texture)) {
+            colorMap = PIXI.Texture.from(colorMap);
         }
-        if (this._blurFilter) {
-            this._blurFilter.resolution = value;
+        if (colorMap &amp;&amp; colorMap.baseTexture) {
+            colorMap.baseTexture.scaleMode = this._scaleMode;
+            colorMap.baseTexture.mipmap = false;
+
+            this._size = colorMap.height;
+            this._sliceSize = 1 / this._size;
+            this._slicePixelSize = this._sliceSize / this._size;
+            this._sliceInnerSize = this._slicePixelSize * (this._size - 1);
+
+            this.uniforms._size = this._size;
+            this.uniforms._sliceSize = this._sliceSize;
+            this.uniforms._slicePixelSize = this._slicePixelSize;
+            this.uniforms._sliceInnerSize = this._sliceInnerSize;
+
+            this.uniforms.colorMap = colorMap;
+        }
+
+        this._colorMap = colorMap;
+    }
+
+    /**
+     * Whether use NEAREST for colorMap texture.
+     * @member {boolean}
+     */
+    get nearest() {
+        return this._nearest;
+    }
+    set nearest(nearest) {
+        this._nearest = nearest;
+        this._scaleMode = nearest ? PIXI.SCALE_MODES.NEAREST : PIXI.SCALE_MODES.LINEAR;
+
+        const texture = this._colorMap;
+
+        if (texture &amp;&amp; texture.baseTexture) {
+            texture.baseTexture._glTextures = {};
+
+            texture.baseTexture.scaleMode = this._scaleMode;
+            texture.baseTexture.mipmap = false;
+
+            texture._updateID++;
+            texture.baseTexture.emit('update', texture.baseTexture);
         }
     }
 
     /**
-     * Defines how bright a color needs to be to affect bloom.
-     *
-     * @member {number}
-     * @default 0.5
+     * If the colorMap is based on canvas , and the content of canvas has changed,
+     *   then call `updateColorMap` for update texture.
      */
-    get threshold() {
-        return this._extractFilter.threshold;
-    }
-    set threshold(value) {
-        this._extractFilter.threshold = value;
+    updateColorMap() {
+        const texture = this._colorMap;
+
+        if (texture &amp;&amp; texture.baseTexture) {
+            texture._updateID++;
+            texture.baseTexture.emit('update', texture.baseTexture);
+
+            this.colorMap = texture;
+        }
     }
 
     /**
-     * Sets the kernels of the Blur Filter
+     * Destroys this filter
      *
-     * @member {number}
-     * @default 4
+     * @param {boolean} [destroyBase=false] Whether to destroy the base texture of colorMap as well
      */
-    get kernels() {
-        return this._blurFilter.kernels;
-    }
-    set kernels(value) {
-        this._blurFilter.kernels = value;
-    }
-
-    /**
-     * Sets the strength of the Blur properties simultaneously
-     *
-     * @member {number}
-     * @default 2
-     */
-    get blur() {
-        return this._blurFilter.blur;
-    }
-    set blur(value) {
-        this._blurFilter.blur = value;
-    }
-
-    /**
-     * Sets the quality of the Blur Filter
-     *
-     * @member {number}
-     * @default 4
-     */
-    get quality() {
-        return this._blurFilter.quality;
-    }
-    set quality(value) {
-        this._blurFilter.quality = value;
-    }
-
-    /**
-     * Sets the pixelSize of the Kawase Blur filter
-     *
-     * @member {number|number[]|PIXI.Point}
-     * @default 1
-     */
-    get pixelSize() {
-        return this._blurFilter.pixelSize;
-    }
-    set pixelSize(value) {
-        this._blurFilter.pixelSize = value;
+    destroy(destroyBase) {
+        if (this._colorMap) {
+            this._colorMap.destroy(destroyBase);
+        }
+        super.destroy();
     }
 }
 </code></pre>
