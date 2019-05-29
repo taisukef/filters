@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>PixiJS Filters Documentation</title>
+    
+    <meta name="description" content="API Documentation for PixiJS filters" />
+    
+        <meta name="keywords" content="filters, webgl, ascii, bloom, convolution, cross-hatch, dotfilter, emboss, pixelate, shockwave, twist, tiltshift" />
+        <meta name="keyword" content="filters, webgl, ascii, bloom, convolution, cross-hatch, dotfilter, emboss, pixelate, shockwave, twist, tiltshift" />
+    
+    
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="scripts/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Libre+Franklin:400,700" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/main.css">
+    
+    
+    <script>
+    var config = {"monospaceLinks":false,"cleverLinks":false,"default":{"outputSourceFiles":true},"applicationName":"PixiJS Filters","footer":"Made with ♥ by Goodboy Digital (goodboydigital.com)","copyright":"PixiJS Copyright © 2013-2019 Mat Groves.","googleAnalytics":"UA-103772589-3","meta":{"title":"PixiJS Filters Documentation","description":"API Documentation for PixiJS filters","keyword":"filters, webgl, ascii, bloom, convolution, cross-hatch, dotfilter, emboss, pixelate, shockwave, twist, tiltshift"},"linenums":true};
+    </script>
+    
+
+    
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', config.googleAnalytics]);
+      _gaq.push(['_trackPageview']);
+    
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    
+</head>
+<body>
+<div id="wrap" class="clearfix">
+    
+<div class="navigation">
+    <h3 class="applicationName"><a href="index.html">PixiJS Filters</a></h3>
+    <button id="menuToggle" class="btn btn-link btn-lg menu-toggle">
+        <span class="glyphicon glyphicon-menu-hamburger"></span>
+    </button>
+    <div class="search">
+        <input id="search" type="text" class="form-control input-md" placeholder="Search...">
+    </div>
+    <ul class="list">
+    
+        <li class="item" data-name="PIXI.filters.exports.AdjustmentFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.AdjustmentFilter.html">PIXI.filters.exports.AdjustmentFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.AdvancedBloomFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.AdvancedBloomFilter.html">PIXI.filters.exports.AdvancedBloomFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.AsciiFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.AsciiFilter.html">PIXI.filters.exports.AsciiFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.BevelFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.BevelFilter.html">PIXI.filters.exports.BevelFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.BloomFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.BloomFilter.html">PIXI.filters.exports.BloomFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.BulgePinchFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.BulgePinchFilter.html">PIXI.filters.exports.BulgePinchFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.ColorMapFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.ColorMapFilter.html">PIXI.filters.exports.ColorMapFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.ColorReplaceFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.ColorReplaceFilter.html">PIXI.filters.exports.ColorReplaceFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.ConvolutionFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.ConvolutionFilter.html">PIXI.filters.exports.ConvolutionFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.CrossHatchFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.CrossHatchFilter.html">PIXI.filters.exports.CrossHatchFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.CRTFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.CRTFilter.html">PIXI.filters.exports.CRTFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.DotFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.DotFilter.html">PIXI.filters.exports.DotFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.DropShadowFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.DropShadowFilter.html">PIXI.filters.exports.DropShadowFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.EmbossFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.EmbossFilter.html">PIXI.filters.exports.EmbossFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.GlitchFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.GlitchFilter.html">PIXI.filters.exports.GlitchFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.GlowFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.GlowFilter.html">PIXI.filters.exports.GlowFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.GodrayFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.GodrayFilter.html">PIXI.filters.exports.GodrayFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.KawaseBlurFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.KawaseBlurFilter.html">PIXI.filters.exports.KawaseBlurFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.MotionBlurFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.MotionBlurFilter.html">PIXI.filters.exports.MotionBlurFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.MultiColorReplaceFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.MultiColorReplaceFilter.html">PIXI.filters.exports.MultiColorReplaceFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.OldFilmFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.OldFilmFilter.html">PIXI.filters.exports.OldFilmFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.OutlineFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.OutlineFilter.html">PIXI.filters.exports.OutlineFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.PixelateFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.PixelateFilter.html">PIXI.filters.exports.PixelateFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.RadialBlurFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.RadialBlurFilter.html">PIXI.filters.exports.RadialBlurFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.ReflectionFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.ReflectionFilter.html">PIXI.filters.exports.ReflectionFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.RGBSplitFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.RGBSplitFilter.html">PIXI.filters.exports.RGBSplitFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.ShockwaveFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.ShockwaveFilter.html">PIXI.filters.exports.ShockwaveFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.SimpleLightmapFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.SimpleLightmapFilter.html">PIXI.filters.exports.SimpleLightmapFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.TiltShiftFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.TiltShiftFilter.html">PIXI.filters.exports.TiltShiftFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.TwistFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.TwistFilter.html">PIXI.filters.exports.TwistFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="PIXI.filters.exports.ZoomBlurFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.exports.ZoomBlurFilter.html">PIXI.filters.exports.ZoomBlurFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+    </ul>
+</div>
+    <div class="main">
+        <h1 class="page-title" data-filename="shockwave_src_ShockwaveFilter.js.html">Source: shockwave/src/ShockwaveFilter.js</h1>
+        
+
+
+    
+    <section>
+        <header>
+            <div class="header content-size">
+                <h2>shockwave/src/ShockwaveFilter.js</h2>
+            </div>
+        </header>
+        <article>
+            <pre id="source-code" class="prettyprint source linenums"><code>import {vertex} from '@tools/fragments';
+import fragment from './shockwave.frag';
+import {Filter} from '@pixi/core';
+
+/**
+ * The ShockwaveFilter class lets you apply a shockwave effect.&lt;br>
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/shockwave.gif)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ *
+ * @param {PIXI.Point|number[]} [center=[0.5, 0.5]] See `center` property.
+ * @param {object} [options] - The optional parameters of shockwave filter.
+ * @param {number} [options.amplitude=0.5] - See `amplitude`` property.
+ * @param {number} [options.wavelength=1.0] - See `wavelength` property.
+ * @param {number} [options.speed=500.0] - See `speed` property.
+ * @param {number} [options.brightness=8] - See `brightness` property.
+ * @param {number} [options.radius=4] - See `radius` property.
+ * @param {number} [time=0] - See `time` property.
+ */
+export class ShockwaveFilter extends Filter {
+
+    constructor(center = [0.0, 0.0], options = {}, time = 0) {
+        super(vertex, fragment);
+
+        this.center = center;
+
+        if (Array.isArray(options)) {
+            // eslint-disable-next-line no-console
+            console.warn('Deprecated Warning: ShockwaveFilter params Array has been changed to options Object.');
+            options = {};
+        }
+
+        options = Object.assign({
+            amplitude: 30.0,
+            wavelength: 160.0,
+            brightness: 1.0,
+            speed: 500.0,
+            radius: -1.0,
+        }, options);
+
+        this.amplitude = options.amplitude;
+
+        this.wavelength = options.wavelength;
+
+        this.brightness = options.brightness;
+
+        this.speed = options.speed;
+
+        this.radius = options.radius;
+
+        /**
+         * Sets the elapsed time of the shockwave.
+         * It could control the current size of shockwave.
+         *
+         * @member {number}
+         */
+        this.time = time;
+    }
+
+    apply(filterManager, input, output, clear) {
+        /**
+         * There is no set/get of `time`, for performance.
+         * Because in the most real cases, `time` will be changed in ever game tick.
+         * Use set/get will take more function-call.
+         */
+        this.uniforms.time = this.time;
+
+        filterManager.applyFilter(this, input, output, clear);
+    }
+
+    /**
+     * Sets the center of the shockwave in normalized screen coords. That is
+     * (0,0) is the top-left and (1,1) is the bottom right.
+     *
+     * @member {PIXI.Point|number[]}
+     */
+    get center() {
+        return this.uniforms.center;
+    }
+    set center(value) {
+        this.uniforms.center = value;
+    }
+
+    /**
+     * The amplitude of the shockwave.
+     *
+     * @member {number}
+     */
+    get amplitude() {
+        return this.uniforms.amplitude;
+    }
+    set amplitude(value) {
+        this.uniforms.amplitude = value;
+    }
+
+    /**
+     * The wavelength of the shockwave.
+     *
+     * @member {number}
+     */
+    get wavelength() {
+        return this.uniforms.wavelength;
+    }
+    set wavelength(value) {
+        this.uniforms.wavelength = value;
+    }
+
+    /**
+     * The brightness of the shockwave.
+     *
+     * @member {number}
+     */
+    get brightness() {
+        return this.uniforms.brightness;
+    }
+    set brightness(value) {
+        this.uniforms.brightness = value;
+    }
+
+    /**
+     * The speed about the shockwave ripples out.
+     * The unit is `pixel/second`
+     *
+     * @member {number}
+     */
+    get speed() {
+        return this.uniforms.speed;
+    }
+    set speed(value) {
+        this.uniforms.speed = value;
+    }
+
+    /**
+     * The maximum radius of shockwave.
+     * `&lt; 0.0` means it's infinity.
+     *
+     * @member {number}
+     */
+    get radius() {
+        return this.uniforms.radius;
+    }
+    set radius(value) {
+        this.uniforms.radius = value;
+    }
+}
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+
+
+        
+
+        <footer class="content-size">
+            <div class="footer">
+                Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri May 10 2019 09:50:56 GMT-0700 (Pacific Daylight Time)
+            </div>
+        </footer>
+    </div>
+</div>
+<script>prettyPrint();</script>
+<script src="scripts/main.js"></script>
+</body>
+</html>
