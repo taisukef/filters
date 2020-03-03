@@ -348,6 +348,32 @@
             </ul>
         </li>
     
+        <li class="item" data-name="PIXI.filters.ColorOverlayFilter">
+            <span class="title  ">
+                
+                <a href="PIXI.filters.ColorOverlayFilter.html">PIXI.filters.ColorOverlayFilter</a>
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li class="parent " data-name="PIXI.filters.ColorOverlayFilter#color"><a href="PIXI.filters.ColorOverlayFilter.html#color">color</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
         <li class="item" data-name="PIXI.filters.ColorReplaceFilter">
             <span class="title  ">
                 
@@ -655,9 +681,9 @@
             
                 <li class="parent " data-name="PIXI.filters.GlowFilter#color"><a href="PIXI.filters.GlowFilter.html#color">color</a></li>
             
-                <li class="parent " data-name="PIXI.filters.GlowFilter#distance"><a href="PIXI.filters.GlowFilter.html#distance">distance</a></li>
-            
                 <li class="parent " data-name="PIXI.filters.GlowFilter#innerStrength"><a href="PIXI.filters.GlowFilter.html#innerStrength">innerStrength</a></li>
+            
+                <li class="parent " data-name="PIXI.filters.GlowFilter#knockout"><a href="PIXI.filters.GlowFilter.html#knockout">knockout</a></li>
             
                 <li class="parent " data-name="PIXI.filters.GlowFilter#outerStrength"><a href="PIXI.filters.GlowFilter.html#outerStrength">outerStrength</a></li>
             
@@ -1186,8 +1212,7 @@
         </h2>
         
             <div class="class-description"><p>GlowFilter, originally by mishaa
-http://<a target="_blank" href="http://www.html5gamedevs.com/topic/12756-glow-filter/?hl=mishaa#entry73578">www.html5gamedevs.com/topic/12756-glow-filter/?hl=mishaa#entry73578</a>
-http://codepen.io/mishaa/pen/raKzrm<br>
+<a target="_blank" href="http://codepen.io/mishaa/pen/raKzrm">codepen</a>.<br>
 <img src="../tools/screenshots/dist/original.png" alt="original"><img src="../tools/screenshots/dist/glow.png" alt="filter"></p></div>
         
     </div>
@@ -1206,7 +1231,7 @@ http://codepen.io/mishaa/pen/raKzrm<br>
             <span class="">
                 new PIXI.filters.GlowFilter
             </span>
-            <span class="signature">(<span class="optional">distance</span>, <span class="optional">outerStrength</span>, <span class="optional">innerStrength</span>, <span class="optional">color</span>, <span class="optional">quality</span>)</span>
+            <span class="signature">(<span class="optional">options</span>)</span>
             
             
             
@@ -1215,7 +1240,7 @@ http://codepen.io/mishaa/pen/raKzrm<br>
     
         
         <div class="tag-source">
-            <a href="filters_glow_src_GlowFilter.js.html#line29">GlowFilter.js:29</a>
+            <a href="filters_glow_src_GlowFilter.js.html#line31">GlowFilter.js:31</a>
         </div>
         
     </div>
@@ -1232,6 +1257,52 @@ http://codepen.io/mishaa/pen/raKzrm<br>
     
     
         
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>Options for glow.</p>
+                
 
 <table class="params">
     <thead>
@@ -1284,7 +1355,8 @@ http://codepen.io/mishaa/pen/raKzrm<br>
                         
                     
                 
-                <p>The distance of the glow. Make it 2 times more for resolution=2. It cant be changed after filter creation</p></td>
+                <p>The distance of the glow. Make it 2 times more for resolution=2.
+       It can't be changed after filter creation.</p></td>
         </tr>
 	
 	
@@ -1428,7 +1500,50 @@ http://codepen.io/mishaa/pen/raKzrm<br>
                         
                     
                 
-                <p>A number between 0 and 1 that describes the quality of the glow.</p></td>
+                <p>A number between 0 and 1 that describes the quality of the glow.
+       The higher the number the less performant.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>knockout</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                <p>Toggle to hide the contents and only show glow.</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+            </td>
         </tr>
 	
 	
@@ -1485,7 +1600,7 @@ http://codepen.io/mishaa/pen/raKzrm<br>
 
     
     <pre class="prettyprint"><code>someSprite.filters = [
-     new GlowFilter(15, 2, 1, 0xFF0000, 0.5)
+     new GlowFilter({ distance: 15, outerStrength: 2 })
  ];</code></pre>
     
 
@@ -1572,60 +1687,6 @@ http://codepen.io/mishaa/pen/raKzrm<br>
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="distance">
-            <a class="share-icon" href="#distance"><span class="glyphicon glyphicon-link"></span></a>
-            <span class="">distance</span>
-            <span class="type-signature type">number</span>
-            
-            
-            
-            
-        </h4>
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>The distance of the glow. Make it 2 times more for resolution=2. It cant be changed after filter creation</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>10</li></ul></dd>
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
         <h4 class="name" id="innerStrength">
             <a class="share-icon" href="#innerStrength"><span class="glyphicon glyphicon-link"></span></a>
             <span class="">innerStrength</span>
@@ -1663,6 +1724,60 @@ http://codepen.io/mishaa/pen/raKzrm<br>
     
     <dt class="tag-default">Default Value:</dt>
     <dd class="tag-default"><ul class="dummy"><li>0</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="knockout">
+            <a class="share-icon" href="#knockout"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="">knockout</span>
+            <span class="type-signature type">boolean</span>
+            
+            
+            
+            
+        </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Only draw the glow, not the texture itself</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>false</li></ul></dd>
     
     
     
@@ -1752,7 +1867,7 @@ http://codepen.io/mishaa/pen/raKzrm<br>
 
         <footer class="content-size">
             <div class="footer">
-                Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue May 28 2019 20:05:10 GMT-0700 (Pacific Daylight Time)
+                Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Mar 03 2020 04:43:37 GMT-0800 (Pacific Standard Time)
             </div>
         </footer>
     </div>
