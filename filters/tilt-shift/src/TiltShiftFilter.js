@@ -27,6 +27,7 @@ class TiltShiftFilter extends Filter {
         super();
         this.tiltShiftXFilter = new TiltShiftXFilter(blur, gradientBlur, start, end);
         this.tiltShiftYFilter = new TiltShiftYFilter(blur, gradientBlur, start, end);
+        this.resize(window.innerWidth, window.innerHeight);
     }
 
     apply(filterManager, input, output) {
@@ -34,6 +35,16 @@ class TiltShiftFilter extends Filter {
         this.tiltShiftXFilter.apply(filterManager, input, renderTarget, 1);
         this.tiltShiftYFilter.apply(filterManager, renderTarget, output);
         filterManager.returnFilterTexture(renderTarget);
+    }
+
+    /**
+     * Resize the filter texture size.
+     * @param {number} width - Width of the size.
+     * @param {number} height - Height of the size.
+     */
+    resize(width, height) {
+        this.tiltShiftXFilter.resize(width, height);
+        this.tiltShiftYFilter.resize(width, height);
     }
 
     /**

@@ -25,8 +25,17 @@ class TiltShiftAxisFilter extends Filter {
         this.uniforms.start = start || new Point(0, window.innerHeight / 2);
         this.uniforms.end = end || new Point(600, window.innerHeight / 2);
         this.uniforms.delta = new Point(30, 30);
-        this.uniforms.texSize = new Point(window.innerWidth, window.innerHeight);
+        this.uniforms.texSize = new Point(0, 0);
         this.updateDelta();
+    }
+
+    /**
+     * Resize the texture size to consider.
+     * @param {number} width 
+     * @param {number} height 
+     */
+    resize(width, height) {
+        this.uniforms.texSize.set(width, height);
     }
 
     /**

@@ -6,6 +6,7 @@ declare namespace PIXI.filters {
         end:PIXI.Point;
         gradientBlur:number;
         start:PIXI.Point;
+        resize(width: number, height: number): void;
     }
 }
 
